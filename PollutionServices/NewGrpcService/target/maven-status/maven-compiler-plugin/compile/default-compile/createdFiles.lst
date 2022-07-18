@@ -1,0 +1,16 @@
+grpc\newService\containsStringOrBuilder.class
+grpc\newService\newServiceGrpc$newServiceFutureStub.class
+grpc\newService\newServiceGrpc$newServiceMethodDescriptorSupplier.class
+grpc\newService\newServiceGrpc$newServiceStub.class
+grpc\newService\containsString.class
+grpc\newService\newServiceGrpc.class
+grpc\newService\newServiceGrpc$MethodHandlers.class
+grpc\newService\newServiceGrpc$newServiceBlockingStub.class
+grpc\newService\containsString$1.class
+grpc\newService\containsString$Builder.class
+grpc\newService\newServiceGrpc$newServiceImplBase.class
+grpc\newService\newServiceGrpc$1.class
+grpc\newService\newServiceGrpc$newServiceFileDescriptorSupplier.class
+grpc\newService\NewServiceImpl$1.class
+grpc\newService\NewServiceImpl.class
+grpc\newService\newServiceGrpc$newServiceBaseDescriptorSupplier.class
