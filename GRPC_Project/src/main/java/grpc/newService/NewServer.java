@@ -1,17 +1,5 @@
 package grpc.newService;
 
-/*
- * 
- * [18:57] Jack Bolger
-
-Mayara Regio Melo - download BloomRPC-1.5.3.dmg and open it. Drag into your applications folder and then that should work on Mac
-
-[18:57] Jack Bolger
-You might need to change some security settings to open it
- like 1
-
- */
-
 import java.io.IOException;
 
 import grpc.newService.newServiceGrpc.newServiceImplBase;
