@@ -4,28 +4,32 @@ option java_package = "grpc.newService.Carbon";
 option java_multiple_files = true;
 option java_outer_classname = "CarbonServiceImpl";
 
-service carbonCalculator {
+service CarbonService {
 	//unary
-	rpc calculateCarbonFlight(carbonFlightRequest) returns (carbonFlightResponse){}
-	rpc calculateCarbonDrive(carbonDriveRequest) returns (carbonFlightResponse){}
+	rpc calculateCarbonFlight(CarbonFlightRequest) returns (CarbonFlightResponse){}
+	rpc calculateCarbonDrive(CarbonDriveRequest) returns (CarbonFlightResponse){}
 }
 
-message carbonFlightRequest {
+
+
+
+
+message CarbonFlightRequest {
 	int32 hoursInput = 1; 	// 1 is just a tag/identifier, its not the contents of the variable
 }
 
-message carbonDriveRequest {
+message CarbonDriveRequest {
    int32 milesInput = 1;
    int32 mpgInput 	= 2;
 }
 
 
 
-message carbonFlightResponse {
+message CarbonFlightResponse {
 	int32 carbonOutput = 1;
 }
 
 
-message carbonDriveResponse {
+message CarbonDriveResponse {
 	int32 carbonOutput = 1;
 }
