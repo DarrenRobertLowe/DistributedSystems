@@ -38,20 +38,19 @@ import io.grpc.stub.StreamObserver;
 
 public class CarbonService {
 
-	private static Server server;
+	private Server server;
 	public static void main(String[] args) throws IOException, InterruptedException {
 		CarbonService ourServer = new CarbonService();
-		//ourServer.start();
-	//}
-
-	//public void start() throws IOException, InterruptedException {
+		ourServer.start(ourServer);
+	}
+	
+	
+	
+	private void start(CarbonService ourServer) throws IOException, InterruptedException {
 		System.out.println("Starting grpc server");
 		Properties prop = ourServer.getProperties();
 		
-		
-		System.out.println("Starting grpc server");
-		
-		int port = 50051;
+		int port = Integer.valueOf( prop.getProperty("service_port") );	// 50051;
 		server = ServerBuilder.forPort(port).addService(new CarbonServiceImpl()).build().start();	
 		
 		System.out.println("Server running on port: " + port);
@@ -65,23 +64,23 @@ public class CarbonService {
 		Properties prop = null;
 		
 		try (InputStream input = new FileInputStream("src/main/resources/carbonserver.properties")) {
-
+			
 			prop = new Properties();
-
-	        // load a properties file
+			
+	        // load properties file
 	        prop.load(input);
-
+	        
 	        // get the property value and print it out
 	        System.out.println("Carbon Service properies ...");
             System.out.println("\t service_type: " + prop.getProperty("service_type"));
             System.out.println("\t service_name: " +prop.getProperty("service_name"));
             System.out.println("\t service_description: " +prop.getProperty("service_description"));
 	        System.out.println("\t service_port: " +prop.getProperty("service_port"));
-
+	        
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-
+		
 		return prop;
 	}
 	
