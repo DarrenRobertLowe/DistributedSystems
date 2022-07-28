@@ -4,19 +4,19 @@
 package grpc.newService.Carbon;
 
 /**
- * Protobuf type {@code CarbonDriveResponse}
+ * Protobuf type {@code carbonDriveResponse}
  */
-public  final class CarbonDriveResponse extends
+public  final class carbonDriveResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:CarbonDriveResponse)
-    CarbonDriveResponseOrBuilder {
+    // @@protoc_insertion_point(message_implements:carbonDriveResponse)
+    carbonDriveResponseOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use CarbonDriveResponse.newBuilder() to construct.
-  private CarbonDriveResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use carbonDriveResponse.newBuilder() to construct.
+  private carbonDriveResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private CarbonDriveResponse() {
-    carbonOutput_ = 0;
+  private carbonDriveResponse() {
+    carbonOutput_ = "";
   }
 
   @java.lang.Override
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private CarbonDriveResponse(
+  private carbonDriveResponse(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -43,9 +43,10 @@ private static final long serialVersionUID = 0L;
           case 0:
             done = true;
             break;
-          case 8: {
+          case 10: {
+            java.lang.String s = input.readStringRequireUtf8();
 
-            carbonOutput_ = input.readInt32();
+            carbonOutput_ = s;
             break;
           }
           default: {
@@ -69,24 +70,49 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return grpc.newService.Carbon.CarbonServiceImpl.internal_static_CarbonDriveResponse_descriptor;
+    return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return grpc.newService.Carbon.CarbonServiceImpl.internal_static_CarbonDriveResponse_fieldAccessorTable
+    return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            grpc.newService.Carbon.CarbonDriveResponse.class, grpc.newService.Carbon.CarbonDriveResponse.Builder.class);
+            grpc.newService.Carbon.carbonDriveResponse.class, grpc.newService.Carbon.carbonDriveResponse.Builder.class);
   }
 
   public static final int CARBONOUTPUT_FIELD_NUMBER = 1;
-  private int carbonOutput_;
+  private volatile java.lang.Object carbonOutput_;
   /**
-   * <code>int32 carbonOutput = 1;</code>
+   * <code>string carbonOutput = 1;</code>
    */
-  public int getCarbonOutput() {
-    return carbonOutput_;
+  public java.lang.String getCarbonOutput() {
+    java.lang.Object ref = carbonOutput_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      carbonOutput_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string carbonOutput = 1;</code>
+   */
+  public com.google.protobuf.ByteString
+      getCarbonOutputBytes() {
+    java.lang.Object ref = carbonOutput_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      carbonOutput_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -103,8 +129,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (carbonOutput_ != 0) {
-      output.writeInt32(1, carbonOutput_);
+    if (!getCarbonOutputBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, carbonOutput_);
     }
     unknownFields.writeTo(output);
   }
@@ -115,9 +141,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (carbonOutput_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, carbonOutput_);
+    if (!getCarbonOutputBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, carbonOutput_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -129,14 +154,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof grpc.newService.Carbon.CarbonDriveResponse)) {
+    if (!(obj instanceof grpc.newService.Carbon.carbonDriveResponse)) {
       return super.equals(obj);
     }
-    grpc.newService.Carbon.CarbonDriveResponse other = (grpc.newService.Carbon.CarbonDriveResponse) obj;
+    grpc.newService.Carbon.carbonDriveResponse other = (grpc.newService.Carbon.carbonDriveResponse) obj;
 
     boolean result = true;
-    result = result && (getCarbonOutput()
-        == other.getCarbonOutput());
+    result = result && getCarbonOutput()
+        .equals(other.getCarbonOutput());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -149,75 +174,75 @@ private static final long serialVersionUID = 0L;
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CARBONOUTPUT_FIELD_NUMBER;
-    hash = (53 * hash) + getCarbonOutput();
+    hash = (53 * hash) + getCarbonOutput().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(byte[] data)
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(java.io.InputStream input)
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseDelimitedFrom(java.io.InputStream input)
+  public static grpc.newService.Carbon.carbonDriveResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseDelimitedFrom(
+  public static grpc.newService.Carbon.carbonDriveResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.newService.Carbon.CarbonDriveResponse parseFrom(
+  public static grpc.newService.Carbon.carbonDriveResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -230,7 +255,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(grpc.newService.Carbon.CarbonDriveResponse prototype) {
+  public static Builder newBuilder(grpc.newService.Carbon.carbonDriveResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -246,26 +271,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code CarbonDriveResponse}
+   * Protobuf type {@code carbonDriveResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:CarbonDriveResponse)
-      grpc.newService.Carbon.CarbonDriveResponseOrBuilder {
+      // @@protoc_insertion_point(builder_implements:carbonDriveResponse)
+      grpc.newService.Carbon.carbonDriveResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_CarbonDriveResponse_descriptor;
+      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_CarbonDriveResponse_fieldAccessorTable
+      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              grpc.newService.Carbon.CarbonDriveResponse.class, grpc.newService.Carbon.CarbonDriveResponse.Builder.class);
+              grpc.newService.Carbon.carbonDriveResponse.class, grpc.newService.Carbon.carbonDriveResponse.Builder.class);
     }
 
-    // Construct using grpc.newService.Carbon.CarbonDriveResponse.newBuilder()
+    // Construct using grpc.newService.Carbon.carbonDriveResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -283,7 +308,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      carbonOutput_ = 0;
+      carbonOutput_ = "";
 
       return this;
     }
@@ -291,17 +316,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_CarbonDriveResponse_descriptor;
+      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveResponse_descriptor;
     }
 
     @java.lang.Override
-    public grpc.newService.Carbon.CarbonDriveResponse getDefaultInstanceForType() {
-      return grpc.newService.Carbon.CarbonDriveResponse.getDefaultInstance();
+    public grpc.newService.Carbon.carbonDriveResponse getDefaultInstanceForType() {
+      return grpc.newService.Carbon.carbonDriveResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public grpc.newService.Carbon.CarbonDriveResponse build() {
-      grpc.newService.Carbon.CarbonDriveResponse result = buildPartial();
+    public grpc.newService.Carbon.carbonDriveResponse build() {
+      grpc.newService.Carbon.carbonDriveResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -309,8 +334,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public grpc.newService.Carbon.CarbonDriveResponse buildPartial() {
-      grpc.newService.Carbon.CarbonDriveResponse result = new grpc.newService.Carbon.CarbonDriveResponse(this);
+    public grpc.newService.Carbon.carbonDriveResponse buildPartial() {
+      grpc.newService.Carbon.carbonDriveResponse result = new grpc.newService.Carbon.carbonDriveResponse(this);
       result.carbonOutput_ = carbonOutput_;
       onBuilt();
       return result;
@@ -350,18 +375,19 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof grpc.newService.Carbon.CarbonDriveResponse) {
-        return mergeFrom((grpc.newService.Carbon.CarbonDriveResponse)other);
+      if (other instanceof grpc.newService.Carbon.carbonDriveResponse) {
+        return mergeFrom((grpc.newService.Carbon.carbonDriveResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(grpc.newService.Carbon.CarbonDriveResponse other) {
-      if (other == grpc.newService.Carbon.CarbonDriveResponse.getDefaultInstance()) return this;
-      if (other.getCarbonOutput() != 0) {
-        setCarbonOutput(other.getCarbonOutput());
+    public Builder mergeFrom(grpc.newService.Carbon.carbonDriveResponse other) {
+      if (other == grpc.newService.Carbon.carbonDriveResponse.getDefaultInstance()) return this;
+      if (!other.getCarbonOutput().isEmpty()) {
+        carbonOutput_ = other.carbonOutput_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -378,11 +404,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      grpc.newService.Carbon.CarbonDriveResponse parsedMessage = null;
+      grpc.newService.Carbon.carbonDriveResponse parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (grpc.newService.Carbon.CarbonDriveResponse) e.getUnfinishedMessage();
+        parsedMessage = (grpc.newService.Carbon.carbonDriveResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -392,28 +418,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int carbonOutput_ ;
+    private java.lang.Object carbonOutput_ = "";
     /**
-     * <code>int32 carbonOutput = 1;</code>
+     * <code>string carbonOutput = 1;</code>
      */
-    public int getCarbonOutput() {
-      return carbonOutput_;
+    public java.lang.String getCarbonOutput() {
+      java.lang.Object ref = carbonOutput_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        carbonOutput_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>int32 carbonOutput = 1;</code>
+     * <code>string carbonOutput = 1;</code>
      */
-    public Builder setCarbonOutput(int value) {
-      
+    public com.google.protobuf.ByteString
+        getCarbonOutputBytes() {
+      java.lang.Object ref = carbonOutput_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        carbonOutput_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string carbonOutput = 1;</code>
+     */
+    public Builder setCarbonOutput(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
       carbonOutput_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 carbonOutput = 1;</code>
+     * <code>string carbonOutput = 1;</code>
      */
     public Builder clearCarbonOutput() {
       
-      carbonOutput_ = 0;
+      carbonOutput_ = getDefaultInstance().getCarbonOutput();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string carbonOutput = 1;</code>
+     */
+    public Builder setCarbonOutputBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      carbonOutput_ = value;
       onChanged();
       return this;
     }
@@ -430,41 +499,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:CarbonDriveResponse)
+    // @@protoc_insertion_point(builder_scope:carbonDriveResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:CarbonDriveResponse)
-  private static final grpc.newService.Carbon.CarbonDriveResponse DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:carbonDriveResponse)
+  private static final grpc.newService.Carbon.carbonDriveResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new grpc.newService.Carbon.CarbonDriveResponse();
+    DEFAULT_INSTANCE = new grpc.newService.Carbon.carbonDriveResponse();
   }
 
-  public static grpc.newService.Carbon.CarbonDriveResponse getDefaultInstance() {
+  public static grpc.newService.Carbon.carbonDriveResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<CarbonDriveResponse>
-      PARSER = new com.google.protobuf.AbstractParser<CarbonDriveResponse>() {
+  private static final com.google.protobuf.Parser<carbonDriveResponse>
+      PARSER = new com.google.protobuf.AbstractParser<carbonDriveResponse>() {
     @java.lang.Override
-    public CarbonDriveResponse parsePartialFrom(
+    public carbonDriveResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new CarbonDriveResponse(input, extensionRegistry);
+      return new carbonDriveResponse(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<CarbonDriveResponse> parser() {
+  public static com.google.protobuf.Parser<carbonDriveResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<CarbonDriveResponse> getParserForType() {
+  public com.google.protobuf.Parser<carbonDriveResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public grpc.newService.Carbon.CarbonDriveResponse getDefaultInstanceForType() {
+  public grpc.newService.Carbon.carbonDriveResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

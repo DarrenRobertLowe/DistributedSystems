@@ -15,25 +15,35 @@ public final class CarbonServiceImpl {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CarbonFlightRequest_descriptor;
+    internal_static_carbonFlightRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CarbonFlightRequest_fieldAccessorTable;
+      internal_static_carbonFlightRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CarbonDriveRequest_descriptor;
+    internal_static_carbonDriveRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CarbonDriveRequest_fieldAccessorTable;
+      internal_static_carbonDriveRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CarbonFlightResponse_descriptor;
+    internal_static_carbonFlightResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CarbonFlightResponse_fieldAccessorTable;
+      internal_static_carbonFlightResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CarbonDriveResponse_descriptor;
+    internal_static_carbonDriveResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CarbonDriveResponse_fieldAccessorTable;
+      internal_static_carbonDriveResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_containsString_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_containsString_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_newResponseInteger_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_newResponseInteger_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -43,17 +53,19 @@ public final class CarbonServiceImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\023carbonService.proto\")\n\023CarbonFlightReq" +
-      "uest\022\022\n\nhoursInput\030\001 \001(\005\":\n\022CarbonDriveR" +
+      "\n\023carbonService.proto\")\n\023carbonFlightReq" +
+      "uest\022\022\n\nhoursInput\030\001 \001(\005\":\n\022carbonDriveR" +
       "equest\022\022\n\nmilesInput\030\001 \001(\005\022\020\n\010mpgInput\030\002" +
-      " \001(\005\",\n\024CarbonFlightResponse\022\024\n\014carbonOu" +
-      "tput\030\001 \001(\005\"+\n\023CarbonDriveResponse\022\024\n\014car" +
-      "bonOutput\030\001 \001(\0052\235\001\n\rCarbonService\022F\n\025cal" +
-      "culateCarbonFlight\022\024.CarbonFlightRequest" +
-      "\032\025.CarbonFlightResponse\"\000\022D\n\024calculateCa" +
-      "rbonDrive\022\023.CarbonDriveRequest\032\025.CarbonF" +
-      "lightResponse\"\000B-\n\026grpc.newService.Carbo" +
-      "nB\021CarbonServiceImplP\001b\006proto3"
+      " \001(\005\",\n\024carbonFlightResponse\022\024\n\014carbonOu" +
+      "tput\030\001 \001(\t\"+\n\023carbonDriveResponse\022\024\n\014car" +
+      "bonOutput\030\001 \001(\t\"%\n\016containsString\022\023\n\013fir" +
+      "stString\030\001 \001(\t\"*\n\022newResponseInteger\022\024\n\014" +
+      "firstInteger\030\001 \001(\0052\221\001\n\rcarbonService\022@\n\025" +
+      "CalculateCarbonFlight\022\024.carbonFlightRequ" +
+      "est\032\017.containsString\"\000\022>\n\024CalculateCarbo" +
+      "nDrive\022\023.carbonDriveRequest\032\017.containsSt" +
+      "ring\"\000B-\n\026grpc.newService.CarbonB\021Carbon" +
+      "ServiceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -67,30 +79,42 @@ public final class CarbonServiceImpl {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_CarbonFlightRequest_descriptor =
+    internal_static_carbonFlightRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_CarbonFlightRequest_fieldAccessorTable = new
+    internal_static_carbonFlightRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CarbonFlightRequest_descriptor,
+        internal_static_carbonFlightRequest_descriptor,
         new java.lang.String[] { "HoursInput", });
-    internal_static_CarbonDriveRequest_descriptor =
+    internal_static_carbonDriveRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_CarbonDriveRequest_fieldAccessorTable = new
+    internal_static_carbonDriveRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CarbonDriveRequest_descriptor,
+        internal_static_carbonDriveRequest_descriptor,
         new java.lang.String[] { "MilesInput", "MpgInput", });
-    internal_static_CarbonFlightResponse_descriptor =
+    internal_static_carbonFlightResponse_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_CarbonFlightResponse_fieldAccessorTable = new
+    internal_static_carbonFlightResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CarbonFlightResponse_descriptor,
+        internal_static_carbonFlightResponse_descriptor,
         new java.lang.String[] { "CarbonOutput", });
-    internal_static_CarbonDriveResponse_descriptor =
+    internal_static_carbonDriveResponse_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_CarbonDriveResponse_fieldAccessorTable = new
+    internal_static_carbonDriveResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CarbonDriveResponse_descriptor,
+        internal_static_carbonDriveResponse_descriptor,
         new java.lang.String[] { "CarbonOutput", });
+    internal_static_containsString_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_containsString_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_containsString_descriptor,
+        new java.lang.String[] { "FirstString", });
+    internal_static_newResponseInteger_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_newResponseInteger_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_newResponseInteger_descriptor,
+        new java.lang.String[] { "FirstInteger", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

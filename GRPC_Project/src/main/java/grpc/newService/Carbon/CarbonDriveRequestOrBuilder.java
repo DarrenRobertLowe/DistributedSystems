@@ -3,8 +3,8 @@
 
 package grpc.newService.Carbon;
 
-public interface CarbonDriveRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:CarbonDriveRequest)
+public interface carbonDriveRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:carbonDriveRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

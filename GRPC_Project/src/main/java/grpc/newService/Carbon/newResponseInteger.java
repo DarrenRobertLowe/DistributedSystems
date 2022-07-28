@@ -4,20 +4,19 @@
 package grpc.newService.Carbon;
 
 /**
- * Protobuf type {@code carbonDriveRequest}
+ * Protobuf type {@code newResponseInteger}
  */
-public  final class carbonDriveRequest extends
+public  final class newResponseInteger extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:carbonDriveRequest)
-    carbonDriveRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:newResponseInteger)
+    newResponseIntegerOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use carbonDriveRequest.newBuilder() to construct.
-  private carbonDriveRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use newResponseInteger.newBuilder() to construct.
+  private newResponseInteger(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private carbonDriveRequest() {
-    milesInput_ = 0;
-    mpgInput_ = 0;
+  private newResponseInteger() {
+    firstInteger_ = 0;
   }
 
   @java.lang.Override
@@ -25,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private carbonDriveRequest(
+  private newResponseInteger(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -46,12 +45,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            milesInput_ = input.readInt32();
-            break;
-          }
-          case 16: {
-
-            mpgInput_ = input.readInt32();
+            firstInteger_ = input.readInt32();
             break;
           }
           default: {
@@ -75,33 +69,24 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveRequest_descriptor;
+    return grpc.newService.Carbon.CarbonServiceImpl.internal_static_newResponseInteger_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveRequest_fieldAccessorTable
+    return grpc.newService.Carbon.CarbonServiceImpl.internal_static_newResponseInteger_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            grpc.newService.Carbon.carbonDriveRequest.class, grpc.newService.Carbon.carbonDriveRequest.Builder.class);
+            grpc.newService.Carbon.newResponseInteger.class, grpc.newService.Carbon.newResponseInteger.Builder.class);
   }
 
-  public static final int MILESINPUT_FIELD_NUMBER = 1;
-  private int milesInput_;
+  public static final int FIRSTINTEGER_FIELD_NUMBER = 1;
+  private int firstInteger_;
   /**
-   * <code>int32 milesInput = 1;</code>
+   * <code>int32 firstInteger = 1;</code>
    */
-  public int getMilesInput() {
-    return milesInput_;
-  }
-
-  public static final int MPGINPUT_FIELD_NUMBER = 2;
-  private int mpgInput_;
-  /**
-   * <code>int32 mpgInput = 2;</code>
-   */
-  public int getMpgInput() {
-    return mpgInput_;
+  public int getFirstInteger() {
+    return firstInteger_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -118,11 +103,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (milesInput_ != 0) {
-      output.writeInt32(1, milesInput_);
-    }
-    if (mpgInput_ != 0) {
-      output.writeInt32(2, mpgInput_);
+    if (firstInteger_ != 0) {
+      output.writeInt32(1, firstInteger_);
     }
     unknownFields.writeTo(output);
   }
@@ -133,13 +115,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (milesInput_ != 0) {
+    if (firstInteger_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, milesInput_);
-    }
-    if (mpgInput_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(2, mpgInput_);
+        .computeInt32Size(1, firstInteger_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -151,16 +129,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof grpc.newService.Carbon.carbonDriveRequest)) {
+    if (!(obj instanceof grpc.newService.Carbon.newResponseInteger)) {
       return super.equals(obj);
     }
-    grpc.newService.Carbon.carbonDriveRequest other = (grpc.newService.Carbon.carbonDriveRequest) obj;
+    grpc.newService.Carbon.newResponseInteger other = (grpc.newService.Carbon.newResponseInteger) obj;
 
     boolean result = true;
-    result = result && (getMilesInput()
-        == other.getMilesInput());
-    result = result && (getMpgInput()
-        == other.getMpgInput());
+    result = result && (getFirstInteger()
+        == other.getFirstInteger());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -172,78 +148,76 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + MILESINPUT_FIELD_NUMBER;
-    hash = (53 * hash) + getMilesInput();
-    hash = (37 * hash) + MPGINPUT_FIELD_NUMBER;
-    hash = (53 * hash) + getMpgInput();
+    hash = (37 * hash) + FIRSTINTEGER_FIELD_NUMBER;
+    hash = (53 * hash) + getFirstInteger();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(byte[] data)
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(java.io.InputStream input)
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseDelimitedFrom(java.io.InputStream input)
+  public static grpc.newService.Carbon.newResponseInteger parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseDelimitedFrom(
+  public static grpc.newService.Carbon.newResponseInteger parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.newService.Carbon.carbonDriveRequest parseFrom(
+  public static grpc.newService.Carbon.newResponseInteger parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -256,7 +230,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(grpc.newService.Carbon.carbonDriveRequest prototype) {
+  public static Builder newBuilder(grpc.newService.Carbon.newResponseInteger prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -272,26 +246,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code carbonDriveRequest}
+   * Protobuf type {@code newResponseInteger}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:carbonDriveRequest)
-      grpc.newService.Carbon.carbonDriveRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:newResponseInteger)
+      grpc.newService.Carbon.newResponseIntegerOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveRequest_descriptor;
+      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_newResponseInteger_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveRequest_fieldAccessorTable
+      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_newResponseInteger_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              grpc.newService.Carbon.carbonDriveRequest.class, grpc.newService.Carbon.carbonDriveRequest.Builder.class);
+              grpc.newService.Carbon.newResponseInteger.class, grpc.newService.Carbon.newResponseInteger.Builder.class);
     }
 
-    // Construct using grpc.newService.Carbon.carbonDriveRequest.newBuilder()
+    // Construct using grpc.newService.Carbon.newResponseInteger.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -309,9 +283,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      milesInput_ = 0;
-
-      mpgInput_ = 0;
+      firstInteger_ = 0;
 
       return this;
     }
@@ -319,17 +291,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_carbonDriveRequest_descriptor;
+      return grpc.newService.Carbon.CarbonServiceImpl.internal_static_newResponseInteger_descriptor;
     }
 
     @java.lang.Override
-    public grpc.newService.Carbon.carbonDriveRequest getDefaultInstanceForType() {
-      return grpc.newService.Carbon.carbonDriveRequest.getDefaultInstance();
+    public grpc.newService.Carbon.newResponseInteger getDefaultInstanceForType() {
+      return grpc.newService.Carbon.newResponseInteger.getDefaultInstance();
     }
 
     @java.lang.Override
-    public grpc.newService.Carbon.carbonDriveRequest build() {
-      grpc.newService.Carbon.carbonDriveRequest result = buildPartial();
+    public grpc.newService.Carbon.newResponseInteger build() {
+      grpc.newService.Carbon.newResponseInteger result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -337,10 +309,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public grpc.newService.Carbon.carbonDriveRequest buildPartial() {
-      grpc.newService.Carbon.carbonDriveRequest result = new grpc.newService.Carbon.carbonDriveRequest(this);
-      result.milesInput_ = milesInput_;
-      result.mpgInput_ = mpgInput_;
+    public grpc.newService.Carbon.newResponseInteger buildPartial() {
+      grpc.newService.Carbon.newResponseInteger result = new grpc.newService.Carbon.newResponseInteger(this);
+      result.firstInteger_ = firstInteger_;
       onBuilt();
       return result;
     }
@@ -379,21 +350,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof grpc.newService.Carbon.carbonDriveRequest) {
-        return mergeFrom((grpc.newService.Carbon.carbonDriveRequest)other);
+      if (other instanceof grpc.newService.Carbon.newResponseInteger) {
+        return mergeFrom((grpc.newService.Carbon.newResponseInteger)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(grpc.newService.Carbon.carbonDriveRequest other) {
-      if (other == grpc.newService.Carbon.carbonDriveRequest.getDefaultInstance()) return this;
-      if (other.getMilesInput() != 0) {
-        setMilesInput(other.getMilesInput());
-      }
-      if (other.getMpgInput() != 0) {
-        setMpgInput(other.getMpgInput());
+    public Builder mergeFrom(grpc.newService.Carbon.newResponseInteger other) {
+      if (other == grpc.newService.Carbon.newResponseInteger.getDefaultInstance()) return this;
+      if (other.getFirstInteger() != 0) {
+        setFirstInteger(other.getFirstInteger());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -410,11 +378,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      grpc.newService.Carbon.carbonDriveRequest parsedMessage = null;
+      grpc.newService.Carbon.newResponseInteger parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (grpc.newService.Carbon.carbonDriveRequest) e.getUnfinishedMessage();
+        parsedMessage = (grpc.newService.Carbon.newResponseInteger) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -424,54 +392,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int milesInput_ ;
+    private int firstInteger_ ;
     /**
-     * <code>int32 milesInput = 1;</code>
+     * <code>int32 firstInteger = 1;</code>
      */
-    public int getMilesInput() {
-      return milesInput_;
+    public int getFirstInteger() {
+      return firstInteger_;
     }
     /**
-     * <code>int32 milesInput = 1;</code>
+     * <code>int32 firstInteger = 1;</code>
      */
-    public Builder setMilesInput(int value) {
+    public Builder setFirstInteger(int value) {
       
-      milesInput_ = value;
+      firstInteger_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 milesInput = 1;</code>
+     * <code>int32 firstInteger = 1;</code>
      */
-    public Builder clearMilesInput() {
+    public Builder clearFirstInteger() {
       
-      milesInput_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private int mpgInput_ ;
-    /**
-     * <code>int32 mpgInput = 2;</code>
-     */
-    public int getMpgInput() {
-      return mpgInput_;
-    }
-    /**
-     * <code>int32 mpgInput = 2;</code>
-     */
-    public Builder setMpgInput(int value) {
-      
-      mpgInput_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 mpgInput = 2;</code>
-     */
-    public Builder clearMpgInput() {
-      
-      mpgInput_ = 0;
+      firstInteger_ = 0;
       onChanged();
       return this;
     }
@@ -488,41 +430,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:carbonDriveRequest)
+    // @@protoc_insertion_point(builder_scope:newResponseInteger)
   }
 
-  // @@protoc_insertion_point(class_scope:carbonDriveRequest)
-  private static final grpc.newService.Carbon.carbonDriveRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:newResponseInteger)
+  private static final grpc.newService.Carbon.newResponseInteger DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new grpc.newService.Carbon.carbonDriveRequest();
+    DEFAULT_INSTANCE = new grpc.newService.Carbon.newResponseInteger();
   }
 
-  public static grpc.newService.Carbon.carbonDriveRequest getDefaultInstance() {
+  public static grpc.newService.Carbon.newResponseInteger getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<carbonDriveRequest>
-      PARSER = new com.google.protobuf.AbstractParser<carbonDriveRequest>() {
+  private static final com.google.protobuf.Parser<newResponseInteger>
+      PARSER = new com.google.protobuf.AbstractParser<newResponseInteger>() {
     @java.lang.Override
-    public carbonDriveRequest parsePartialFrom(
+    public newResponseInteger parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new carbonDriveRequest(input, extensionRegistry);
+      return new newResponseInteger(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<carbonDriveRequest> parser() {
+  public static com.google.protobuf.Parser<newResponseInteger> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<carbonDriveRequest> getParserForType() {
+  public com.google.protobuf.Parser<newResponseInteger> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public grpc.newService.Carbon.carbonDriveRequest getDefaultInstanceForType() {
+  public grpc.newService.Carbon.newResponseInteger getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

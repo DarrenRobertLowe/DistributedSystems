@@ -70,9 +70,9 @@ public class NewServer {
 			
 			responseObserver.onNext(responseBuilder.build());
 			responseObserver.onCompleted();
-			
-			
 		}
+		
+		
 		
 		@Override
 		public void getFirsttStringServerStreaming(containsString request, StreamObserver<containsString> responseObserver) {
@@ -98,11 +98,43 @@ public class NewServer {
 			responseObserver.onNext(responseBuilder.build());
 			
 			responseObserver.onCompleted();
-			
-			
 		}
 		
 		
+		
+		// method for client streaming
+		// As we are the server, we are going to get a stream of messages coming in from the client
+		// For the incoming messages we need to implement a StreamObserver
+		// which we then pass back to the GRPC library.
+		@Override
+		public StreamObserver<containsString> sendStringClientStreaming(StreamObserver<containsString> responseObserver) {
+			return new StreamObserver<containsString>() {
+				
+				@Override
+				public void onNext(containsString request) {
+					// TODO Auto-generated method stub
+					System.out.println("On server side message that we received from the client is: FirstString is: " + request.getFirstString());
+				}
+				
+				@Override
+				public void onError(Throwable t) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void onCompleted() {
+					// TODO Auto-generated method stub
+					//Step one create a builder
+					containsString.Builder responseBuilder = containsString.newBuilder();
+					
+					responseBuilder.setFirstString("On server side: Server says that it got our completed message");
+					
+					responseObserver.onNext(responseBuilder.build());
+					responseObserver.onCompleted();
+				}
+				
+			};
+		}
 	}
-	
 }

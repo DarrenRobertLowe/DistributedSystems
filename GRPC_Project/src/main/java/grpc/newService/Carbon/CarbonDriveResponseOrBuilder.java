@@ -3,12 +3,17 @@
 
 package grpc.newService.Carbon;
 
-public interface CarbonDriveResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:CarbonDriveResponse)
+public interface carbonDriveResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:carbonDriveResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 carbonOutput = 1;</code>
+   * <code>string carbonOutput = 1;</code>
    */
-  int getCarbonOutput();
+  java.lang.String getCarbonOutput();
+  /**
+   * <code>string carbonOutput = 1;</code>
+   */
+  com.google.protobuf.ByteString
+      getCarbonOutputBytes();
 }

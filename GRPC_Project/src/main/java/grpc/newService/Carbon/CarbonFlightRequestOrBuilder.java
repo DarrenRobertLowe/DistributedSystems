@@ -3,8 +3,8 @@
 
 package grpc.newService.Carbon;
 
-public interface CarbonFlightRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:CarbonFlightRequest)
+public interface carbonFlightRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:carbonFlightRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**
