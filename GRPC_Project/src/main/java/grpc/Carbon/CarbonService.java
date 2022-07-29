@@ -1,4 +1,4 @@
-package grpc.newService.Carbon;
+package grpc.Carbon;
 
 /*
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
@@ -26,11 +26,13 @@ import io.grpc.stub.StreamObserver;
 
 // needed for properties file
 import java.util.Properties;
+
+import grpc.Carbon.carbonServiceGrpc.carbonServiceImplBase;
+
 import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import grpc.newService.Carbon.carbonServiceGrpc.carbonServiceImplBase;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;

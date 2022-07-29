@@ -1,10 +1,9 @@
-package grpc.newService.Carbon;
+package grpc.Carbon;
 
 import java.util.concurrent.TimeUnit;
 
-//import grpc.newService.Carbon.containsString;
-import grpc.newService.Carbon.carbonServiceGrpc.carbonServiceBlockingStub;
-import grpc.newService.Carbon.carbonServiceGrpc.carbonServiceStub;
+import grpc.Carbon.carbonServiceGrpc.carbonServiceBlockingStub;
+import grpc.Carbon.carbonServiceGrpc.carbonServiceStub;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 //import io.grpc.stub.StreamObserver;
@@ -25,16 +24,18 @@ public class CarbonClient {
 		
 		
 		
-		//unary rpc
+		//create the request
 		int hoursInput = 5;
+		
 		carbonFlightRequest req = carbonFlightRequest.newBuilder().setHoursInput(hoursInput).build();
 		System.out.println("The request we're sending is: " + req);
 		
 		
-		
 		//create a stub
-		//the stub is a local representation of our remote object or service
+		// the stub is a local representation of our remote object or service
 		carbonServiceBlockingStub bstub = carbonServiceGrpc.newBlockingStub(newChannel);
+		
+		// request a response using our carbonFlightRequest 'req'
 		containsString response = bstub.calculateCarbonFlight(req);
 		
 		
