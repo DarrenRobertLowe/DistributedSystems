@@ -265,7 +265,7 @@ private static final long serialVersionUID = 0L;
               grpc.Carbon.newResponseInteger.class, grpc.Carbon.newResponseInteger.Builder.class);
     }
 
-    // Construct using grpc.newService.Carbon.newResponseInteger.newBuilder()
+    // Construct using grpc.Carbon.newResponseInteger.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }

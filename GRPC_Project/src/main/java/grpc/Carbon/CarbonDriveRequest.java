@@ -291,7 +291,7 @@ private static final long serialVersionUID = 0L;
               grpc.Carbon.carbonDriveRequest.class, grpc.Carbon.carbonDriveRequest.Builder.class);
     }
 
-    // Construct using grpc.newService.Carbon.carbonDriveRequest.newBuilder()
+    // Construct using grpc.Carbon.carbonDriveRequest.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }

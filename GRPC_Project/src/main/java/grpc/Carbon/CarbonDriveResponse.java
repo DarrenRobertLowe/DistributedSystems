@@ -290,7 +290,7 @@ private static final long serialVersionUID = 0L;
               grpc.Carbon.carbonDriveResponse.class, grpc.Carbon.carbonDriveResponse.Builder.class);
     }
 
-    // Construct using grpc.newService.Carbon.carbonDriveResponse.newBuilder()
+    // Construct using grpc.Carbon.carbonDriveResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
