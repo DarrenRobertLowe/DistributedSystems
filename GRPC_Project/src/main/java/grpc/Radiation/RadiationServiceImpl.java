@@ -15,10 +15,10 @@ public final class RadiationServiceImpl {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_radiationTrack_descriptor;
+    internal_static_radiationMeasurements_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_radiationTrack_fieldAccessorTable;
+      internal_static_radiationMeasurements_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_radiationResponse_descriptor;
   static final 
@@ -59,6 +59,16 @@ public final class RadiationServiceImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_newResponseInteger_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_CalculateResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_CalculateResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_NumberMessage_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_NumberMessage_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -68,25 +78,28 @@ public final class RadiationServiceImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026radiationService.proto\"\'\n\016radiationTra" +
-      "ck\022\025\n\rmicrosieverts\030\001 \001(\005\"%\n\021radiationRe" +
-      "sponse\022\020\n\010received\030\001 \001(\005\"#\n\017radiationLev" +
-      "els\022\020\n\010clientID\030\001 \001(\005\"(\n\014levelsStream\022\030\n" +
-      "\020dangerousRegions\030\001 \001(\t\"*\n\026requestRadiat" +
-      "ionAlerts\022\020\n\010clientID\030\001 \001(\005\"+\n\016radiation" +
-      "Alert\022\031\n\021radiationAlertSet\030\001 \001(\t\"%\n\016cont" +
-      "ainsString\022\023\n\013firstString\030\001 \001(\t\")\n\021newRe" +
-      "questInteger\022\024\n\014firstInteger\030\001 \001(\005\"*\n\022ne" +
-      "wResponseInteger\022\024\n\014firstInteger\030\001 \001(\0052\222" +
-      "\002\n\020radiationService\022:\n\017StreamRadiation\022\022" +
-      ".newRequestInteger\032\017.containsString\"\000(\001\022" +
-      "9\n\022GetRadiationLevels\022\020.radiationLevels\032" +
-      "\r.levelsStream\"\0000\001\022D\n\024GetRadiationWarnin" +
-      "gs\022\027.requestRadiationAlerts\032\017.radiationA" +
-      "lert\"\0000\001\022A\n\031SendStringClientStreaming\022\017." +
-      "containsString\032\017.containsString\"\000(\001B(\n\016g" +
-      "rpc.RadiationB\024RadiationServiceImplP\001b\006p" +
-      "roto3"
+      "\n\026radiationService.proto\"+\n\025radiationMea" +
+      "surements\022\022\n\npicocuries\030\001 \001(\005\"%\n\021radiati" +
+      "onResponse\022\020\n\010received\030\001 \001(\005\"#\n\017radiatio" +
+      "nLevels\022\020\n\010clientID\030\001 \001(\005\"(\n\014levelsStrea" +
+      "m\022\030\n\020dangerousRegions\030\001 \001(\t\"*\n\026requestRa" +
+      "diationAlerts\022\020\n\010clientID\030\001 \001(\005\"+\n\016radia" +
+      "tionAlert\022\031\n\021radiationAlertSet\030\001 \001(\t\"%\n\016" +
+      "containsString\022\023\n\013firstString\030\001 \001(\t\")\n\021n" +
+      "ewRequestInteger\022\024\n\014firstInteger\030\001 \001(\005\"*" +
+      "\n\022newResponseInteger\022\024\n\014firstInteger\030\001 \001" +
+      "(\005\"4\n\021CalculateResponse\022\016\n\006result\030\001 \001(\002\022" +
+      "\017\n\007message\030\002 \001(\t\"\037\n\rNumberMessage\022\016\n\006num" +
+      "ber\030\001 \001(\0022\317\002\n\020radiationService\022>\n\017Stream" +
+      "Radiation\022\026.radiationMeasurements\032\017.cont" +
+      "ainsString\"\000(\001\0229\n\022GetRadiationLevels\022\020.r" +
+      "adiationLevels\032\r.levelsStream\"\0000\001\022D\n\024Get" +
+      "RadiationWarnings\022\027.requestRadiationAler" +
+      "ts\032\017.radiationAlert\"\0000\001\022A\n\031SendStringCli" +
+      "entStreaming\022\017.containsString\032\017.contains" +
+      "String\"\000(\001\0227\n\raverageValues\022\016.NumberMess" +
+      "age\032\022.CalculateResponse\"\000(\001B(\n\016grpc.Radi" +
+      "ationB\024RadiationServiceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -100,12 +113,12 @@ public final class RadiationServiceImpl {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_radiationTrack_descriptor =
+    internal_static_radiationMeasurements_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_radiationTrack_fieldAccessorTable = new
+    internal_static_radiationMeasurements_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_radiationTrack_descriptor,
-        new java.lang.String[] { "Microsieverts", });
+        internal_static_radiationMeasurements_descriptor,
+        new java.lang.String[] { "Picocuries", });
     internal_static_radiationResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_radiationResponse_fieldAccessorTable = new
@@ -154,6 +167,18 @@ public final class RadiationServiceImpl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_newResponseInteger_descriptor,
         new java.lang.String[] { "FirstInteger", });
+    internal_static_CalculateResponse_descriptor =
+      getDescriptor().getMessageTypes().get(9);
+    internal_static_CalculateResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_CalculateResponse_descriptor,
+        new java.lang.String[] { "Result", "Message", });
+    internal_static_NumberMessage_descriptor =
+      getDescriptor().getMessageTypes().get(10);
+    internal_static_NumberMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_NumberMessage_descriptor,
+        new java.lang.String[] { "Number", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

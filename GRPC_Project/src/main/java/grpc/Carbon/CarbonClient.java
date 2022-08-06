@@ -20,7 +20,9 @@ public class CarbonClient {
 		String host = "localhost";
 		
 		//Build a channel - a channel connects the client to the server
-		ManagedChannel newChannel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+		ManagedChannel newChannel = ManagedChannelBuilder
+					.forAddress(host, port)
+					.usePlaintext().build();
 		
 		
 		
@@ -42,7 +44,9 @@ public class CarbonClient {
 		//printout the response
 		System.out.println("This is the client: " +response.getFirstString());
 		
+		
 		// terminate properly or the server will crash
+		System.out.println("Shutting down.");
 		newChannel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
 	}
 }

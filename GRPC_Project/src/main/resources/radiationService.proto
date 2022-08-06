@@ -5,13 +5,9 @@ option java_multiple_files = true;
 option java_outer_classname = "RadiationServiceImpl";
 
 service radiationService {
-	//rpc StreamRadiation(stream radiationTrack) returns (radiationResponse){}			// client to server streaming
-	rpc StreamRadiation(stream newRequestInteger) returns (containsString){}			// client to server streaming
-
-	rpc GetRadiationLevels(radiationLevels) returns (stream levelsStream){}				// server to client streaming
-	rpc GetRadiationWarnings(requestRadiationAlerts) returns (stream radiationAlert){}	// server to client streaming
-
-	rpc SendStringClientStreaming(stream containsString) returns (containsString){}
+	rpc StreamRadiation(stream radiationMeasurements) returns (containsString){}				// client to server streaming
+	rpc GetRadiationLevels(radiationLevels) returns (stream levelsStream){}						// server to client streaming
+	rpc GetRadiationWarnings(requestRadiationAlerts) returns (stream radiationAlert){}			// server to client streaming
 }
 
 
@@ -20,8 +16,9 @@ service radiationService {
 // For the IoT Devices
 // each IoT device will track radiation levels in the water supply
 // and forward the information to the server.
-message radiationTrack {
-	int32 microsieverts = 1;
+message radiationMeasurements {
+	int32 picocuries = 1;
+	//string picocuries = 1;
 }
 
 
@@ -66,4 +63,18 @@ message newRequestInteger {
 
 message newResponseInteger {
    int32 firstInteger = 1;
+}
+
+
+
+
+
+message CalculateResponse {
+	float result = 1;
+	string message = 2;
+}
+
+
+message NumberMessage{
+	float number = 1;
 }
