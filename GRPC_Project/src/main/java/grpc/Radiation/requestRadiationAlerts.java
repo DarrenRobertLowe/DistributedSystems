@@ -21,7 +21,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private requestRadiationAlerts() {
-    clientID_ = 0;
+    threshold_ = 0;
   }
 
   @java.lang.Override
@@ -50,7 +50,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            clientID_ = input.readInt32();
+            threshold_ = input.readInt32();
             break;
           }
           default: {
@@ -85,13 +85,13 @@ private static final long serialVersionUID = 0L;
             grpc.Radiation.requestRadiationAlerts.class, grpc.Radiation.requestRadiationAlerts.Builder.class);
   }
 
-  public static final int CLIENTID_FIELD_NUMBER = 1;
-  private int clientID_;
+  public static final int THRESHOLD_FIELD_NUMBER = 1;
+  private int threshold_;
   /**
-   * <code>int32 clientID = 1;</code>
+   * <code>int32 threshold = 1;</code>
    */
-  public int getClientID() {
-    return clientID_;
+  public int getThreshold() {
+    return threshold_;
   }
 
   private byte memoizedIsInitialized = -1;
@@ -108,8 +108,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (clientID_ != 0) {
-      output.writeInt32(1, clientID_);
+    if (threshold_ != 0) {
+      output.writeInt32(1, threshold_);
     }
     unknownFields.writeTo(output);
   }
@@ -120,9 +120,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (clientID_ != 0) {
+    if (threshold_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, clientID_);
+        .computeInt32Size(1, threshold_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -140,8 +140,8 @@ private static final long serialVersionUID = 0L;
     grpc.Radiation.requestRadiationAlerts other = (grpc.Radiation.requestRadiationAlerts) obj;
 
     boolean result = true;
-    result = result && (getClientID()
-        == other.getClientID());
+    result = result && (getThreshold()
+        == other.getThreshold());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -153,8 +153,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + CLIENTID_FIELD_NUMBER;
-    hash = (53 * hash) + getClientID();
+    hash = (37 * hash) + THRESHOLD_FIELD_NUMBER;
+    hash = (53 * hash) + getThreshold();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -293,7 +293,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      clientID_ = 0;
+      threshold_ = 0;
 
       return this;
     }
@@ -321,7 +321,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public grpc.Radiation.requestRadiationAlerts buildPartial() {
       grpc.Radiation.requestRadiationAlerts result = new grpc.Radiation.requestRadiationAlerts(this);
-      result.clientID_ = clientID_;
+      result.threshold_ = threshold_;
       onBuilt();
       return result;
     }
@@ -370,8 +370,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(grpc.Radiation.requestRadiationAlerts other) {
       if (other == grpc.Radiation.requestRadiationAlerts.getDefaultInstance()) return this;
-      if (other.getClientID() != 0) {
-        setClientID(other.getClientID());
+      if (other.getThreshold() != 0) {
+        setThreshold(other.getThreshold());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -402,28 +402,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int clientID_ ;
+    private int threshold_ ;
     /**
-     * <code>int32 clientID = 1;</code>
+     * <code>int32 threshold = 1;</code>
      */
-    public int getClientID() {
-      return clientID_;
+    public int getThreshold() {
+      return threshold_;
     }
     /**
-     * <code>int32 clientID = 1;</code>
+     * <code>int32 threshold = 1;</code>
      */
-    public Builder setClientID(int value) {
+    public Builder setThreshold(int value) {
       
-      clientID_ = value;
+      threshold_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 clientID = 1;</code>
+     * <code>int32 threshold = 1;</code>
      */
-    public Builder clearClientID() {
+    public Builder clearThreshold() {
       
-      clientID_ = 0;
+      threshold_ = 0;
       onChanged();
       return this;
     }

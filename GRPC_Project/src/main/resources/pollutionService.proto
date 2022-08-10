@@ -1,0 +1,96 @@
+syntax = "proto3";
+
+option java_package = "grpc.pollution";
+option java_multiple_files = true;
+option java_outer_classname = "PollutionServiceImpl";
+
+service pollutionService {
+	rpc StreamPollution(stream airPollution) returns (response){}									// client to server streaming
+	rpc GetLocalAirPollution(stream locationRequest) returns (stream regionalPollutionResponse){}	// bi-directional streaming
+	rpc GetDeviceStatus(deviceStatusRequest) returns (deviceStatusResponse);						// unary
+	rpc GetAllDeviceStatus(allDeviceStatusRequest) returns (stream allDeviceStatusResponse){}		// server to client streaming
+}
+
+
+
+/* StreamPollution
+ * Each IoT device will track air pollution in their vicinity
+ * and forward the information to the server via this method
+ */
+message airPollution {
+	int32  carbon = 1;
+}
+
+
+message response {
+	string received = 1;
+}
+
+
+
+/* GetLocalAirPollution
+ * With this method, clients send their geographic location to
+ * the server so that the server can respond with information
+ * regarding air pollution in the area of the client.
+ *
+ * Note: according to a topic on StackOverflow, int32 would give
+ * an accuracy anywhere on Earth with a precision < 1cm, so it's
+ * more than sufficient for our needs.
+ */
+message locationRequest {
+	int32 longitude = 1;
+	int32 latitude  = 2;
+}
+
+
+message regionalPollutionResponse {
+	string regionalStatus = 1;
+}
+
+
+
+
+/* GetDeviceStatus
+ * This gets the health status of a specific
+ * IoT device which is returned as a float
+ * out of 100%.
+ */
+message deviceStatusRequest {
+	string statusRequestedID = 1;		// the id of the IoT device to be checked.
+}
+
+message deviceStatusResponse {
+	string status = 1;	// the response of the health of the given IoT device
+}
+
+
+
+/* GetAllDeviceStatus
+ * This calculates the overall health of
+ * the system of IoT devices as an float out
+ * of 100%.
+ */
+message allDeviceStatusRequest {
+	bool  statusRequested = 1;
+}
+
+message allDeviceStatusResponse {
+	float overallDeviceHealth = 1;
+}
+
+
+
+
+/* Others in case needed */
+message containsString {
+	string firstString = 1;
+}
+
+message newRequestInteger {
+   int32 firstInteger = 1;
+}
+
+message newResponseInteger {
+   int32 firstInteger = 1;
+}
+

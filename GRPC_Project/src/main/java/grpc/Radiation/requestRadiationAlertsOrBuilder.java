@@ -8,7 +8,7 @@ public interface requestRadiationAlertsOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 clientID = 1;</code>
+   * <code>int32 threshold = 1;</code>
    */
-  int getClientID();
+  int getThreshold();
 }

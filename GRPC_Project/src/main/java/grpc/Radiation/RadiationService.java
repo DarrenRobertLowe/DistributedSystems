@@ -23,7 +23,7 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import grpc.Radiation.radiationServiceGrpc.radiationServiceImplBase;
-import grpc.Radiation.containsString;
+import grpc.Radiation.objects.County;
 
 import java.io.InputStream;
 import java.io.FileInputStream;
@@ -34,11 +34,43 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 import java.util.Properties;				// needed for properties file
-
+import algorithms.BubbleSort;
+import algorithms.MergeSort;
 
 
 public class RadiationService {
-
+	static Random rand = new Random();
+	
+	static County[] listOfCounties = {
+			new County("Carlow", rand.nextDouble(20)),
+			new County("Cavan", rand.nextDouble(20)), 
+			new County("Clare", rand.nextDouble(20)),
+			new County("Cork", rand.nextDouble(20)),
+			new County("Donegal", rand.nextDouble(20)),
+			new County("Dublin", rand.nextDouble(20)),
+			new County("Galway", rand.nextDouble(20)),
+			new County("Kerry", rand.nextDouble(20)),
+			new County("Kildare", rand.nextDouble(20)),
+			new County("Kilkenny", rand.nextDouble(20)),
+			new County("Laois", rand.nextDouble(20)),
+			new County("Leitrim", rand.nextDouble(20)),
+			new County("Limerick", rand.nextDouble(20)),
+			new County("Longford", rand.nextDouble(20)),
+			new County("Louth", rand.nextDouble(20)),
+			new County("Mayo", rand.nextDouble(20)),
+			new County("Meath", rand.nextDouble(20)),
+			new County("Monaghan", rand.nextDouble(20)),
+			new County("Offaly", rand.nextDouble(20)),
+			new County("Roscommon", rand.nextDouble(20)),
+			new County("Sligo", rand.nextDouble(20)),
+			new County("Tipperary", rand.nextDouble(20)),
+			new County("Waterford", rand.nextDouble(20)),
+			new County("Westmeath", rand.nextDouble(20)),
+			new County("Wexford", rand.nextDouble(20)),
+			new County("Wicklow", rand.nextDouble(20))
+			};
+	
+	
 	private Server server;
 	public static void main(String[] args) throws IOException, InterruptedException {
 		RadiationService ourServer = new RadiationService();
@@ -48,7 +80,7 @@ public class RadiationService {
 	
 	
 	private void start(RadiationService ourServer) throws IOException, InterruptedException {
-		System.out.println("Starting grpc server");
+		System.out.println("Starting grpc server for radiation services");
 		Properties prop = ourServer.getProperties();
 		
 		int port = Integer.valueOf( prop.getProperty("service_port") );	// 50051;
@@ -58,6 +90,7 @@ public class RadiationService {
 		
 		server.awaitTermination();
 	}
+	
 	
 	
 	
@@ -72,7 +105,7 @@ public class RadiationService {
 	        prop.load(input);
 	        
 	        // get the property value and print it out
-	        System.out.println("Carbon Service properies ...");
+	        System.out.println("Radiation Service properies ...");
             System.out.println("\t service_type: " + prop.getProperty("service_type"));
             System.out.println("\t service_name: " +prop.getProperty("service_name"));
             System.out.println("\t service_description: " +prop.getProperty("service_description"));
@@ -86,24 +119,26 @@ public class RadiationService {
 	}
 	
 	
+	
+	
+	
 	//Extend abstract base class for our own implementation
 	static class RadiationServiceImpl extends radiationServiceImplBase {
-		// method for client streaming
-		// As we are the server, we are going to get a stream of messages coming in from the client
-		// For the incoming messages we need to implement a StreamObserver
-		// which we then pass back to the GRPC library.
 		
 		
 		
 		@Override
-		// method for client streaming
-		// As we are the server, we are going to get a stream of messages coming in from the client
-		// For the incoming messages we need to implement a StreamObserver
-		// which we then pass back to the GRPC library.
+		/* This method takes in a stream of radiation numbers
+		 * and returns calculates an average value, which is
+		 * returned as part of the response message.
+		 */
 		// rpc StreamRadiation(stream radiationMeasurements) returns (containsString){}
-		public StreamObserver<radiationMeasurements> streamRadiation(StreamObserver<containsString> responseObserver) {
+		public StreamObserver<radiationMeasurements> streamRadiation(StreamObserver<measurementsResponse> responseObserver) {
 			
 			return new StreamObserver<radiationMeasurements>() {
+				String radiationString = "";
+				int count = 0;	// used to get an average value
+				int total = 0;	// used to get an average value
 				
 				@Override
 				public void onNext(radiationMeasurements request) {
@@ -112,7 +147,12 @@ public class RadiationService {
 					// have: 15 picocuries of alpha particles per liter of water (pCi/L) or less.
 					
 					System.out.println("Incoming radiation numbers from client: " + request.getPicocuries());
+					
+					radiationString += request.getPicocuries() +" ";
+					total += request.getPicocuries();	// add to the total
+					count++;							// add to the count
 				}
+				
 				
 				@Override
 				public void onError(Throwable t) {
@@ -120,15 +160,18 @@ public class RadiationService {
 					
 				}
 				
+				
 				@Override
 				public void onCompleted() {
 					// TODO Auto-generated method stub
 					//Step one create a builder
-					containsString.Builder responseBuilder = containsString.newBuilder();
+					measurementsResponse.Builder responseBuilder = measurementsResponse.newBuilder();
 					
-					responseBuilder.setFirstString("Server: confirmation receipt of receiving radiation numbers. ");
+					String message = ("Server: confirmation receipt of receiving radiation numbers: " + radiationString + "   Average: " + (total/count) +" picocuries");
+					measurementsResponse reply = measurementsResponse.newBuilder().setMessage(message).build();
 					
-					responseObserver.onNext(responseBuilder.build());
+					responseObserver.onNext(reply);
+					
 					responseObserver.onCompleted();
 				}
 			};
@@ -136,26 +179,28 @@ public class RadiationService {
 		
 		
 		
+		
 		//rpc GetRadiationLevels(radiationLevels) returns (stream levelsStream){}
+		/* In this method, clients request a stream of all radiation
+		 * levels for each county, arranged by severity.
+		 */
 		@Override
 		public void getRadiationLevels(radiationLevels request, StreamObserver<levelsStream> responseObserver) {
-			String[] listOfCounties = {"Carlow", "Cavan", "Clare", "Cork", "Donegal", 
-					"Dublin", "Galway", "Kerry", "Kildare", "Kilkenny", "Laois", 
-					"Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", 
-					"Monaghan", "Offaly", "Roscommon", "Sligo", "Tipperary", 
-					"Waterford", "Westmeath", "Wexford", "Wicklow"};
+			int clientID = request.getClientID();
+			System.out.println("Request for radiation levels of all counties from clientID: " + clientID);
 			
-			// import collections sort
-			// the counties should be objects that we can arrange by danger level
-			//sort()
-			String[] listOfCountiesSorted = listOfCounties;
-			Random rand = new Random();
-			double max = 1.0;
+			int length = listOfCounties.length;
+			County[] listOfCountiesSorted = new County[length];
+			System.arraycopy(listOfCounties, 0, listOfCountiesSorted, 0, length);
+			
+			MergeSort.sort(listOfCountiesSorted);
+			
 			
 			for(int i=0; i<listOfCounties.length; i++) {
-				String county = listOfCountiesSorted[i];
-				double rando = (rand.nextDouble(max)*10);
-				levelsStream reply = levelsStream.newBuilder().setDangerousRegions(county + ": " + rando).build();
+				String county = listOfCountiesSorted[i].getName();
+				double value = listOfCountiesSorted[i].getValue();
+				
+				levelsStream reply = levelsStream.newBuilder().setDangerousRegions(county + ": " + value).build();
 				responseObserver.onNext(reply);
 				
 				
@@ -174,45 +219,55 @@ public class RadiationService {
 		
 		
 		
+		
+		
 		//rpc GetRadiationWarnings(requestRadiationAlerts) returns (stream radiationAlert){}
+		/* This method returns only the subset of radiation levels
+		 * that exceed a given value
+		 */
 		@Override
 		public void getRadiationWarnings(requestRadiationAlerts request, StreamObserver<radiationAlert> responseObserver) {
-			// do stuff
+			System.out.println("We have received a request for the radiation warnings..");
+			int threshold = request.getThreshold(); // get the picocuries per litre threshold from the client
+			System.out.println("Threshold: " + threshold);
+			
+			County[] list = listOfCounties;
+			String replyString = "";
+			
+			
+			int length = listOfCounties.length;
+			
+			int index = rand.nextInt(length);
+			
+			
+			for(int i=0; i<length; i++) {
+				System.out.println("Running loop of size " + length + ": i is " + i);
+				
+				if (list[i].getValue() >= threshold) {
+					System.out.println("Alert in "+ list[i].getName() + ":" + list[i].getValue() + " picocuries per litre detected!");
+					replyString = "Alert in "+ list[i].getName() + ":" + list[i].getValue() + " picocuries per litre detected!";
+					
+					// because this is a stream we'll just send it now
+					radiationAlert reply = radiationAlert.newBuilder().setRadiationAlertSet(replyString).build();
+					responseObserver.onNext(reply);
+					
+					// delay each message
+					try {
+						//wait for a second
+						Thread.sleep(rand.nextInt(1));
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			System.out.println("Loop complete!");
+			
+			
+			responseObserver.onCompleted();
 		}
 		
 		
 		
-		
-		
-		@Override
-		public StreamObserver<containsString> sendStringClientStreaming(StreamObserver<containsString> responseObserver) {
-			return new StreamObserver<containsString>() {
-				
-				@Override
-				public void onNext(containsString request) {
-					// TODO Auto-generated method stub
-					System.out.println("On server side message that we received from the client is: FirstString is: " + request.getFirstString());
-				}
-				
-				@Override
-				public void onError(Throwable t) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void onCompleted() {
-					// TODO Auto-generated method stub
-					//Step one create a builder
-					containsString.Builder responseBuilder = containsString.newBuilder();
-					
-					responseBuilder.setFirstString("On server side: Server says that it got our completed message");
-					
-					responseObserver.onNext(responseBuilder.build());
-					responseObserver.onCompleted();
-				}
-				
-			};
-		}
 	}
 }

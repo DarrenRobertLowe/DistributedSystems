@@ -5,7 +5,7 @@ option java_multiple_files = true;
 option java_outer_classname = "RadiationServiceImpl";
 
 service radiationService {
-	rpc StreamRadiation(stream radiationMeasurements) returns (containsString){}				// client to server streaming
+	rpc StreamRadiation(stream radiationMeasurements) returns (measurementsResponse){}				// client to server streaming
 	rpc GetRadiationLevels(radiationLevels) returns (stream levelsStream){}						// server to client streaming
 	rpc GetRadiationWarnings(requestRadiationAlerts) returns (stream radiationAlert){}			// server to client streaming
 }
@@ -18,13 +18,13 @@ service radiationService {
 // and forward the information to the server.
 message radiationMeasurements {
 	int32 picocuries = 1;
-	//string picocuries = 1;
 }
 
 
-message radiationResponse {
-	int32 received = 1;
+message measurementsResponse {
+	string message = 1;
 }
+
 
 
 
@@ -44,37 +44,10 @@ message levelsStream {
 // if a level of radiation rises above a certain threshold
 // an alert is sent to the requesting client
 message requestRadiationAlerts {
-	int32 clientID = 1;
+	int32 threshold = 1;
 }
 
 message radiationAlert {
 	string radiationAlertSet = 1;
-}
-
-
-
-message containsString {
-	string firstString = 1;
-}
-
-message newRequestInteger {
-   int32 firstInteger = 1;
-}
-
-message newResponseInteger {
-   int32 firstInteger = 1;
-}
-
-
-
-
-
-message CalculateResponse {
-	float result = 1;
-	string message = 2;
-}
-
-
-message NumberMessage{
-	float number = 1;
+	// more like string setOfRadiationAlerts() = 1;
 }

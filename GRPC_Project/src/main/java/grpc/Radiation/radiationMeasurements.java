@@ -89,10 +89,6 @@ private static final long serialVersionUID = 0L;
   public static final int PICOCURIES_FIELD_NUMBER = 1;
   private int picocuries_;
   /**
-   * <pre>
-   *string picocuries = 1;
-   * </pre>
-   *
    * <code>int32 picocuries = 1;</code>
    */
   public int getPicocuries() {
@@ -410,20 +406,12 @@ private static final long serialVersionUID = 0L;
 
     private int picocuries_ ;
     /**
-     * <pre>
-     *string picocuries = 1;
-     * </pre>
-     *
      * <code>int32 picocuries = 1;</code>
      */
     public int getPicocuries() {
       return picocuries_;
     }
     /**
-     * <pre>
-     *string picocuries = 1;
-     * </pre>
-     *
      * <code>int32 picocuries = 1;</code>
      */
     public Builder setPicocuries(int value) {
@@ -433,10 +421,6 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <pre>
-     *string picocuries = 1;
-     * </pre>
-     *
      * <code>int32 picocuries = 1;</code>
      */
     public Builder clearPicocuries() {

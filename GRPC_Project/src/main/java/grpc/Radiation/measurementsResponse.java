@@ -4,19 +4,19 @@
 package grpc.Radiation;
 
 /**
- * Protobuf type {@code radiationAlert}
+ * Protobuf type {@code measurementsResponse}
  */
-public  final class radiationAlert extends
+public  final class measurementsResponse extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:radiationAlert)
-    radiationAlertOrBuilder {
+    // @@protoc_insertion_point(message_implements:measurementsResponse)
+    measurementsResponseOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use radiationAlert.newBuilder() to construct.
-  private radiationAlert(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use measurementsResponse.newBuilder() to construct.
+  private measurementsResponse(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private radiationAlert() {
-    radiationAlertSet_ = "";
+  private measurementsResponse() {
+    message_ = "";
   }
 
   @java.lang.Override
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private radiationAlert(
+  private measurementsResponse(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -46,7 +46,7 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            radiationAlertSet_ = s;
+            message_ = s;
             break;
           }
           default: {
@@ -70,53 +70,45 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return grpc.Radiation.RadiationServiceImpl.internal_static_radiationAlert_descriptor;
+    return grpc.Radiation.RadiationServiceImpl.internal_static_measurementsResponse_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return grpc.Radiation.RadiationServiceImpl.internal_static_radiationAlert_fieldAccessorTable
+    return grpc.Radiation.RadiationServiceImpl.internal_static_measurementsResponse_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            grpc.Radiation.radiationAlert.class, grpc.Radiation.radiationAlert.Builder.class);
+            grpc.Radiation.measurementsResponse.class, grpc.Radiation.measurementsResponse.Builder.class);
   }
 
-  public static final int RADIATIONALERTSET_FIELD_NUMBER = 1;
-  private volatile java.lang.Object radiationAlertSet_;
+  public static final int MESSAGE_FIELD_NUMBER = 1;
+  private volatile java.lang.Object message_;
   /**
-   * <pre>
-   * more like string setOfRadiationAlerts() = 1;
-   * </pre>
-   *
-   * <code>string radiationAlertSet = 1;</code>
+   * <code>string message = 1;</code>
    */
-  public java.lang.String getRadiationAlertSet() {
-    java.lang.Object ref = radiationAlertSet_;
+  public java.lang.String getMessage() {
+    java.lang.Object ref = message_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      radiationAlertSet_ = s;
+      message_ = s;
       return s;
     }
   }
   /**
-   * <pre>
-   * more like string setOfRadiationAlerts() = 1;
-   * </pre>
-   *
-   * <code>string radiationAlertSet = 1;</code>
+   * <code>string message = 1;</code>
    */
   public com.google.protobuf.ByteString
-      getRadiationAlertSetBytes() {
-    java.lang.Object ref = radiationAlertSet_;
+      getMessageBytes() {
+    java.lang.Object ref = message_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      radiationAlertSet_ = b;
+      message_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -137,8 +129,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getRadiationAlertSetBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, radiationAlertSet_);
+    if (!getMessageBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, message_);
     }
     unknownFields.writeTo(output);
   }
@@ -149,8 +141,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getRadiationAlertSetBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, radiationAlertSet_);
+    if (!getMessageBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, message_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -162,14 +154,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof grpc.Radiation.radiationAlert)) {
+    if (!(obj instanceof grpc.Radiation.measurementsResponse)) {
       return super.equals(obj);
     }
-    grpc.Radiation.radiationAlert other = (grpc.Radiation.radiationAlert) obj;
+    grpc.Radiation.measurementsResponse other = (grpc.Radiation.measurementsResponse) obj;
 
     boolean result = true;
-    result = result && getRadiationAlertSet()
-        .equals(other.getRadiationAlertSet());
+    result = result && getMessage()
+        .equals(other.getMessage());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -181,76 +173,76 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + RADIATIONALERTSET_FIELD_NUMBER;
-    hash = (53 * hash) + getRadiationAlertSet().hashCode();
+    hash = (37 * hash) + MESSAGE_FIELD_NUMBER;
+    hash = (53 * hash) + getMessage().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static grpc.Radiation.radiationAlert parseFrom(
+  public static grpc.Radiation.measurementsResponse parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.Radiation.radiationAlert parseFrom(
+  public static grpc.Radiation.measurementsResponse parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.Radiation.radiationAlert parseFrom(
+  public static grpc.Radiation.measurementsResponse parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.Radiation.radiationAlert parseFrom(
+  public static grpc.Radiation.measurementsResponse parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.Radiation.radiationAlert parseFrom(byte[] data)
+  public static grpc.Radiation.measurementsResponse parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static grpc.Radiation.radiationAlert parseFrom(
+  public static grpc.Radiation.measurementsResponse parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static grpc.Radiation.radiationAlert parseFrom(java.io.InputStream input)
+  public static grpc.Radiation.measurementsResponse parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.Radiation.radiationAlert parseFrom(
+  public static grpc.Radiation.measurementsResponse parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.Radiation.radiationAlert parseDelimitedFrom(java.io.InputStream input)
+  public static grpc.Radiation.measurementsResponse parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static grpc.Radiation.radiationAlert parseDelimitedFrom(
+  public static grpc.Radiation.measurementsResponse parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static grpc.Radiation.radiationAlert parseFrom(
+  public static grpc.Radiation.measurementsResponse parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static grpc.Radiation.radiationAlert parseFrom(
+  public static grpc.Radiation.measurementsResponse parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -263,7 +255,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(grpc.Radiation.radiationAlert prototype) {
+  public static Builder newBuilder(grpc.Radiation.measurementsResponse prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -279,26 +271,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code radiationAlert}
+   * Protobuf type {@code measurementsResponse}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:radiationAlert)
-      grpc.Radiation.radiationAlertOrBuilder {
+      // @@protoc_insertion_point(builder_implements:measurementsResponse)
+      grpc.Radiation.measurementsResponseOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return grpc.Radiation.RadiationServiceImpl.internal_static_radiationAlert_descriptor;
+      return grpc.Radiation.RadiationServiceImpl.internal_static_measurementsResponse_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return grpc.Radiation.RadiationServiceImpl.internal_static_radiationAlert_fieldAccessorTable
+      return grpc.Radiation.RadiationServiceImpl.internal_static_measurementsResponse_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              grpc.Radiation.radiationAlert.class, grpc.Radiation.radiationAlert.Builder.class);
+              grpc.Radiation.measurementsResponse.class, grpc.Radiation.measurementsResponse.Builder.class);
     }
 
-    // Construct using grpc.Radiation.radiationAlert.newBuilder()
+    // Construct using grpc.Radiation.measurementsResponse.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -316,7 +308,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      radiationAlertSet_ = "";
+      message_ = "";
 
       return this;
     }
@@ -324,17 +316,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return grpc.Radiation.RadiationServiceImpl.internal_static_radiationAlert_descriptor;
+      return grpc.Radiation.RadiationServiceImpl.internal_static_measurementsResponse_descriptor;
     }
 
     @java.lang.Override
-    public grpc.Radiation.radiationAlert getDefaultInstanceForType() {
-      return grpc.Radiation.radiationAlert.getDefaultInstance();
+    public grpc.Radiation.measurementsResponse getDefaultInstanceForType() {
+      return grpc.Radiation.measurementsResponse.getDefaultInstance();
     }
 
     @java.lang.Override
-    public grpc.Radiation.radiationAlert build() {
-      grpc.Radiation.radiationAlert result = buildPartial();
+    public grpc.Radiation.measurementsResponse build() {
+      grpc.Radiation.measurementsResponse result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -342,9 +334,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public grpc.Radiation.radiationAlert buildPartial() {
-      grpc.Radiation.radiationAlert result = new grpc.Radiation.radiationAlert(this);
-      result.radiationAlertSet_ = radiationAlertSet_;
+    public grpc.Radiation.measurementsResponse buildPartial() {
+      grpc.Radiation.measurementsResponse result = new grpc.Radiation.measurementsResponse(this);
+      result.message_ = message_;
       onBuilt();
       return result;
     }
@@ -383,18 +375,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof grpc.Radiation.radiationAlert) {
-        return mergeFrom((grpc.Radiation.radiationAlert)other);
+      if (other instanceof grpc.Radiation.measurementsResponse) {
+        return mergeFrom((grpc.Radiation.measurementsResponse)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(grpc.Radiation.radiationAlert other) {
-      if (other == grpc.Radiation.radiationAlert.getDefaultInstance()) return this;
-      if (!other.getRadiationAlertSet().isEmpty()) {
-        radiationAlertSet_ = other.radiationAlertSet_;
+    public Builder mergeFrom(grpc.Radiation.measurementsResponse other) {
+      if (other == grpc.Radiation.measurementsResponse.getDefaultInstance()) return this;
+      if (!other.getMessage().isEmpty()) {
+        message_ = other.message_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -412,11 +404,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      grpc.Radiation.radiationAlert parsedMessage = null;
+      grpc.Radiation.measurementsResponse parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (grpc.Radiation.radiationAlert) e.getUnfinishedMessage();
+        parsedMessage = (grpc.Radiation.measurementsResponse) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -426,91 +418,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object radiationAlertSet_ = "";
+    private java.lang.Object message_ = "";
     /**
-     * <pre>
-     * more like string setOfRadiationAlerts() = 1;
-     * </pre>
-     *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string message = 1;</code>
      */
-    public java.lang.String getRadiationAlertSet() {
-      java.lang.Object ref = radiationAlertSet_;
+    public java.lang.String getMessage() {
+      java.lang.Object ref = message_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        radiationAlertSet_ = s;
+        message_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <pre>
-     * more like string setOfRadiationAlerts() = 1;
-     * </pre>
-     *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string message = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getRadiationAlertSetBytes() {
-      java.lang.Object ref = radiationAlertSet_;
+        getMessageBytes() {
+      java.lang.Object ref = message_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        radiationAlertSet_ = b;
+        message_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <pre>
-     * more like string setOfRadiationAlerts() = 1;
-     * </pre>
-     *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string message = 1;</code>
      */
-    public Builder setRadiationAlertSet(
+    public Builder setMessage(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      radiationAlertSet_ = value;
+      message_ = value;
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * more like string setOfRadiationAlerts() = 1;
-     * </pre>
-     *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string message = 1;</code>
      */
-    public Builder clearRadiationAlertSet() {
+    public Builder clearMessage() {
       
-      radiationAlertSet_ = getDefaultInstance().getRadiationAlertSet();
+      message_ = getDefaultInstance().getMessage();
       onChanged();
       return this;
     }
     /**
-     * <pre>
-     * more like string setOfRadiationAlerts() = 1;
-     * </pre>
-     *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string message = 1;</code>
      */
-    public Builder setRadiationAlertSetBytes(
+    public Builder setMessageBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      radiationAlertSet_ = value;
+      message_ = value;
       onChanged();
       return this;
     }
@@ -527,41 +499,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:radiationAlert)
+    // @@protoc_insertion_point(builder_scope:measurementsResponse)
   }
 
-  // @@protoc_insertion_point(class_scope:radiationAlert)
-  private static final grpc.Radiation.radiationAlert DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:measurementsResponse)
+  private static final grpc.Radiation.measurementsResponse DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new grpc.Radiation.radiationAlert();
+    DEFAULT_INSTANCE = new grpc.Radiation.measurementsResponse();
   }
 
-  public static grpc.Radiation.radiationAlert getDefaultInstance() {
+  public static grpc.Radiation.measurementsResponse getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<radiationAlert>
-      PARSER = new com.google.protobuf.AbstractParser<radiationAlert>() {
+  private static final com.google.protobuf.Parser<measurementsResponse>
+      PARSER = new com.google.protobuf.AbstractParser<measurementsResponse>() {
     @java.lang.Override
-    public radiationAlert parsePartialFrom(
+    public measurementsResponse parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new radiationAlert(input, extensionRegistry);
+      return new measurementsResponse(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<radiationAlert> parser() {
+  public static com.google.protobuf.Parser<measurementsResponse> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<radiationAlert> getParserForType() {
+  public com.google.protobuf.Parser<measurementsResponse> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public grpc.Radiation.radiationAlert getDefaultInstanceForType() {
+  public grpc.Radiation.measurementsResponse getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

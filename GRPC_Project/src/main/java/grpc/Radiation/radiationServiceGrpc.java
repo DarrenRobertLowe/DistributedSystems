@@ -28,21 +28,21 @@ public final class radiationServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<grpc.Radiation.radiationMeasurements,
-      grpc.Radiation.containsString> getStreamRadiationMethod;
+      grpc.Radiation.measurementsResponse> getStreamRadiationMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "StreamRadiation",
       requestType = grpc.Radiation.radiationMeasurements.class,
-      responseType = grpc.Radiation.containsString.class,
+      responseType = grpc.Radiation.measurementsResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
   public static io.grpc.MethodDescriptor<grpc.Radiation.radiationMeasurements,
-      grpc.Radiation.containsString> getStreamRadiationMethod() {
-    io.grpc.MethodDescriptor<grpc.Radiation.radiationMeasurements, grpc.Radiation.containsString> getStreamRadiationMethod;
+      grpc.Radiation.measurementsResponse> getStreamRadiationMethod() {
+    io.grpc.MethodDescriptor<grpc.Radiation.radiationMeasurements, grpc.Radiation.measurementsResponse> getStreamRadiationMethod;
     if ((getStreamRadiationMethod = radiationServiceGrpc.getStreamRadiationMethod) == null) {
       synchronized (radiationServiceGrpc.class) {
         if ((getStreamRadiationMethod = radiationServiceGrpc.getStreamRadiationMethod) == null) {
           radiationServiceGrpc.getStreamRadiationMethod = getStreamRadiationMethod = 
-              io.grpc.MethodDescriptor.<grpc.Radiation.radiationMeasurements, grpc.Radiation.containsString>newBuilder()
+              io.grpc.MethodDescriptor.<grpc.Radiation.radiationMeasurements, grpc.Radiation.measurementsResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "radiationService", "StreamRadiation"))
@@ -50,7 +50,7 @@ public final class radiationServiceGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   grpc.Radiation.radiationMeasurements.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.Radiation.containsString.getDefaultInstance()))
+                  grpc.Radiation.measurementsResponse.getDefaultInstance()))
                   .setSchemaDescriptor(new radiationServiceMethodDescriptorSupplier("StreamRadiation"))
                   .build();
           }
@@ -123,70 +123,6 @@ public final class radiationServiceGrpc {
      return getGetRadiationWarningsMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<grpc.Radiation.containsString,
-      grpc.Radiation.containsString> getSendStringClientStreamingMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "SendStringClientStreaming",
-      requestType = grpc.Radiation.containsString.class,
-      responseType = grpc.Radiation.containsString.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-  public static io.grpc.MethodDescriptor<grpc.Radiation.containsString,
-      grpc.Radiation.containsString> getSendStringClientStreamingMethod() {
-    io.grpc.MethodDescriptor<grpc.Radiation.containsString, grpc.Radiation.containsString> getSendStringClientStreamingMethod;
-    if ((getSendStringClientStreamingMethod = radiationServiceGrpc.getSendStringClientStreamingMethod) == null) {
-      synchronized (radiationServiceGrpc.class) {
-        if ((getSendStringClientStreamingMethod = radiationServiceGrpc.getSendStringClientStreamingMethod) == null) {
-          radiationServiceGrpc.getSendStringClientStreamingMethod = getSendStringClientStreamingMethod = 
-              io.grpc.MethodDescriptor.<grpc.Radiation.containsString, grpc.Radiation.containsString>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "radiationService", "SendStringClientStreaming"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.Radiation.containsString.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.Radiation.containsString.getDefaultInstance()))
-                  .setSchemaDescriptor(new radiationServiceMethodDescriptorSupplier("SendStringClientStreaming"))
-                  .build();
-          }
-        }
-     }
-     return getSendStringClientStreamingMethod;
-  }
-
-  private static volatile io.grpc.MethodDescriptor<grpc.Radiation.NumberMessage,
-      grpc.Radiation.CalculateResponse> getAverageValuesMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "averageValues",
-      requestType = grpc.Radiation.NumberMessage.class,
-      responseType = grpc.Radiation.CalculateResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-  public static io.grpc.MethodDescriptor<grpc.Radiation.NumberMessage,
-      grpc.Radiation.CalculateResponse> getAverageValuesMethod() {
-    io.grpc.MethodDescriptor<grpc.Radiation.NumberMessage, grpc.Radiation.CalculateResponse> getAverageValuesMethod;
-    if ((getAverageValuesMethod = radiationServiceGrpc.getAverageValuesMethod) == null) {
-      synchronized (radiationServiceGrpc.class) {
-        if ((getAverageValuesMethod = radiationServiceGrpc.getAverageValuesMethod) == null) {
-          radiationServiceGrpc.getAverageValuesMethod = getAverageValuesMethod = 
-              io.grpc.MethodDescriptor.<grpc.Radiation.NumberMessage, grpc.Radiation.CalculateResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "radiationService", "averageValues"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.Radiation.NumberMessage.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.Radiation.CalculateResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new radiationServiceMethodDescriptorSupplier("averageValues"))
-                  .build();
-          }
-        }
-     }
-     return getAverageValuesMethod;
-  }
-
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -217,7 +153,7 @@ public final class radiationServiceGrpc {
     /**
      */
     public io.grpc.stub.StreamObserver<grpc.Radiation.radiationMeasurements> streamRadiation(
-        io.grpc.stub.StreamObserver<grpc.Radiation.containsString> responseObserver) {
+        io.grpc.stub.StreamObserver<grpc.Radiation.measurementsResponse> responseObserver) {
       return asyncUnimplementedStreamingCall(getStreamRadiationMethod(), responseObserver);
     }
 
@@ -235,20 +171,6 @@ public final class radiationServiceGrpc {
       asyncUnimplementedUnaryCall(getGetRadiationWarningsMethod(), responseObserver);
     }
 
-    /**
-     */
-    public io.grpc.stub.StreamObserver<grpc.Radiation.containsString> sendStringClientStreaming(
-        io.grpc.stub.StreamObserver<grpc.Radiation.containsString> responseObserver) {
-      return asyncUnimplementedStreamingCall(getSendStringClientStreamingMethod(), responseObserver);
-    }
-
-    /**
-     */
-    public io.grpc.stub.StreamObserver<grpc.Radiation.NumberMessage> averageValues(
-        io.grpc.stub.StreamObserver<grpc.Radiation.CalculateResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getAverageValuesMethod(), responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -256,7 +178,7 @@ public final class radiationServiceGrpc {
             asyncClientStreamingCall(
               new MethodHandlers<
                 grpc.Radiation.radiationMeasurements,
-                grpc.Radiation.containsString>(
+                grpc.Radiation.measurementsResponse>(
                   this, METHODID_STREAM_RADIATION)))
           .addMethod(
             getGetRadiationLevelsMethod(),
@@ -272,20 +194,6 @@ public final class radiationServiceGrpc {
                 grpc.Radiation.requestRadiationAlerts,
                 grpc.Radiation.radiationAlert>(
                   this, METHODID_GET_RADIATION_WARNINGS)))
-          .addMethod(
-            getSendStringClientStreamingMethod(),
-            asyncClientStreamingCall(
-              new MethodHandlers<
-                grpc.Radiation.containsString,
-                grpc.Radiation.containsString>(
-                  this, METHODID_SEND_STRING_CLIENT_STREAMING)))
-          .addMethod(
-            getAverageValuesMethod(),
-            asyncClientStreamingCall(
-              new MethodHandlers<
-                grpc.Radiation.NumberMessage,
-                grpc.Radiation.CalculateResponse>(
-                  this, METHODID_AVERAGE_VALUES)))
           .build();
     }
   }
@@ -311,7 +219,7 @@ public final class radiationServiceGrpc {
     /**
      */
     public io.grpc.stub.StreamObserver<grpc.Radiation.radiationMeasurements> streamRadiation(
-        io.grpc.stub.StreamObserver<grpc.Radiation.containsString> responseObserver) {
+        io.grpc.stub.StreamObserver<grpc.Radiation.measurementsResponse> responseObserver) {
       return asyncClientStreamingCall(
           getChannel().newCall(getStreamRadiationMethod(), getCallOptions()), responseObserver);
     }
@@ -330,22 +238,6 @@ public final class radiationServiceGrpc {
         io.grpc.stub.StreamObserver<grpc.Radiation.radiationAlert> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getGetRadiationWarningsMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     */
-    public io.grpc.stub.StreamObserver<grpc.Radiation.containsString> sendStringClientStreaming(
-        io.grpc.stub.StreamObserver<grpc.Radiation.containsString> responseObserver) {
-      return asyncClientStreamingCall(
-          getChannel().newCall(getSendStringClientStreamingMethod(), getCallOptions()), responseObserver);
-    }
-
-    /**
-     */
-    public io.grpc.stub.StreamObserver<grpc.Radiation.NumberMessage> averageValues(
-        io.grpc.stub.StreamObserver<grpc.Radiation.CalculateResponse> responseObserver) {
-      return asyncClientStreamingCall(
-          getChannel().newCall(getAverageValuesMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -406,8 +298,6 @@ public final class radiationServiceGrpc {
   private static final int METHODID_GET_RADIATION_LEVELS = 0;
   private static final int METHODID_GET_RADIATION_WARNINGS = 1;
   private static final int METHODID_STREAM_RADIATION = 2;
-  private static final int METHODID_SEND_STRING_CLIENT_STREAMING = 3;
-  private static final int METHODID_AVERAGE_VALUES = 4;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -446,13 +336,7 @@ public final class radiationServiceGrpc {
       switch (methodId) {
         case METHODID_STREAM_RADIATION:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.streamRadiation(
-              (io.grpc.stub.StreamObserver<grpc.Radiation.containsString>) responseObserver);
-        case METHODID_SEND_STRING_CLIENT_STREAMING:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.sendStringClientStreaming(
-              (io.grpc.stub.StreamObserver<grpc.Radiation.containsString>) responseObserver);
-        case METHODID_AVERAGE_VALUES:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.averageValues(
-              (io.grpc.stub.StreamObserver<grpc.Radiation.CalculateResponse>) responseObserver);
+              (io.grpc.stub.StreamObserver<grpc.Radiation.measurementsResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -507,8 +391,6 @@ public final class radiationServiceGrpc {
               .addMethod(getStreamRadiationMethod())
               .addMethod(getGetRadiationLevelsMethod())
               .addMethod(getGetRadiationWarningsMethod())
-              .addMethod(getSendStringClientStreamingMethod())
-              .addMethod(getAverageValuesMethod())
               .build();
         }
       }

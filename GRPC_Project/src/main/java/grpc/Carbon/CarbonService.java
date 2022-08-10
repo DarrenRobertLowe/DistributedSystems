@@ -49,7 +49,7 @@ public class CarbonService {
 	
 	
 	private void start(CarbonService ourServer) throws IOException, InterruptedException {
-		System.out.println("Starting grpc server");
+		System.out.println("Starting grpc server for carbon footprint services");
 		Properties prop = ourServer.getProperties();
 		
 		int port = Integer.valueOf( prop.getProperty("service_port") );	// 50051;

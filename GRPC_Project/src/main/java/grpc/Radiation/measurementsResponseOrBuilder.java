@@ -3,21 +3,16 @@
 
 package grpc.Radiation;
 
-public interface CalculateResponseOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:CalculateResponse)
+public interface measurementsResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:measurementsResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>float result = 1;</code>
-   */
-  float getResult();
-
-  /**
-   * <code>string message = 2;</code>
+   * <code>string message = 1;</code>
    */
   java.lang.String getMessage();
   /**
-   * <code>string message = 2;</code>
+   * <code>string message = 1;</code>
    */
   com.google.protobuf.ByteString
       getMessageBytes();

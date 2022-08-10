@@ -8,10 +8,6 @@ public interface radiationMeasurementsOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <pre>
-   *string picocuries = 1;
-   * </pre>
-   *
    * <code>int32 picocuries = 1;</code>
    */
   int getPicocuries();

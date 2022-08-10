@@ -20,10 +20,10 @@ public final class RadiationServiceImpl {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_radiationMeasurements_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_radiationResponse_descriptor;
+    internal_static_measurementsResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_radiationResponse_fieldAccessorTable;
+      internal_static_measurementsResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_radiationLevels_descriptor;
   static final 
@@ -44,31 +44,6 @@ public final class RadiationServiceImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_radiationAlert_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_containsString_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_containsString_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_newRequestInteger_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_newRequestInteger_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_newResponseInteger_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_newResponseInteger_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_CalculateResponse_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_CalculateResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_NumberMessage_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_NumberMessage_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -79,27 +54,19 @@ public final class RadiationServiceImpl {
   static {
     java.lang.String[] descriptorData = {
       "\n\026radiationService.proto\"+\n\025radiationMea" +
-      "surements\022\022\n\npicocuries\030\001 \001(\005\"%\n\021radiati" +
-      "onResponse\022\020\n\010received\030\001 \001(\005\"#\n\017radiatio" +
-      "nLevels\022\020\n\010clientID\030\001 \001(\005\"(\n\014levelsStrea" +
-      "m\022\030\n\020dangerousRegions\030\001 \001(\t\"*\n\026requestRa" +
-      "diationAlerts\022\020\n\010clientID\030\001 \001(\005\"+\n\016radia" +
-      "tionAlert\022\031\n\021radiationAlertSet\030\001 \001(\t\"%\n\016" +
-      "containsString\022\023\n\013firstString\030\001 \001(\t\")\n\021n" +
-      "ewRequestInteger\022\024\n\014firstInteger\030\001 \001(\005\"*" +
-      "\n\022newResponseInteger\022\024\n\014firstInteger\030\001 \001" +
-      "(\005\"4\n\021CalculateResponse\022\016\n\006result\030\001 \001(\002\022" +
-      "\017\n\007message\030\002 \001(\t\"\037\n\rNumberMessage\022\016\n\006num" +
-      "ber\030\001 \001(\0022\317\002\n\020radiationService\022>\n\017Stream" +
-      "Radiation\022\026.radiationMeasurements\032\017.cont" +
-      "ainsString\"\000(\001\0229\n\022GetRadiationLevels\022\020.r" +
-      "adiationLevels\032\r.levelsStream\"\0000\001\022D\n\024Get" +
-      "RadiationWarnings\022\027.requestRadiationAler" +
-      "ts\032\017.radiationAlert\"\0000\001\022A\n\031SendStringCli" +
-      "entStreaming\022\017.containsString\032\017.contains" +
-      "String\"\000(\001\0227\n\raverageValues\022\016.NumberMess" +
-      "age\032\022.CalculateResponse\"\000(\001B(\n\016grpc.Radi" +
-      "ationB\024RadiationServiceImplP\001b\006proto3"
+      "surements\022\022\n\npicocuries\030\001 \001(\005\"\'\n\024measure" +
+      "mentsResponse\022\017\n\007message\030\001 \001(\t\"#\n\017radiat" +
+      "ionLevels\022\020\n\010clientID\030\001 \001(\005\"(\n\014levelsStr" +
+      "eam\022\030\n\020dangerousRegions\030\001 \001(\t\"+\n\026request" +
+      "RadiationAlerts\022\021\n\tthreshold\030\001 \001(\005\"+\n\016ra" +
+      "diationAlert\022\031\n\021radiationAlertSet\030\001 \001(\t2" +
+      "\331\001\n\020radiationService\022D\n\017StreamRadiation\022" +
+      "\026.radiationMeasurements\032\025.measurementsRe" +
+      "sponse\"\000(\001\0229\n\022GetRadiationLevels\022\020.radia" +
+      "tionLevels\032\r.levelsStream\"\0000\001\022D\n\024GetRadi" +
+      "ationWarnings\022\027.requestRadiationAlerts\032\017" +
+      ".radiationAlert\"\0000\001B(\n\016grpc.RadiationB\024R" +
+      "adiationServiceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -119,12 +86,12 @@ public final class RadiationServiceImpl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_radiationMeasurements_descriptor,
         new java.lang.String[] { "Picocuries", });
-    internal_static_radiationResponse_descriptor =
+    internal_static_measurementsResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_radiationResponse_fieldAccessorTable = new
+    internal_static_measurementsResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_radiationResponse_descriptor,
-        new java.lang.String[] { "Received", });
+        internal_static_measurementsResponse_descriptor,
+        new java.lang.String[] { "Message", });
     internal_static_radiationLevels_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_radiationLevels_fieldAccessorTable = new
@@ -142,43 +109,13 @@ public final class RadiationServiceImpl {
     internal_static_requestRadiationAlerts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_requestRadiationAlerts_descriptor,
-        new java.lang.String[] { "ClientID", });
+        new java.lang.String[] { "Threshold", });
     internal_static_radiationAlert_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_radiationAlert_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_radiationAlert_descriptor,
         new java.lang.String[] { "RadiationAlertSet", });
-    internal_static_containsString_descriptor =
-      getDescriptor().getMessageTypes().get(6);
-    internal_static_containsString_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_containsString_descriptor,
-        new java.lang.String[] { "FirstString", });
-    internal_static_newRequestInteger_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_newRequestInteger_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_newRequestInteger_descriptor,
-        new java.lang.String[] { "FirstInteger", });
-    internal_static_newResponseInteger_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_newResponseInteger_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_newResponseInteger_descriptor,
-        new java.lang.String[] { "FirstInteger", });
-    internal_static_CalculateResponse_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_CalculateResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_CalculateResponse_descriptor,
-        new java.lang.String[] { "Result", "Message", });
-    internal_static_NumberMessage_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_NumberMessage_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_NumberMessage_descriptor,
-        new java.lang.String[] { "Number", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

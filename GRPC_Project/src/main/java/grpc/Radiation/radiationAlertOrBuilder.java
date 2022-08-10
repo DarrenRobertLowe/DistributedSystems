@@ -8,10 +8,18 @@ public interface radiationAlertOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * more like string setOfRadiationAlerts() = 1;
+   * </pre>
+   *
    * <code>string radiationAlertSet = 1;</code>
    */
   java.lang.String getRadiationAlertSet();
   /**
+   * <pre>
+   * more like string setOfRadiationAlerts() = 1;
+   * </pre>
+   *
    * <code>string radiationAlertSet = 1;</code>
    */
   com.google.protobuf.ByteString
