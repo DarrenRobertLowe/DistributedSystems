@@ -23,6 +23,7 @@ private static final long serialVersionUID = 0L;
   }
   private airPollution() {
     carbon_ = 0;
+    id_ = "";
   }
 
   @java.lang.Override
@@ -52,6 +53,12 @@ private static final long serialVersionUID = 0L;
           case 8: {
 
             carbon_ = input.readInt32();
+            break;
+          }
+          case 18: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            id_ = s;
             break;
           }
           default: {
@@ -95,6 +102,40 @@ private static final long serialVersionUID = 0L;
     return carbon_;
   }
 
+  public static final int ID_FIELD_NUMBER = 2;
+  private volatile java.lang.Object id_;
+  /**
+   * <code>string id = 2;</code>
+   */
+  public java.lang.String getId() {
+    java.lang.Object ref = id_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      id_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string id = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getIdBytes() {
+    java.lang.Object ref = id_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      id_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -112,6 +153,9 @@ private static final long serialVersionUID = 0L;
     if (carbon_ != 0) {
       output.writeInt32(1, carbon_);
     }
+    if (!getIdBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, id_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -124,6 +168,9 @@ private static final long serialVersionUID = 0L;
     if (carbon_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(1, carbon_);
+    }
+    if (!getIdBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, id_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -143,6 +190,8 @@ private static final long serialVersionUID = 0L;
     boolean result = true;
     result = result && (getCarbon()
         == other.getCarbon());
+    result = result && getId()
+        .equals(other.getId());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -156,6 +205,8 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + CARBON_FIELD_NUMBER;
     hash = (53 * hash) + getCarbon();
+    hash = (37 * hash) + ID_FIELD_NUMBER;
+    hash = (53 * hash) + getId().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -297,6 +348,8 @@ private static final long serialVersionUID = 0L;
       super.clear();
       carbon_ = 0;
 
+      id_ = "";
+
       return this;
     }
 
@@ -324,6 +377,7 @@ private static final long serialVersionUID = 0L;
     public grpc.pollution.airPollution buildPartial() {
       grpc.pollution.airPollution result = new grpc.pollution.airPollution(this);
       result.carbon_ = carbon_;
+      result.id_ = id_;
       onBuilt();
       return result;
     }
@@ -374,6 +428,10 @@ private static final long serialVersionUID = 0L;
       if (other == grpc.pollution.airPollution.getDefaultInstance()) return this;
       if (other.getCarbon() != 0) {
         setCarbon(other.getCarbon());
+      }
+      if (!other.getId().isEmpty()) {
+        id_ = other.id_;
+        onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -426,6 +484,75 @@ private static final long serialVersionUID = 0L;
     public Builder clearCarbon() {
       
       carbon_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object id_ = "";
+    /**
+     * <code>string id = 2;</code>
+     */
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        id_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string id = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getIdBytes() {
+      java.lang.Object ref = id_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        id_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string id = 2;</code>
+     */
+    public Builder setId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      id_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string id = 2;</code>
+     */
+    public Builder clearId() {
+      
+      id_ = getDefaultInstance().getId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string id = 2;</code>
+     */
+    public Builder setIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      id_ = value;
       onChanged();
       return this;
     }

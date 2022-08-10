@@ -19,6 +19,7 @@ service pollutionService {
  */
 message airPollution {
 	int32  carbon = 1;
+	string id = 2;
 }
 
 

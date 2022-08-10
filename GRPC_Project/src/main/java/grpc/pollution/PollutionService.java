@@ -111,20 +111,32 @@ public class PollutionService{
 	
 	//Extend abstract base class for our own implementation
 	static class PollutionServiceImpl extends pollutionServiceImplBase {
-		/* This method takes a stream of carbon dioxide measurements and returns 
+		/* streamPollution													// client to server streaming
+		 * 
+		 * for rpc StreamPollution(stream airPollution) returns (response){}	
+		 * 
+		 * This method takes a stream of carbon dioxide measurements and returns 
 		 * confirmation and the average of the streamed numbers.
 		 */
-		// for rpc StreamPollution(stream airPollution) returns (response){}									// client to server streaming
 		@Override
 		public StreamObserver<airPollution> streamPollution(StreamObserver<response> responseObserver) {
+			System.out.println();
+			System.out.println();
+			
+			System.out.println("Running streamPollution()");
+			System.out.println("=========================");
+			
+			
 			return new StreamObserver<airPollution>() {
 				String carbonString = "";
 				int count = 0;
 				int total = 0;
+				String clientID = "";
 				
 				@Override
 				public void onNext(airPollution request) {
-					System.out.println("Incoming carbon numbers from client: " + request.getCarbon());
+					clientID = request.getId();
+					System.out.println("Incoming carbon numbers from client '" + clientID +"' "+ request.getCarbon());
 					carbonString += request.getCarbon() +" ";
 					total += request.getCarbon();
 					count++;
@@ -146,18 +158,31 @@ public class PollutionService{
 					responseBuilder.setReceived("Server: confirmation receipt of receiving carbon dioxide ppm: " + carbonString + "   Average: " + (total/count) + "ppm");
 					
 					responseObserver.onNext(responseBuilder.build());
+					
+					System.out.println("Finished receiving emissions data from device id: " + clientID);
 					responseObserver.onCompleted();
 				}
 			};
 		}
 		
 		
-
-		/* This method takes a latitude and longitude and returns
+		
+		/* getLocalAirPollution													// bi-directional streaming
+		 * 
+		 * for rpc GetLocalAirPollution(stream locationRequest) returns (stream regionalPollutionResponse){}
+		 * 
+		 * This method takes a latitude and longitude and returns
 		 * a value for the pollution there using the combined numbers 
 		 * as a seed for the random generation.
 		 */
 		public StreamObserver<locationRequest> getLocalAirPollution(StreamObserver<regionalPollutionResponse> responseObserver) {
+			System.out.println();
+			System.out.println();
+			
+			System.out.println("Running getLocalAirPollution()");
+			System.out.println("==============================");
+			
+			
 			return new StreamObserver<locationRequest> () {
 				
 				@Override
@@ -204,20 +229,24 @@ public class PollutionService{
 		
 		
 		
-		
-		
-		
-		
-		/* This method returns the device health status
+		/* getDeviceStatus													// Unary
+		 * 
+		 * for rpc GetDeviceStatus(deviceStatusRequest) returns (deviceStatusResponse);	
+		 * 
+		 * This method returns the device health status
 		 * of a given IoT device
 		 */
-		// rpc GetDeviceStatus(deviceStatusRequest) returns (deviceStatusResponse);						// unary
 		@Override
 		public void getDeviceStatus(deviceStatusRequest request, StreamObserver<deviceStatusResponse> responseObserver) {
+			System.out.println();
+			System.out.println();
+			
+			System.out.println("Running getDeviceStatus()");
+			System.out.println("=========================");
 			
 			//Find out what was sent by the client
 			String statusRequestedID = request.getStatusRequestedID();
-			System.out.println("client is requesting health status for IoT device with id : " + statusRequestedID);
+			System.out.println("client is requesting health status for IoT device : " + statusRequestedID);
 			
 			
 			// if it doesn't exist the result will be a message to that effect since we're using a string
@@ -228,16 +257,16 @@ public class PollutionService{
 			BinarySearch searcher = new BinarySearch();
 			IoTDevice device = searcher.search(sortedListOfIoTDevices, statusRequestedID);
 			
-			if (device != null) { 
-				System.out.println("Device is : " + device);
+			if (device != null) { // if the IoT device is found
+				System.out.println("Device found : " + device.getID());
+				System.out.println("Returning health status for device : " + device.getID());
 				
-				// if it does exit, get the value from the object
+				// fill the result string that we will send
 				result = "Health for device " + device.getID() + ": " + device.getHealth();
 			}
 			
 			
-			
-			// return the value
+			// return the result
 			deviceStatusResponse.Builder responseBuilder = deviceStatusResponse.newBuilder();	//create a builder
 			responseBuilder.setStatus(result);
 		
@@ -247,19 +276,28 @@ public class PollutionService{
 		}
 		
 		
-		
-		/* This method gets the health status of every iot 
+		/* GetAllDeviceStatus 												// server to client streaming
+		 * 
+		 * for rpc GetAllDeviceStatus(allDeviceStatusRequest) returns (stream allDeviceStatusResponse){}
+		 * 
+		 * This method gets the health status of every iot 
 		 * device and returns the average value.
 		 */
-		// for rpc GetAllDeviceStatus(allDeviceStatusRequest) returns (stream allDeviceStatusResponse){}		// server to client streaming
 		@Override
 		public void getAllDeviceStatus(allDeviceStatusRequest request, StreamObserver<allDeviceStatusResponse> responseObserver) {
+			System.out.println();
+			System.out.println();
+			
+			System.out.println("Running getAllDeviceStatus()");
+			System.out.println("============================");
 			
 			
-			float overallHealth = 0.0f;
-			int length = sortedListOfIoTDevices.length;
-			System.out.println("length of list of devices is : " + length);
+
 			// get the health from every iot device
+			float overallHealth = 0.0f;
+			
+			int length = sortedListOfIoTDevices.length;
+			
 			for(int i=0; i<length; i++) {
 				overallHealth += sortedListOfIoTDevices[i].getHealth();
 				System.out.println(sortedListOfIoTDevices[i].getID() + " : " + sortedListOfIoTDevices[i].getHealth() + "%") ;
@@ -274,21 +312,26 @@ public class PollutionService{
 				
 				// delay each message
 				try {
-					//wait for a second
-					Thread.sleep(rand.nextInt(2500));
+					Thread.sleep(rand.nextInt(2500));	// wait for some time
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 			
+			System.out.println("Finished.");
+			responseObserver.onCompleted();
 		}
-		
 	}
 	
 	
 	
-	// Private methods
+	
+	
+	////// Private methods //////
+	/* 
+	 * sortIoTDevicesByID
+	 */
 	private static void sortIoTDevicesByID(IoTDevice[] sortedListOfIoTDevices) {
 		/// Use MergeSort to sort IoTDevices alphabetically ///
 		// convert the ArrayList into an array
@@ -303,7 +346,9 @@ public class PollutionService{
 	}
 	
 	
-	
+	/*
+	 * printIoTDevices
+	 */
 	private static void printIoTDevices(IoTDevice[] sortedListOfIoTDevices) {
 		System.out.println("IoT Devices:");
 		
@@ -313,15 +358,15 @@ public class PollutionService{
 	}
 	
 	
+	/*
+	 * arrayToList
+	 */
 	private static void arrayToList(IoTDevice[] array, ArrayList<IoTDevice> list) {
 		list.clear();
 		for(int i=0; i<array.length; i++) {
 			list.add(array[i]);
 		}
 	}
-	
-	
-	
 	
 	
 }

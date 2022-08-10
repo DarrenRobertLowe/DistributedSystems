@@ -11,4 +11,14 @@ public interface airPollutionOrBuilder extends
    * <code>int32 carbon = 1;</code>
    */
   int getCarbon();
+
+  /**
+   * <code>string id = 2;</code>
+   */
+  java.lang.String getId();
+  /**
+   * <code>string id = 2;</code>
+   */
+  com.google.protobuf.ByteString
+      getIdBytes();
 }

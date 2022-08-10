@@ -165,7 +165,7 @@ public class RadiationClient {
 	
 	
 	
-	
+	// server to client streaming
 	public static void GetRadiationWarnings() {
 		System.out.println("");
 		System.out.println("");
@@ -187,7 +187,7 @@ public class RadiationClient {
 		
 		StreamObserver<radiationAlert> responseObserver = new StreamObserver<radiationAlert>() {
 			int count = 0;
-
+			
 			@Override
 			public void onNext(radiationAlert value) {
 				System.out.println(value.getRadiationAlertSet());	//e.g. "Alert in Carlow:7.075986495087796 picocuries per litre detected!"
@@ -199,7 +199,7 @@ public class RadiationClient {
 				t.printStackTrace();
 
 			}
-
+			
 			@Override
 			public void onCompleted() {
 				System.out.println("stream is completed ... received "+ count+ " counties");

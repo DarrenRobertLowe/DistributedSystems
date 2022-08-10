@@ -49,8 +49,10 @@ C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\newService\NewServe
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\Carbon\containsString.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\pollution\deviceStatusResponse.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\Carbon\CarbonClient.java
+C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\pollution\PollutionClient.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\pollution\regionalPollutionResponseOrBuilder.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\newService\NewServer.java
+C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\Radiation\RadiationService.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\newService\containsString.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\pollution\deviceStatusResponseOrBuilder.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\pollution\allDeviceStatusRequest.java
@@ -65,6 +67,7 @@ C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\Radiation\measureme
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\Carbon\carbonDriveResponse.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\pollution\deviceStatusRequestOrBuilder.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\pollution\containsStringOrBuilder.java
+C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\Radiation\RadiationClient.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\Carbon\CarbonService.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\pollution\newRequestIntegerOrBuilder.java
 C:\GitHub\DistributedSystems\GRPC_Project\src\main\java\grpc\Radiation\objects\County.java

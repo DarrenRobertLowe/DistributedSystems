@@ -78,28 +78,28 @@ public final class PollutionServiceImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026pollutionService.proto\"\036\n\014airPollution" +
-      "\022\016\n\006carbon\030\001 \001(\005\"\034\n\010response\022\020\n\010received" +
-      "\030\001 \001(\t\"6\n\017locationRequest\022\021\n\tlongitude\030\001" +
-      " \001(\005\022\020\n\010latitude\030\002 \001(\005\"3\n\031regionalPollut" +
-      "ionResponse\022\026\n\016regionalStatus\030\001 \001(\t\"0\n\023d" +
-      "eviceStatusRequest\022\031\n\021statusRequestedID\030" +
-      "\001 \001(\t\"&\n\024deviceStatusResponse\022\016\n\006status\030" +
-      "\001 \001(\t\"1\n\026allDeviceStatusRequest\022\027\n\017statu" +
-      "sRequested\030\001 \001(\010\"6\n\027allDeviceStatusRespo" +
-      "nse\022\033\n\023overallDeviceHealth\030\001 \001(\002\"%\n\016cont" +
-      "ainsString\022\023\n\013firstString\030\001 \001(\t\")\n\021newRe" +
-      "questInteger\022\024\n\014firstInteger\030\001 \001(\005\"*\n\022ne" +
-      "wResponseInteger\022\024\n\014firstInteger\030\001 \001(\0052\234" +
-      "\002\n\020pollutionService\022/\n\017StreamPollution\022\r" +
-      ".airPollution\032\t.response\"\000(\001\022J\n\024GetLocal" +
-      "AirPollution\022\020.locationRequest\032\032.regiona" +
-      "lPollutionResponse\"\000(\0010\001\022>\n\017GetDeviceSta" +
-      "tus\022\024.deviceStatusRequest\032\025.deviceStatus" +
-      "Response\022K\n\022GetAllDeviceStatus\022\027.allDevi" +
-      "ceStatusRequest\032\030.allDeviceStatusRespons" +
-      "e\"\0000\001B(\n\016grpc.pollutionB\024PollutionServic" +
-      "eImplP\001b\006proto3"
+      "\n\026pollutionService.proto\"*\n\014airPollution" +
+      "\022\016\n\006carbon\030\001 \001(\005\022\n\n\002id\030\002 \001(\t\"\034\n\010response" +
+      "\022\020\n\010received\030\001 \001(\t\"6\n\017locationRequest\022\021\n" +
+      "\tlongitude\030\001 \001(\005\022\020\n\010latitude\030\002 \001(\005\"3\n\031re" +
+      "gionalPollutionResponse\022\026\n\016regionalStatu" +
+      "s\030\001 \001(\t\"0\n\023deviceStatusRequest\022\031\n\021status" +
+      "RequestedID\030\001 \001(\t\"&\n\024deviceStatusRespons" +
+      "e\022\016\n\006status\030\001 \001(\t\"1\n\026allDeviceStatusRequ" +
+      "est\022\027\n\017statusRequested\030\001 \001(\010\"6\n\027allDevic" +
+      "eStatusResponse\022\033\n\023overallDeviceHealth\030\001" +
+      " \001(\002\"%\n\016containsString\022\023\n\013firstString\030\001 " +
+      "\001(\t\")\n\021newRequestInteger\022\024\n\014firstInteger" +
+      "\030\001 \001(\005\"*\n\022newResponseInteger\022\024\n\014firstInt" +
+      "eger\030\001 \001(\0052\234\002\n\020pollutionService\022/\n\017Strea" +
+      "mPollution\022\r.airPollution\032\t.response\"\000(\001" +
+      "\022J\n\024GetLocalAirPollution\022\020.locationReque" +
+      "st\032\032.regionalPollutionResponse\"\000(\0010\001\022>\n\017" +
+      "GetDeviceStatus\022\024.deviceStatusRequest\032\025." +
+      "deviceStatusResponse\022K\n\022GetAllDeviceStat" +
+      "us\022\027.allDeviceStatusRequest\032\030.allDeviceS" +
+      "tatusResponse\"\0000\001B(\n\016grpc.pollutionB\024Pol" +
+      "lutionServiceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -118,7 +118,7 @@ public final class PollutionServiceImpl {
     internal_static_airPollution_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_airPollution_descriptor,
-        new java.lang.String[] { "Carbon", });
+        new java.lang.String[] { "Carbon", "Id", });
     internal_static_response_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_response_fieldAccessorTable = new
