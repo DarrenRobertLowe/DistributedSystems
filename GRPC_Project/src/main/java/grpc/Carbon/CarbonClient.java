@@ -28,7 +28,7 @@ public class CarbonClient {
 	public static void main(String[] args) throws InterruptedException {
 		
 		// jmdns resoultion
-		String radiation_service_type = "_http._tcp.local.";
+		String radiation_service_type = "_carbonservice_http._tcp.local.";
 		discoverCarbonService(radiation_service_type);
 		
 		// Build a channel (JmDNS) - a channel connect the client to the server

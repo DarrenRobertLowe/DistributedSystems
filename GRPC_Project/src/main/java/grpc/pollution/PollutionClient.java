@@ -35,7 +35,7 @@ public class PollutionClient {
 	public static void main(String[] args) throws InterruptedException {
 		
 		// jmdns resoultion
-		String radiation_service_type = "_http._tcp.local.";
+		String radiation_service_type = "_pollutionservice_http._tcp.local.";
 		discoverPollutionService(radiation_service_type);
 				
 				
