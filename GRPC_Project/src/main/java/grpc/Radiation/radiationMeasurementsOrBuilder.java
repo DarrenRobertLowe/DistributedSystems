@@ -11,4 +11,14 @@ public interface radiationMeasurementsOrBuilder extends
    * <code>int32 picocuries = 1;</code>
    */
   int getPicocuries();
+
+  /**
+   * <code>string clientID = 2;</code>
+   */
+  java.lang.String getClientID();
+  /**
+   * <code>string clientID = 2;</code>
+   */
+  com.google.protobuf.ByteString
+      getClientIDBytes();
 }

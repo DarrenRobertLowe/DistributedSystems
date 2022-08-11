@@ -9,19 +9,19 @@ public interface radiationAlertOrBuilder extends
 
   /**
    * <pre>
-   * more like string setOfRadiationAlerts() = 1;
+   *string radiationAlertSet = 1;
    * </pre>
    *
-   * <code>string radiationAlertSet = 1;</code>
+   * <code>string radiationAlerts = 1;</code>
    */
-  java.lang.String getRadiationAlertSet();
+  java.lang.String getRadiationAlerts();
   /**
    * <pre>
-   * more like string setOfRadiationAlerts() = 1;
+   *string radiationAlertSet = 1;
    * </pre>
    *
-   * <code>string radiationAlertSet = 1;</code>
+   * <code>string radiationAlerts = 1;</code>
    */
   com.google.protobuf.ByteString
-      getRadiationAlertSetBytes();
+      getRadiationAlertsBytes();
 }

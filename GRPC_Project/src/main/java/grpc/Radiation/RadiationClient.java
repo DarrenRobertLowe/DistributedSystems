@@ -1,6 +1,9 @@
 
 package grpc.Radiation;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 
 
@@ -9,7 +12,11 @@ import grpc.Radiation.radiationServiceGrpc.radiationServiceStub;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
-
+// jmdns
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceEvent;
+import javax.jmdns.ServiceInfo;
+import javax.jmdns.ServiceListener;
 
 
 public class RadiationClient {
@@ -18,11 +25,17 @@ public class RadiationClient {
 	public static radiationServiceStub asyncStub;
 	
 	
+	private static ServiceInfo radiationServiceInfo;
+	
 	
 	public static void main(String[] args) throws InterruptedException {
-		//Build a channel - a channel connect the client to the server
-		int port = 50051;
-		String host = "localhost";
+		String radiation_service_type = "_radiationservice_http._tcp.local.";
+		discoverRadiationService(radiation_service_type);
+		
+		
+		// Build a channel - a channel connect the client to the server
+		int port 	= radiationServiceInfo.getPort();					// e.g. 50051;
+		String host = radiationServiceInfo.getHostAddresses()[0];		// i.e. "localhost";
 		
 		
 		// create the channels
@@ -40,12 +53,74 @@ public class RadiationClient {
 		
 		getRadiationLevels();
 		
-		GetRadiationWarnings();
+		int threshold = 2;
+		getRadiationWarnings(threshold);
 		
 		
 		
-		channel.shutdown(); 		// gracefully shutdown so the server doesn't throw an error
+		// terminate the channel so we don't get errors
+		channel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
+		System.out.println();
+		System.out.println("Program ended.");
 	}
+	
+	
+	
+	// JmDNS
+	private static void discoverRadiationService(String service_type) {
+		try {
+			// Create a JmDNS instance
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+
+				
+			jmdns.addServiceListener(service_type, new ServiceListener() {
+				
+				@Override
+				public void serviceResolved(ServiceEvent event) {
+					System.out.println("Radiation Service resolved: " + event.getInfo());
+
+					radiationServiceInfo = event.getInfo();
+
+					int port = radiationServiceInfo.getPort();
+					
+					System.out.println("resolving " + service_type + " with properties ...");
+					System.out.println("\t port: " + port);
+					System.out.println("\t type:"+ event.getType());
+					System.out.println("\t name: " + event.getName());
+					System.out.println("\t description/properties: " + radiationServiceInfo.getNiceTextString());
+					System.out.println("\t host: " + radiationServiceInfo.getHostAddresses()[0]);
+				}
+				
+				@Override
+				public void serviceRemoved(ServiceEvent event) {
+					System.out.println("Radiation Service removed: " + event.getInfo());
+				}
+				
+				@Override
+				public void serviceAdded(ServiceEvent event) {
+					System.out.println("Radiation Service added: " + event.getInfo());
+				}
+			});
+			
+			// Wait a bit
+			Thread.sleep(2000);
+			
+			jmdns.close();
+			
+		} catch (UnknownHostException e) {
+			System.out.println(e.getMessage());
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
 	
 	
 	
@@ -81,25 +156,25 @@ public class RadiationClient {
 			System.out.println("Sending radiation measurement data to server...");
 			System.out.println("================================================");
 			
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(125).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(20).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(112).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(12).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(34).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(4).build());
 			Thread.sleep(500);
 			
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(34).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(11).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(200).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(8).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(40).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(17).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(85).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(13).build());
 			Thread.sleep(500);
 			
 			
@@ -155,7 +230,7 @@ public class RadiationClient {
 		asyncStub.getRadiationLevels(request, responseObserver);
 		
 		try {
-			Thread.sleep(15000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -166,15 +241,12 @@ public class RadiationClient {
 	
 	
 	// server to client streaming
-	public static void GetRadiationWarnings() {
+	public static void getRadiationWarnings(int threshold) {
 		System.out.println("");
 		System.out.println("");
 		
-		
-		int threshold = 2;	// the server will only return to us the counties with radiation levels above this amount
 		System.out.println("Requesting Radiation Warnings of threshold " + threshold);
 		System.out.println("===========================================");
-		
 		
 		
 		requestRadiationAlerts request = requestRadiationAlerts
@@ -186,11 +258,13 @@ public class RadiationClient {
 		
 		
 		StreamObserver<radiationAlert> responseObserver = new StreamObserver<radiationAlert>() {
+			
+			
 			int count = 0;
 			
 			@Override
 			public void onNext(radiationAlert value) {
-				System.out.println(value.getRadiationAlertSet());	//e.g. "Alert in Carlow:7.075986495087796 picocuries per litre detected!"
+				System.out.println(value.getRadiationAlerts());	//e.g. "Alert in Carlow:7.075986495087796 picocuries per litre detected!"
 				count++;
 			}
 			
@@ -202,14 +276,14 @@ public class RadiationClient {
 			
 			@Override
 			public void onCompleted() {
-				System.out.println("stream is completed ... received "+ count+ " counties");
+				System.out.println("stream is completed ... received "+ count+ " counties with alerts for threshold " + threshold);
 			}
 		};
 		
-		asyncStub.getRadiationWarnings(request, responseObserver);
+		//asyncStub.getRadiationWarnings(request, responseObserver);
 		
 		try {
-			Thread.sleep(1500);
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

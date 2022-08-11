@@ -53,20 +53,21 @@ public final class RadiationServiceImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\026radiationService.proto\"+\n\025radiationMea" +
-      "surements\022\022\n\npicocuries\030\001 \001(\005\"\'\n\024measure" +
-      "mentsResponse\022\017\n\007message\030\001 \001(\t\"#\n\017radiat" +
-      "ionLevels\022\020\n\010clientID\030\001 \001(\005\"(\n\014levelsStr" +
-      "eam\022\030\n\020dangerousRegions\030\001 \001(\t\"+\n\026request" +
-      "RadiationAlerts\022\021\n\tthreshold\030\001 \001(\005\"+\n\016ra" +
-      "diationAlert\022\031\n\021radiationAlertSet\030\001 \001(\t2" +
-      "\331\001\n\020radiationService\022D\n\017StreamRadiation\022" +
-      "\026.radiationMeasurements\032\025.measurementsRe" +
-      "sponse\"\000(\001\0229\n\022GetRadiationLevels\022\020.radia" +
-      "tionLevels\032\r.levelsStream\"\0000\001\022D\n\024GetRadi" +
-      "ationWarnings\022\027.requestRadiationAlerts\032\017" +
-      ".radiationAlert\"\0000\001B(\n\016grpc.RadiationB\024R" +
-      "adiationServiceImplP\001b\006proto3"
+      "\n\026radiationService.proto\"=\n\025radiationMea" +
+      "surements\022\022\n\npicocuries\030\001 \001(\005\022\020\n\010clientI" +
+      "D\030\002 \001(\t\"\'\n\024measurementsResponse\022\017\n\007messa" +
+      "ge\030\001 \001(\t\"#\n\017radiationLevels\022\020\n\010clientID\030" +
+      "\001 \001(\005\"(\n\014levelsStream\022\030\n\020dangerousRegion" +
+      "s\030\001 \001(\t\"+\n\026requestRadiationAlerts\022\021\n\tthr" +
+      "eshold\030\001 \001(\005\")\n\016radiationAlert\022\027\n\017radiat" +
+      "ionAlerts\030\001 \001(\t2\331\001\n\020radiationService\022D\n\017" +
+      "StreamRadiation\022\026.radiationMeasurements\032" +
+      "\025.measurementsResponse\"\000(\001\0229\n\022GetRadiati" +
+      "onLevels\022\020.radiationLevels\032\r.levelsStrea" +
+      "m\"\0000\001\022D\n\024GetRadiationWarnings\022\027.requestR" +
+      "adiationAlerts\032\017.radiationAlert\"\0000\001B(\n\016g" +
+      "rpc.RadiationB\024RadiationServiceImplP\001b\006p" +
+      "roto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -85,7 +86,7 @@ public final class RadiationServiceImpl {
     internal_static_radiationMeasurements_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_radiationMeasurements_descriptor,
-        new java.lang.String[] { "Picocuries", });
+        new java.lang.String[] { "Picocuries", "ClientID", });
     internal_static_measurementsResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_measurementsResponse_fieldAccessorTable = new
@@ -115,7 +116,7 @@ public final class RadiationServiceImpl {
     internal_static_radiationAlert_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_radiationAlert_descriptor,
-        new java.lang.String[] { "RadiationAlertSet", });
+        new java.lang.String[] { "RadiationAlerts", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

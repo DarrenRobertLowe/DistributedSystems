@@ -6,8 +6,8 @@ option java_outer_classname = "CarbonServiceImpl";
 
 service carbonService {
 	//unary
-	rpc CalculateCarbonFlight(carbonFlightRequest) returns (containsString){}
-	rpc CalculateCarbonDrive(carbonDriveRequest) returns (containsString){}
+	rpc CalculateCarbonFlight(carbonFlightRequest) returns (responseString){}
+	rpc CalculateCarbonDrive(carbonDriveRequest) returns (responseString){}
 }
 
 
@@ -15,30 +15,15 @@ service carbonService {
 
 
 message carbonFlightRequest {
-	int32 hoursInput = 1; 	// 1 is just a tag/identifier, its not the contents of the variable
+	int32 hoursInput = 1; 		// 1 is just a tag/identifier, its not the contents of the variable
 }
 
 message carbonDriveRequest {
-   int32 milesInput = 1;
-   int32 mpgInput 	= 2;
+   int32 milesInput = 1;		// the number of miles
+   int32 mpgInput 	= 2;		// the miles per gallon
+   string fuelType  = 3;		// petrol or diesel
 }
 
-
-
-message carbonFlightResponse {
-	string carbonOutput = 1;
-}
-
-
-message carbonDriveResponse {
-	string carbonOutput = 1;
-}
-
-
-message containsString {
-	string firstString = 1;
-}
-
-message newResponseInteger {
-   int32 firstInteger = 1;
+message responseString {
+	string message = 1;
 }

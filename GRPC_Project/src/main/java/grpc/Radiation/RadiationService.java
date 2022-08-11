@@ -1,19 +1,16 @@
 package grpc.Radiation;
 
 
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Random;
 
 import grpc.Radiation.RadiationService;
 
+// JmDNS
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
@@ -25,16 +22,6 @@ import io.grpc.stub.StreamObserver;
 import grpc.Radiation.radiationServiceGrpc.radiationServiceImplBase;
 import grpc.Radiation.objects.County;
 
-import java.io.InputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
-import io.grpc.stub.StreamObserver;
-
-import java.util.Properties;				// needed for properties file
-import algorithms.BubbleSort;
 import algorithms.MergeSort;
 
 
@@ -81,11 +68,19 @@ public class RadiationService {
 	
 	private void start(RadiationService ourServer) throws IOException, InterruptedException {
 		System.out.println("Starting grpc server for radiation services");
+		
+		// get the properties for this server
 		Properties prop = ourServer.getProperties();
+				
+		// start jmdns service
+		registerService(prop);
+				
+		
+		
 		
 		int port = Integer.valueOf( prop.getProperty("service_port") );	// 50051;
 		server = ServerBuilder.forPort(port).addService(new RadiationServiceImpl()).build().start();	
-		
+		System.out.println("");
 		System.out.println("Server running on port: " + port);
 		
 		server.awaitTermination();
@@ -120,6 +115,43 @@ public class RadiationService {
 	
 	
 	
+	/// JMDNS
+	private  void registerService(Properties prop) {
+		
+		 try {
+			System.out.println("Please wait while jmDNS registers this service...");
+			
+            // Create a JmDNS instance
+            JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+            
+            String service_type = prop.getProperty("service_type") ;//"_http._tcp.local.";
+            String service_name = prop.getProperty("service_name")  ;// "example";
+            // int service_port = 1234;
+            int service_port = Integer.valueOf( prop.getProperty("service_port") );// #.50051;
+            
+            
+            String service_description_properties = prop.getProperty("service_description")  ;//"path=index.html";
+            
+            // Register a service
+            ServiceInfo serviceInfo = ServiceInfo.create(service_type, service_name, service_port, service_description_properties);
+            jmdns.registerService(serviceInfo);
+            
+            System.out.printf("registrering service with type %s and name %s \n", service_type, service_name);
+            
+            // Wait a bit
+            Thread.sleep(1000);
+            
+            // Unregister all services
+            //jmdns.unregisterAllServices();
+            
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	
 	//Extend abstract base class for our own implementation
@@ -134,6 +166,11 @@ public class RadiationService {
 		 */
 		// rpc StreamRadiation(stream radiationMeasurements) returns (containsString){}
 		public StreamObserver<radiationMeasurements> streamRadiation(StreamObserver<measurementsResponse> responseObserver) {
+			System.out.println("");
+			System.out.println("");
+			System.out.println("Incoming radiation numbers from client: ");
+			System.out.println("========================================================");
+			
 			
 			return new StreamObserver<radiationMeasurements>() {
 				String radiationString = "";
@@ -145,8 +182,8 @@ public class RadiationService {
 					// The U.S. Environmental Protection Agency's (EPA) Radionuclides Rule has four
 					// federal standards for radionuclides in drinking water. Safe drinking water should 
 					// have: 15 picocuries of alpha particles per liter of water (pCi/L) or less.
+					System.out.println("ClientID '" + request.getClientID() + "' : " +request.getPicocuries());
 					
-					System.out.println("Incoming radiation numbers from client: " + request.getPicocuries());
 					
 					radiationString += request.getPicocuries() +" ";
 					total += request.getPicocuries();	// add to the total
@@ -187,7 +224,10 @@ public class RadiationService {
 		@Override
 		public void getRadiationLevels(radiationLevels request, StreamObserver<levelsStream> responseObserver) {
 			int clientID = request.getClientID();
-			System.out.println("Request for radiation levels of all counties from clientID: " + clientID);
+			System.out.println("");
+			System.out.println("");
+			System.out.println("Received request for radiation levels of all counties from clientID: " + clientID);
+			System.out.println("==================================================================================");
 			
 			int length = listOfCounties.length;
 			County[] listOfCountiesSorted = new County[length];
@@ -227,43 +267,42 @@ public class RadiationService {
 		 */
 		@Override
 		public void getRadiationWarnings(requestRadiationAlerts request, StreamObserver<radiationAlert> responseObserver) {
-			System.out.println("We have received a request for the radiation warnings..");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("Received a request for the radiation warnings.");
 			int threshold = request.getThreshold(); // get the picocuries per litre threshold from the client
 			System.out.println("Threshold: " + threshold);
 			
-			County[] list = listOfCounties;
+			
 			String replyString = "";
-			
-			
-			int length = listOfCounties.length;
-			
-			int index = rand.nextInt(length);
-			
+			County[] list = listOfCounties;
+			int length = list.length;
 			
 			for(int i=0; i<length; i++) {
-				System.out.println("Running loop of size " + length + ": i is " + i);
+				//System.out.println("Running loop of size " + length + ": i is " + i);
 				
 				if (list[i].getValue() >= threshold) {
-					System.out.println("Alert in "+ list[i].getName() + ":" + list[i].getValue() + " picocuries per litre detected!");
-					replyString = "Alert in "+ list[i].getName() + ":" + list[i].getValue() + " picocuries per litre detected!";
+					replyString = "Alert in "+ list[i].getName() + ": " + list[i].getValue() + " picocuries per litre detected!";
+					System.out.println(replyString);
+					
 					
 					// because this is a stream we'll just send it now
-					radiationAlert reply = radiationAlert.newBuilder().setRadiationAlertSet(replyString).build();
+					radiationAlert reply = radiationAlert.newBuilder().setRadiationAlerts(replyString).build();
 					responseObserver.onNext(reply);
 					
 					// delay each message
 					try {
 						//wait for a second
-						Thread.sleep(rand.nextInt(1));
+						Thread.sleep(250);
 					} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}
 			}
-			System.out.println("Loop complete!");
 			
-			
+			// end
+			System.out.println("Request complete.");
 			responseObserver.onCompleted();
 		}
 		

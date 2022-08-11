@@ -2,8 +2,12 @@
 package grpc.pollution;
 
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import grpc.pollution.pollutionServiceGrpc.pollutionServiceBlockingStub;
 import grpc.pollution.pollutionServiceGrpc.pollutionServiceStub;
@@ -12,9 +16,16 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
 
+//jmdns
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceEvent;
+import javax.jmdns.ServiceInfo;
+import javax.jmdns.ServiceListener;
 
 
 public class PollutionClient {
+	
+	private static ServiceInfo pollutionServiceInfo; // jmdns
 
 	public static pollutionServiceBlockingStub blockingStub;
 	public static pollutionServiceStub asyncStub;
@@ -22,24 +33,32 @@ public class PollutionClient {
 	
 	
 	public static void main(String[] args) throws InterruptedException {
-		//Build a channel - a channel connect the client to the server
-		int port = 50051;
-		String host = "localhost";
+		
+		// jmdns resoultion
+		String radiation_service_type = "_http._tcp.local.";
+		discoverPollutionService(radiation_service_type);
+				
+				
+		// Build a channel (JmDNS) - a channel connect the client to the server
+		int port 	= pollutionServiceInfo.getPort();					// e.g. 50051;
+		String host = pollutionServiceInfo.getHostAddresses()[0];		// i.e. "localhost";
 		
 		
-		// create the channels
+		// create the channel
 		ManagedChannel channel = ManagedChannelBuilder
 				.forAddress(host, port)
 				.usePlaintext()
 				.build();
+		
 		
 		// create the sync and async stubs
 		blockingStub = pollutionServiceGrpc.newBlockingStub(channel);
 		asyncStub = pollutionServiceGrpc.newStub(channel);
 		
 		
+		// run the rpc calls
 		streamPollution();			// note: the name of the methods here have no relation to the proto
-		
+
 		getLocalAirPollution();
 		
 		getDeviceStatus();
@@ -47,10 +66,73 @@ public class PollutionClient {
 		getAllDeviceStatus();
 		
 		
-		channel.shutdown(); 		// gracefully shutdown so the server doesn't throw an error
-		
+		// terminate the channel so we don't get errors
+		channel.shutdown().awaitTermination(1, TimeUnit.SECONDS);
+		System.out.println();
 		System.out.println("Program ended.");
 	}
+	
+	
+	
+	
+	
+	
+	// JmDNS
+	private static void discoverPollutionService(String service_type) {
+		try {
+			// Create a JmDNS instance
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+
+				
+			jmdns.addServiceListener(service_type, new ServiceListener() {
+				
+				@Override
+				public void serviceResolved(ServiceEvent event) {
+					System.out.println("Radiation Service resolved: " + event.getInfo());
+
+					pollutionServiceInfo = event.getInfo();
+
+					int port = pollutionServiceInfo.getPort();
+					
+					System.out.println("resolving " + service_type + " with properties ...");
+					System.out.println("\t port: " + port);
+					System.out.println("\t type:"+ event.getType());
+					System.out.println("\t name: " + event.getName());
+					System.out.println("\t description/properties: " + pollutionServiceInfo.getNiceTextString());
+					System.out.println("\t host: " + pollutionServiceInfo.getHostAddresses()[0]);
+				}
+				
+				@Override
+				public void serviceRemoved(ServiceEvent event) {
+					System.out.println("Carbon Service removed: " + event.getInfo());
+				}
+				
+				@Override
+				public void serviceAdded(ServiceEvent event) {
+					System.out.println("Carbon Service added: " + event.getInfo());
+				}
+			});
+			
+			// Wait a bit
+			Thread.sleep(2000);
+			
+			jmdns.close();
+			
+		} catch (UnknownHostException e) {
+			System.out.println(e.getMessage());
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

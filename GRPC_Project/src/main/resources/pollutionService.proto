@@ -78,20 +78,3 @@ message allDeviceStatusRequest {
 message allDeviceStatusResponse {
 	float overallDeviceHealth = 1;
 }
-
-
-
-
-/* Others in case needed */
-message containsString {
-	string firstString = 1;
-}
-
-message newRequestInteger {
-   int32 firstInteger = 1;
-}
-
-message newResponseInteger {
-   int32 firstInteger = 1;
-}
-

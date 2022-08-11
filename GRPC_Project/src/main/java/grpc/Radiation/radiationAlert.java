@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private radiationAlert() {
-    radiationAlertSet_ = "";
+    radiationAlerts_ = "";
   }
 
   @java.lang.Override
@@ -46,7 +46,7 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            radiationAlertSet_ = s;
+            radiationAlerts_ = s;
             break;
           }
           default: {
@@ -81,42 +81,42 @@ private static final long serialVersionUID = 0L;
             grpc.Radiation.radiationAlert.class, grpc.Radiation.radiationAlert.Builder.class);
   }
 
-  public static final int RADIATIONALERTSET_FIELD_NUMBER = 1;
-  private volatile java.lang.Object radiationAlertSet_;
+  public static final int RADIATIONALERTS_FIELD_NUMBER = 1;
+  private volatile java.lang.Object radiationAlerts_;
   /**
    * <pre>
-   * more like string setOfRadiationAlerts() = 1;
+   *string radiationAlertSet = 1;
    * </pre>
    *
-   * <code>string radiationAlertSet = 1;</code>
+   * <code>string radiationAlerts = 1;</code>
    */
-  public java.lang.String getRadiationAlertSet() {
-    java.lang.Object ref = radiationAlertSet_;
+  public java.lang.String getRadiationAlerts() {
+    java.lang.Object ref = radiationAlerts_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      radiationAlertSet_ = s;
+      radiationAlerts_ = s;
       return s;
     }
   }
   /**
    * <pre>
-   * more like string setOfRadiationAlerts() = 1;
+   *string radiationAlertSet = 1;
    * </pre>
    *
-   * <code>string radiationAlertSet = 1;</code>
+   * <code>string radiationAlerts = 1;</code>
    */
   public com.google.protobuf.ByteString
-      getRadiationAlertSetBytes() {
-    java.lang.Object ref = radiationAlertSet_;
+      getRadiationAlertsBytes() {
+    java.lang.Object ref = radiationAlerts_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      radiationAlertSet_ = b;
+      radiationAlerts_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -137,8 +137,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getRadiationAlertSetBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, radiationAlertSet_);
+    if (!getRadiationAlertsBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, radiationAlerts_);
     }
     unknownFields.writeTo(output);
   }
@@ -149,8 +149,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getRadiationAlertSetBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, radiationAlertSet_);
+    if (!getRadiationAlertsBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, radiationAlerts_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -168,8 +168,8 @@ private static final long serialVersionUID = 0L;
     grpc.Radiation.radiationAlert other = (grpc.Radiation.radiationAlert) obj;
 
     boolean result = true;
-    result = result && getRadiationAlertSet()
-        .equals(other.getRadiationAlertSet());
+    result = result && getRadiationAlerts()
+        .equals(other.getRadiationAlerts());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -181,8 +181,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + RADIATIONALERTSET_FIELD_NUMBER;
-    hash = (53 * hash) + getRadiationAlertSet().hashCode();
+    hash = (37 * hash) + RADIATIONALERTS_FIELD_NUMBER;
+    hash = (53 * hash) + getRadiationAlerts().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -316,7 +316,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      radiationAlertSet_ = "";
+      radiationAlerts_ = "";
 
       return this;
     }
@@ -344,7 +344,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public grpc.Radiation.radiationAlert buildPartial() {
       grpc.Radiation.radiationAlert result = new grpc.Radiation.radiationAlert(this);
-      result.radiationAlertSet_ = radiationAlertSet_;
+      result.radiationAlerts_ = radiationAlerts_;
       onBuilt();
       return result;
     }
@@ -393,8 +393,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(grpc.Radiation.radiationAlert other) {
       if (other == grpc.Radiation.radiationAlert.getDefaultInstance()) return this;
-      if (!other.getRadiationAlertSet().isEmpty()) {
-        radiationAlertSet_ = other.radiationAlertSet_;
+      if (!other.getRadiationAlerts().isEmpty()) {
+        radiationAlerts_ = other.radiationAlerts_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -426,21 +426,21 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object radiationAlertSet_ = "";
+    private java.lang.Object radiationAlerts_ = "";
     /**
      * <pre>
-     * more like string setOfRadiationAlerts() = 1;
+     *string radiationAlertSet = 1;
      * </pre>
      *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string radiationAlerts = 1;</code>
      */
-    public java.lang.String getRadiationAlertSet() {
-      java.lang.Object ref = radiationAlertSet_;
+    public java.lang.String getRadiationAlerts() {
+      java.lang.Object ref = radiationAlerts_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        radiationAlertSet_ = s;
+        radiationAlerts_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
@@ -448,19 +448,19 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * more like string setOfRadiationAlerts() = 1;
+     *string radiationAlertSet = 1;
      * </pre>
      *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string radiationAlerts = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getRadiationAlertSetBytes() {
-      java.lang.Object ref = radiationAlertSet_;
+        getRadiationAlertsBytes() {
+      java.lang.Object ref = radiationAlerts_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        radiationAlertSet_ = b;
+        radiationAlerts_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -468,49 +468,49 @@ private static final long serialVersionUID = 0L;
     }
     /**
      * <pre>
-     * more like string setOfRadiationAlerts() = 1;
+     *string radiationAlertSet = 1;
      * </pre>
      *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string radiationAlerts = 1;</code>
      */
-    public Builder setRadiationAlertSet(
+    public Builder setRadiationAlerts(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      radiationAlertSet_ = value;
+      radiationAlerts_ = value;
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * more like string setOfRadiationAlerts() = 1;
+     *string radiationAlertSet = 1;
      * </pre>
      *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string radiationAlerts = 1;</code>
      */
-    public Builder clearRadiationAlertSet() {
+    public Builder clearRadiationAlerts() {
       
-      radiationAlertSet_ = getDefaultInstance().getRadiationAlertSet();
+      radiationAlerts_ = getDefaultInstance().getRadiationAlerts();
       onChanged();
       return this;
     }
     /**
      * <pre>
-     * more like string setOfRadiationAlerts() = 1;
+     *string radiationAlertSet = 1;
      * </pre>
      *
-     * <code>string radiationAlertSet = 1;</code>
+     * <code>string radiationAlerts = 1;</code>
      */
-    public Builder setRadiationAlertSetBytes(
+    public Builder setRadiationAlertsBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      radiationAlertSet_ = value;
+      radiationAlerts_ = value;
       onChanged();
       return this;
     }

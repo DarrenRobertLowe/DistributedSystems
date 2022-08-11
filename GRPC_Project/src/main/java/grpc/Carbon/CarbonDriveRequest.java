@@ -18,6 +18,7 @@ private static final long serialVersionUID = 0L;
   private carbonDriveRequest() {
     milesInput_ = 0;
     mpgInput_ = 0;
+    fuelType_ = "";
   }
 
   @java.lang.Override
@@ -52,6 +53,12 @@ private static final long serialVersionUID = 0L;
           case 16: {
 
             mpgInput_ = input.readInt32();
+            break;
+          }
+          case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            fuelType_ = s;
             break;
           }
           default: {
@@ -89,6 +96,10 @@ private static final long serialVersionUID = 0L;
   public static final int MILESINPUT_FIELD_NUMBER = 1;
   private int milesInput_;
   /**
+   * <pre>
+   * the number of miles
+   * </pre>
+   *
    * <code>int32 milesInput = 1;</code>
    */
   public int getMilesInput() {
@@ -98,10 +109,56 @@ private static final long serialVersionUID = 0L;
   public static final int MPGINPUT_FIELD_NUMBER = 2;
   private int mpgInput_;
   /**
+   * <pre>
+   * the miles per gallon
+   * </pre>
+   *
    * <code>int32 mpgInput = 2;</code>
    */
   public int getMpgInput() {
     return mpgInput_;
+  }
+
+  public static final int FUELTYPE_FIELD_NUMBER = 3;
+  private volatile java.lang.Object fuelType_;
+  /**
+   * <pre>
+   * petrol or diesel
+   * </pre>
+   *
+   * <code>string fuelType = 3;</code>
+   */
+  public java.lang.String getFuelType() {
+    java.lang.Object ref = fuelType_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      fuelType_ = s;
+      return s;
+    }
+  }
+  /**
+   * <pre>
+   * petrol or diesel
+   * </pre>
+   *
+   * <code>string fuelType = 3;</code>
+   */
+  public com.google.protobuf.ByteString
+      getFuelTypeBytes() {
+    java.lang.Object ref = fuelType_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      fuelType_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -124,6 +181,9 @@ private static final long serialVersionUID = 0L;
     if (mpgInput_ != 0) {
       output.writeInt32(2, mpgInput_);
     }
+    if (!getFuelTypeBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, fuelType_);
+    }
     unknownFields.writeTo(output);
   }
 
@@ -140,6 +200,9 @@ private static final long serialVersionUID = 0L;
     if (mpgInput_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, mpgInput_);
+    }
+    if (!getFuelTypeBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, fuelType_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -161,6 +224,8 @@ private static final long serialVersionUID = 0L;
         == other.getMilesInput());
     result = result && (getMpgInput()
         == other.getMpgInput());
+    result = result && getFuelType()
+        .equals(other.getFuelType());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -176,6 +241,8 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getMilesInput();
     hash = (37 * hash) + MPGINPUT_FIELD_NUMBER;
     hash = (53 * hash) + getMpgInput();
+    hash = (37 * hash) + FUELTYPE_FIELD_NUMBER;
+    hash = (53 * hash) + getFuelType().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -313,6 +380,8 @@ private static final long serialVersionUID = 0L;
 
       mpgInput_ = 0;
 
+      fuelType_ = "";
+
       return this;
     }
 
@@ -341,6 +410,7 @@ private static final long serialVersionUID = 0L;
       grpc.Carbon.carbonDriveRequest result = new grpc.Carbon.carbonDriveRequest(this);
       result.milesInput_ = milesInput_;
       result.mpgInput_ = mpgInput_;
+      result.fuelType_ = fuelType_;
       onBuilt();
       return result;
     }
@@ -395,6 +465,10 @@ private static final long serialVersionUID = 0L;
       if (other.getMpgInput() != 0) {
         setMpgInput(other.getMpgInput());
       }
+      if (!other.getFuelType().isEmpty()) {
+        fuelType_ = other.fuelType_;
+        onChanged();
+      }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
       return this;
@@ -426,12 +500,20 @@ private static final long serialVersionUID = 0L;
 
     private int milesInput_ ;
     /**
+     * <pre>
+     * the number of miles
+     * </pre>
+     *
      * <code>int32 milesInput = 1;</code>
      */
     public int getMilesInput() {
       return milesInput_;
     }
     /**
+     * <pre>
+     * the number of miles
+     * </pre>
+     *
      * <code>int32 milesInput = 1;</code>
      */
     public Builder setMilesInput(int value) {
@@ -441,6 +523,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * the number of miles
+     * </pre>
+     *
      * <code>int32 milesInput = 1;</code>
      */
     public Builder clearMilesInput() {
@@ -452,12 +538,20 @@ private static final long serialVersionUID = 0L;
 
     private int mpgInput_ ;
     /**
+     * <pre>
+     * the miles per gallon
+     * </pre>
+     *
      * <code>int32 mpgInput = 2;</code>
      */
     public int getMpgInput() {
       return mpgInput_;
     }
     /**
+     * <pre>
+     * the miles per gallon
+     * </pre>
+     *
      * <code>int32 mpgInput = 2;</code>
      */
     public Builder setMpgInput(int value) {
@@ -467,11 +561,104 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * the miles per gallon
+     * </pre>
+     *
      * <code>int32 mpgInput = 2;</code>
      */
     public Builder clearMpgInput() {
       
       mpgInput_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object fuelType_ = "";
+    /**
+     * <pre>
+     * petrol or diesel
+     * </pre>
+     *
+     * <code>string fuelType = 3;</code>
+     */
+    public java.lang.String getFuelType() {
+      java.lang.Object ref = fuelType_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        fuelType_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <pre>
+     * petrol or diesel
+     * </pre>
+     *
+     * <code>string fuelType = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFuelTypeBytes() {
+      java.lang.Object ref = fuelType_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        fuelType_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <pre>
+     * petrol or diesel
+     * </pre>
+     *
+     * <code>string fuelType = 3;</code>
+     */
+    public Builder setFuelType(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      fuelType_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * petrol or diesel
+     * </pre>
+     *
+     * <code>string fuelType = 3;</code>
+     */
+    public Builder clearFuelType() {
+      
+      fuelType_ = getDefaultInstance().getFuelType();
+      onChanged();
+      return this;
+    }
+    /**
+     * <pre>
+     * petrol or diesel
+     * </pre>
+     *
+     * <code>string fuelType = 3;</code>
+     */
+    public Builder setFuelTypeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      fuelType_ = value;
       onChanged();
       return this;
     }

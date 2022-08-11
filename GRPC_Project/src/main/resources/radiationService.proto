@@ -18,6 +18,7 @@ service radiationService {
 // and forward the information to the server.
 message radiationMeasurements {
 	int32 picocuries = 1;
+	string clientID = 2;
 }
 
 
@@ -48,6 +49,6 @@ message requestRadiationAlerts {
 }
 
 message radiationAlert {
-	string radiationAlertSet = 1;
-	// more like string setOfRadiationAlerts() = 1;
+	//string radiationAlertSet = 1;
+	string radiationAlerts = 1;
 }

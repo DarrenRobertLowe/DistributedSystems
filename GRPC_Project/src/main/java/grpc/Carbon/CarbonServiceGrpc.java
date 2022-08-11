@@ -28,21 +28,21 @@ public final class carbonServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<grpc.Carbon.carbonFlightRequest,
-      grpc.Carbon.containsString> getCalculateCarbonFlightMethod;
+      grpc.Carbon.responseString> getCalculateCarbonFlightMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "CalculateCarbonFlight",
       requestType = grpc.Carbon.carbonFlightRequest.class,
-      responseType = grpc.Carbon.containsString.class,
+      responseType = grpc.Carbon.responseString.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<grpc.Carbon.carbonFlightRequest,
-      grpc.Carbon.containsString> getCalculateCarbonFlightMethod() {
-    io.grpc.MethodDescriptor<grpc.Carbon.carbonFlightRequest, grpc.Carbon.containsString> getCalculateCarbonFlightMethod;
+      grpc.Carbon.responseString> getCalculateCarbonFlightMethod() {
+    io.grpc.MethodDescriptor<grpc.Carbon.carbonFlightRequest, grpc.Carbon.responseString> getCalculateCarbonFlightMethod;
     if ((getCalculateCarbonFlightMethod = carbonServiceGrpc.getCalculateCarbonFlightMethod) == null) {
       synchronized (carbonServiceGrpc.class) {
         if ((getCalculateCarbonFlightMethod = carbonServiceGrpc.getCalculateCarbonFlightMethod) == null) {
           carbonServiceGrpc.getCalculateCarbonFlightMethod = getCalculateCarbonFlightMethod = 
-              io.grpc.MethodDescriptor.<grpc.Carbon.carbonFlightRequest, grpc.Carbon.containsString>newBuilder()
+              io.grpc.MethodDescriptor.<grpc.Carbon.carbonFlightRequest, grpc.Carbon.responseString>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "carbonService", "CalculateCarbonFlight"))
@@ -50,7 +50,7 @@ public final class carbonServiceGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   grpc.Carbon.carbonFlightRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.Carbon.containsString.getDefaultInstance()))
+                  grpc.Carbon.responseString.getDefaultInstance()))
                   .setSchemaDescriptor(new carbonServiceMethodDescriptorSupplier("CalculateCarbonFlight"))
                   .build();
           }
@@ -60,21 +60,21 @@ public final class carbonServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<grpc.Carbon.carbonDriveRequest,
-      grpc.Carbon.containsString> getCalculateCarbonDriveMethod;
+      grpc.Carbon.responseString> getCalculateCarbonDriveMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "CalculateCarbonDrive",
       requestType = grpc.Carbon.carbonDriveRequest.class,
-      responseType = grpc.Carbon.containsString.class,
+      responseType = grpc.Carbon.responseString.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<grpc.Carbon.carbonDriveRequest,
-      grpc.Carbon.containsString> getCalculateCarbonDriveMethod() {
-    io.grpc.MethodDescriptor<grpc.Carbon.carbonDriveRequest, grpc.Carbon.containsString> getCalculateCarbonDriveMethod;
+      grpc.Carbon.responseString> getCalculateCarbonDriveMethod() {
+    io.grpc.MethodDescriptor<grpc.Carbon.carbonDriveRequest, grpc.Carbon.responseString> getCalculateCarbonDriveMethod;
     if ((getCalculateCarbonDriveMethod = carbonServiceGrpc.getCalculateCarbonDriveMethod) == null) {
       synchronized (carbonServiceGrpc.class) {
         if ((getCalculateCarbonDriveMethod = carbonServiceGrpc.getCalculateCarbonDriveMethod) == null) {
           carbonServiceGrpc.getCalculateCarbonDriveMethod = getCalculateCarbonDriveMethod = 
-              io.grpc.MethodDescriptor.<grpc.Carbon.carbonDriveRequest, grpc.Carbon.containsString>newBuilder()
+              io.grpc.MethodDescriptor.<grpc.Carbon.carbonDriveRequest, grpc.Carbon.responseString>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
                   "carbonService", "CalculateCarbonDrive"))
@@ -82,7 +82,7 @@ public final class carbonServiceGrpc {
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   grpc.Carbon.carbonDriveRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  grpc.Carbon.containsString.getDefaultInstance()))
+                  grpc.Carbon.responseString.getDefaultInstance()))
                   .setSchemaDescriptor(new carbonServiceMethodDescriptorSupplier("CalculateCarbonDrive"))
                   .build();
           }
@@ -124,14 +124,14 @@ public final class carbonServiceGrpc {
      * </pre>
      */
     public void calculateCarbonFlight(grpc.Carbon.carbonFlightRequest request,
-        io.grpc.stub.StreamObserver<grpc.Carbon.containsString> responseObserver) {
+        io.grpc.stub.StreamObserver<grpc.Carbon.responseString> responseObserver) {
       asyncUnimplementedUnaryCall(getCalculateCarbonFlightMethod(), responseObserver);
     }
 
     /**
      */
     public void calculateCarbonDrive(grpc.Carbon.carbonDriveRequest request,
-        io.grpc.stub.StreamObserver<grpc.Carbon.containsString> responseObserver) {
+        io.grpc.stub.StreamObserver<grpc.Carbon.responseString> responseObserver) {
       asyncUnimplementedUnaryCall(getCalculateCarbonDriveMethod(), responseObserver);
     }
 
@@ -142,14 +142,14 @@ public final class carbonServiceGrpc {
             asyncUnaryCall(
               new MethodHandlers<
                 grpc.Carbon.carbonFlightRequest,
-                grpc.Carbon.containsString>(
+                grpc.Carbon.responseString>(
                   this, METHODID_CALCULATE_CARBON_FLIGHT)))
           .addMethod(
             getCalculateCarbonDriveMethod(),
             asyncUnaryCall(
               new MethodHandlers<
                 grpc.Carbon.carbonDriveRequest,
-                grpc.Carbon.containsString>(
+                grpc.Carbon.responseString>(
                   this, METHODID_CALCULATE_CARBON_DRIVE)))
           .build();
     }
@@ -179,7 +179,7 @@ public final class carbonServiceGrpc {
      * </pre>
      */
     public void calculateCarbonFlight(grpc.Carbon.carbonFlightRequest request,
-        io.grpc.stub.StreamObserver<grpc.Carbon.containsString> responseObserver) {
+        io.grpc.stub.StreamObserver<grpc.Carbon.responseString> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getCalculateCarbonFlightMethod(), getCallOptions()), request, responseObserver);
     }
@@ -187,7 +187,7 @@ public final class carbonServiceGrpc {
     /**
      */
     public void calculateCarbonDrive(grpc.Carbon.carbonDriveRequest request,
-        io.grpc.stub.StreamObserver<grpc.Carbon.containsString> responseObserver) {
+        io.grpc.stub.StreamObserver<grpc.Carbon.responseString> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getCalculateCarbonDriveMethod(), getCallOptions()), request, responseObserver);
     }
@@ -216,14 +216,14 @@ public final class carbonServiceGrpc {
      *unary
      * </pre>
      */
-    public grpc.Carbon.containsString calculateCarbonFlight(grpc.Carbon.carbonFlightRequest request) {
+    public grpc.Carbon.responseString calculateCarbonFlight(grpc.Carbon.carbonFlightRequest request) {
       return blockingUnaryCall(
           getChannel(), getCalculateCarbonFlightMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public grpc.Carbon.containsString calculateCarbonDrive(grpc.Carbon.carbonDriveRequest request) {
+    public grpc.Carbon.responseString calculateCarbonDrive(grpc.Carbon.carbonDriveRequest request) {
       return blockingUnaryCall(
           getChannel(), getCalculateCarbonDriveMethod(), getCallOptions(), request);
     }
@@ -252,7 +252,7 @@ public final class carbonServiceGrpc {
      *unary
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<grpc.Carbon.containsString> calculateCarbonFlight(
+    public com.google.common.util.concurrent.ListenableFuture<grpc.Carbon.responseString> calculateCarbonFlight(
         grpc.Carbon.carbonFlightRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getCalculateCarbonFlightMethod(), getCallOptions()), request);
@@ -260,7 +260,7 @@ public final class carbonServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<grpc.Carbon.containsString> calculateCarbonDrive(
+    public com.google.common.util.concurrent.ListenableFuture<grpc.Carbon.responseString> calculateCarbonDrive(
         grpc.Carbon.carbonDriveRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getCalculateCarbonDriveMethod(), getCallOptions()), request);
@@ -289,11 +289,11 @@ public final class carbonServiceGrpc {
       switch (methodId) {
         case METHODID_CALCULATE_CARBON_FLIGHT:
           serviceImpl.calculateCarbonFlight((grpc.Carbon.carbonFlightRequest) request,
-              (io.grpc.stub.StreamObserver<grpc.Carbon.containsString>) responseObserver);
+              (io.grpc.stub.StreamObserver<grpc.Carbon.responseString>) responseObserver);
           break;
         case METHODID_CALCULATE_CARBON_DRIVE:
           serviceImpl.calculateCarbonDrive((grpc.Carbon.carbonDriveRequest) request,
-              (io.grpc.stub.StreamObserver<grpc.Carbon.containsString>) responseObserver);
+              (io.grpc.stub.StreamObserver<grpc.Carbon.responseString>) responseObserver);
           break;
         default:
           throw new AssertionError();

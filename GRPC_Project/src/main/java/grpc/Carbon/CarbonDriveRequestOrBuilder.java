@@ -8,12 +8,38 @@ public interface carbonDriveRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * the number of miles
+   * </pre>
+   *
    * <code>int32 milesInput = 1;</code>
    */
   int getMilesInput();
 
   /**
+   * <pre>
+   * the miles per gallon
+   * </pre>
+   *
    * <code>int32 mpgInput = 2;</code>
    */
   int getMpgInput();
+
+  /**
+   * <pre>
+   * petrol or diesel
+   * </pre>
+   *
+   * <code>string fuelType = 3;</code>
+   */
+  java.lang.String getFuelType();
+  /**
+   * <pre>
+   * petrol or diesel
+   * </pre>
+   *
+   * <code>string fuelType = 3;</code>
+   */
+  com.google.protobuf.ByteString
+      getFuelTypeBytes();
 }

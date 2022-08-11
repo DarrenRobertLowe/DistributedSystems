@@ -54,21 +54,6 @@ public final class PollutionServiceImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_allDeviceStatusResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_containsString_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_containsString_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_newRequestInteger_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_newRequestInteger_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_newResponseInteger_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_newResponseInteger_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -88,18 +73,15 @@ public final class PollutionServiceImpl {
       "e\022\016\n\006status\030\001 \001(\t\"1\n\026allDeviceStatusRequ" +
       "est\022\027\n\017statusRequested\030\001 \001(\010\"6\n\027allDevic" +
       "eStatusResponse\022\033\n\023overallDeviceHealth\030\001" +
-      " \001(\002\"%\n\016containsString\022\023\n\013firstString\030\001 " +
-      "\001(\t\")\n\021newRequestInteger\022\024\n\014firstInteger" +
-      "\030\001 \001(\005\"*\n\022newResponseInteger\022\024\n\014firstInt" +
-      "eger\030\001 \001(\0052\234\002\n\020pollutionService\022/\n\017Strea" +
-      "mPollution\022\r.airPollution\032\t.response\"\000(\001" +
-      "\022J\n\024GetLocalAirPollution\022\020.locationReque" +
-      "st\032\032.regionalPollutionResponse\"\000(\0010\001\022>\n\017" +
-      "GetDeviceStatus\022\024.deviceStatusRequest\032\025." +
-      "deviceStatusResponse\022K\n\022GetAllDeviceStat" +
-      "us\022\027.allDeviceStatusRequest\032\030.allDeviceS" +
-      "tatusResponse\"\0000\001B(\n\016grpc.pollutionB\024Pol" +
-      "lutionServiceImplP\001b\006proto3"
+      " \001(\0022\234\002\n\020pollutionService\022/\n\017StreamPollu" +
+      "tion\022\r.airPollution\032\t.response\"\000(\001\022J\n\024Ge" +
+      "tLocalAirPollution\022\020.locationRequest\032\032.r" +
+      "egionalPollutionResponse\"\000(\0010\001\022>\n\017GetDev" +
+      "iceStatus\022\024.deviceStatusRequest\032\025.device" +
+      "StatusResponse\022K\n\022GetAllDeviceStatus\022\027.a" +
+      "llDeviceStatusRequest\032\030.allDeviceStatusR" +
+      "esponse\"\0000\001B(\n\016grpc.pollutionB\024Pollution" +
+      "ServiceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -161,24 +143,6 @@ public final class PollutionServiceImpl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_allDeviceStatusResponse_descriptor,
         new java.lang.String[] { "OverallDeviceHealth", });
-    internal_static_containsString_descriptor =
-      getDescriptor().getMessageTypes().get(8);
-    internal_static_containsString_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_containsString_descriptor,
-        new java.lang.String[] { "FirstString", });
-    internal_static_newRequestInteger_descriptor =
-      getDescriptor().getMessageTypes().get(9);
-    internal_static_newRequestInteger_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_newRequestInteger_descriptor,
-        new java.lang.String[] { "FirstInteger", });
-    internal_static_newResponseInteger_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_newResponseInteger_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_newResponseInteger_descriptor,
-        new java.lang.String[] { "FirstInteger", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
