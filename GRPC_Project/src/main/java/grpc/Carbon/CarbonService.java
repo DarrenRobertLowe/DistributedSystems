@@ -26,6 +26,7 @@ import io.grpc.stub.StreamObserver;
 
 // needed for properties file
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import grpc.Carbon.carbonServiceGrpc.carbonServiceImplBase;
 
@@ -107,8 +108,8 @@ public class CarbonService {
 			// Create a JmDNS instance
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 			
-			String service_type = prop.getProperty("service_type") ;//"_http._tcp.local.";
-			String service_name = prop.getProperty("service_name")  ;// "example";
+			String service_type = prop.getProperty("service_type");	//"_http._tcp.local.";
+			String service_name = prop.getProperty("service_name");	// "example";
 			
 			int service_port = Integer.valueOf( prop.getProperty("service_port") );// #.50051;
 			
@@ -166,6 +167,17 @@ public class CarbonService {
 			int result = ((hours * 780 * 115)/1000);
 			
 			
+			/*
+			// wait some time for testing deadline
+			try {
+				Thread.sleep(10000);
+			} catch (InterruptedException e) {
+				Thread.currentThread().interrupt();
+			    return;
+			}
+			*/
+			
+				
 			//now build our response
 			responseString.Builder responseBuilder = responseString.newBuilder();	//create a builder
 			

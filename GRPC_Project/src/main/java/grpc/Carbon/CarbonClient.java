@@ -131,8 +131,7 @@ public class CarbonClient {
 		System.out.println("Requesting calculation for " + hours + " hour flight");	
 		
 		// request a response using our carbonFlightRequest 'request'
-		responseString response = blockingStub.calculateCarbonFlight(request);
-		
+		responseString response = blockingStub.withDeadlineAfter(2,TimeUnit.SECONDS).calculateCarbonFlight(request);	// note the deadline of 2 seconds
 		
 		//printout the response
 		System.out.println(response.getMessage());
@@ -156,7 +155,7 @@ public class CarbonClient {
 		
 		
 		// request a response using our carbonFlightRequest 'request'
-		responseString response = blockingStub.calculateCarbonDrive(request);
+		responseString response = blockingStub.withDeadlineAfter(2,TimeUnit.SECONDS).calculateCarbonDrive(request);	// note the deadline of 2 seconds
 		
 		
 		//printout the response

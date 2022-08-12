@@ -164,7 +164,7 @@ public class RadiationService {
 		 * and returns calculates an average value, which is
 		 * returned as part of the response message.
 		 */
-		// rpc StreamRadiation(stream radiationMeasurements) returns (containsString){}
+		// rpc StreamRadiation(stream radiationMeasurements) returns (measurementsResponse){}
 		public StreamObserver<radiationMeasurements> streamRadiation(StreamObserver<measurementsResponse> responseObserver) {
 			System.out.println("");
 			System.out.println("");

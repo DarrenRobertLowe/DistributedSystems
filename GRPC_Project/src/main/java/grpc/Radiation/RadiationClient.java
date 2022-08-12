@@ -227,7 +227,7 @@ public class RadiationClient {
 			}
 		};
 		
-		asyncStub.getRadiationLevels(request, responseObserver);
+		asyncStub.withDeadlineAfter(10,TimeUnit.SECONDS).getRadiationLevels(request, responseObserver); // deadline of 10 seconds
 		
 		try {
 			Thread.sleep(5000);
@@ -282,8 +282,9 @@ public class RadiationClient {
 		
 		//asyncStub.getRadiationWarnings(request, responseObserver);
 		
+		
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

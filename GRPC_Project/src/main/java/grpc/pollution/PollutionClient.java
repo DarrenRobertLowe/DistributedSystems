@@ -82,8 +82,8 @@ public class PollutionClient {
 		try {
 			// Create a JmDNS instance
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
-
-				
+			
+			
 			jmdns.addServiceListener(service_type, new ServiceListener() {
 				
 				@Override
@@ -230,7 +230,7 @@ public class PollutionClient {
 		
 	
 		deviceStatusRequest request = deviceStatusRequest.newBuilder().setStatusRequestedID(device).build();
-		deviceStatusResponse response = blockingStub.getDeviceStatus(request);
+		deviceStatusResponse response = blockingStub.withDeadlineAfter(4,TimeUnit.SECONDS).getDeviceStatus(request);	// deadline of 4 seconds
 		System.out.println(response.getStatus()); // e.g.: "Health for device dev04: 77.14953"
 	}
 	
@@ -238,7 +238,7 @@ public class PollutionClient {
 	
 	
 	
-	/* GetLocalAirPollution
+	/* GetLocalAirPollution							bi-directional
 	 * With this method, clients send their geographic location to
 	 * the server so that the server can respond with information
 	 * regarding air pollution in the area of the client.
@@ -329,7 +329,7 @@ public class PollutionClient {
 		
 		
 		try {
-			Iterator<allDeviceStatusResponse> responses = blockingStub.getAllDeviceStatus(request);
+			Iterator<allDeviceStatusResponse> responses = blockingStub.withDeadlineAfter(20,TimeUnit.SECONDS).getAllDeviceStatus(request); // deadline of 20 seconds
 			
 			while(responses.hasNext()) {
 				allDeviceStatusResponse temp = responses.next();
@@ -342,61 +342,4 @@ public class PollutionClient {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	/* GetAllDeviceStatus	// server to client streaming
-	 * This calculates the overall health of the system
-	 * of IoT devices as an float out of 100%.
-	 */
-	/*
-	public static void getAllDeviceStatus() {
-		System.out.println("");
-		System.out.println("");
-		
-		
-		System.out.println("Requesting Health Status of All Devices Overall");
-		System.out.println("===============================================");
-		
-		allDeviceStatusRequest request = allDeviceStatusRequest
-				.newBuilder()
-				.setStatusRequested(true)
-				//.setAnotherVariable(0)
-				.build();
-		
-		
-		StreamObserver<allDeviceStatusResponse> responseObserver = new StreamObserver<allDeviceStatusResponse>() {
-			int count = 0;
-			
-			@Override
-			public void onNext(allDeviceStatusResponse value) {
-				System.out.println(value.getOverallDeviceHealth());
-			}
-			
-			@Override
-			public void onError(Throwable t) {
-				t.printStackTrace();
-			}
-			
-			@Override
-			public void onCompleted() {
-				System.out.println("stream is completed ... health status based on "+ count+ " devices");
-			}
-		};
-		
-		
-		asyncStub.getAllDeviceStatus(request, responseObserver);
-		
-		// finish tidily
-		responseObserver.onCompleted();
-		
-		
-		try {
-			Thread.sleep(1500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	*/
 }

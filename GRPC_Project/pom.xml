@@ -45,6 +45,7 @@
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.jmdns/jmdns -->
+		<!-- this is to replace the older version of jmdns which had bugs -->
 		<dependency>
 		    <groupId>org.jmdns</groupId>
 		    <artifactId>jmdns</artifactId>
