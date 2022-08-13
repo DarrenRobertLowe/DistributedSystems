@@ -2,7 +2,6 @@ package grpc.Carbon;
 
 // needed for properties file
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 import grpc.Carbon.carbonServiceGrpc.carbonServiceImplBase;
 
@@ -78,7 +77,6 @@ public class CarbonService {
 	
 	/// JMDNS
 	private  void registerService(Properties prop) {
-		
 		 try {
 			System.out.println("Please wait while jmDNS registers this service...");
 			// Create a JmDNS instance
@@ -142,18 +140,6 @@ public class CarbonService {
 			 */
 			int result = ((hours * 780 * 115)/1000);
 			
-			
-			/*
-			// wait some time for testing deadline
-			try {
-				Thread.sleep(10000);
-			} catch (InterruptedException e) {
-				Thread.currentThread().interrupt();
-			    return;
-			}
-			*/
-			
-				
 			//now build our response
 			responseString.Builder responseBuilder = responseString.newBuilder();	//create a builder
 			

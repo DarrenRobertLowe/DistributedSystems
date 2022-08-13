@@ -12,7 +12,6 @@ service radiationService {
 
 
 
-
 // For the IoT Devices
 // each IoT device will track radiation levels in the water supply
 // and forward the information to the server.
@@ -25,7 +24,6 @@ message radiationMeasurements {
 message measurementsResponse {
 	string message = 1;
 }
-
 
 
 

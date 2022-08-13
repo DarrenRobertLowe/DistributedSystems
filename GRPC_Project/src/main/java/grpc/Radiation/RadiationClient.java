@@ -156,25 +156,28 @@ public class RadiationClient {
 			System.out.println("Sending radiation measurement data to server...");
 			System.out.println("================================================");
 			
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(20).build());
+			String name = "dev02";
+			
+			// send the measurement data
+			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(20).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(12).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(12).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(4).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(4).build());
 			Thread.sleep(500);
 			
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(11).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(11).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(8).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(8).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(17).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(17).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setPicocuries(13).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(13).build());
 			Thread.sleep(500);
 			
 			
@@ -227,10 +230,10 @@ public class RadiationClient {
 			}
 		};
 		
-		asyncStub.withDeadlineAfter(10,TimeUnit.SECONDS).getRadiationLevels(request, responseObserver); // deadline of 10 seconds
+		asyncStub.withDeadlineAfter(20,TimeUnit.SECONDS).getRadiationLevels(request, responseObserver); // deadline of 20 seconds
 		
 		try {
-			Thread.sleep(5000);
+			Thread.sleep(10000); // leave enough time for all counties to be sent
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -278,11 +281,11 @@ public class RadiationClient {
 			}
 		};
 		
-		//asyncStub.getRadiationWarnings(request, responseObserver);
+		asyncStub.getRadiationWarnings(request, responseObserver);
 		
 		
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(10000); // leave enough time for all counties
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

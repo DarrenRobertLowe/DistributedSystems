@@ -157,8 +157,6 @@ public class RadiationService {
 	//Extend abstract base class for our own implementation
 	static class RadiationServiceImpl extends radiationServiceImplBase {
 		
-		
-		
 		@Override
 		/* This method takes in a stream of radiation numbers
 		 * and returns calculates an average value, which is
@@ -168,7 +166,7 @@ public class RadiationService {
 		public StreamObserver<radiationMeasurements> streamRadiation(StreamObserver<measurementsResponse> responseObserver) {
 			System.out.println("");
 			System.out.println("");
-			System.out.println("Incoming radiation numbers from client: ");
+			System.out.println("Incoming radiation numbers from client:");
 			System.out.println("========================================================");
 			
 			
@@ -177,13 +175,16 @@ public class RadiationService {
 				int count = 0;	// used to get an average value
 				int total = 0;	// used to get an average value
 				
+				
+				
 				@Override
 				public void onNext(radiationMeasurements request) {
+					String clientID =  request.getClientID();
+					
 					// The U.S. Environmental Protection Agency's (EPA) Radionuclides Rule has four
 					// federal standards for radionuclides in drinking water. Safe drinking water should 
 					// have: 15 picocuries of alpha particles per liter of water (pCi/L) or less.
-					System.out.println("ClientID '" + request.getClientID() + "' : " +request.getPicocuries());
-					
+					System.out.println("ClientID '" + clientID + "' : " +request.getPicocuries());
 					
 					radiationString += request.getPicocuries() +" ";
 					total += request.getPicocuries();	// add to the total
@@ -236,17 +237,20 @@ public class RadiationService {
 			MergeSort.sort(listOfCountiesSorted);
 			
 			
-			for(int i=0; i<listOfCounties.length; i++) {
+			System.out.println("size of counties list: " + listOfCountiesSorted.length);
+			// return the list in reverse order
+			for(int i=listOfCounties.length-1; i>-1; i--) {
 				String county = listOfCountiesSorted[i].getName();
 				double value = listOfCountiesSorted[i].getValue();
 				
+				System.out.println("remaining : " + i);
 				levelsStream reply = levelsStream.newBuilder().setDangerousRegions(county + ": " + value).build();
 				responseObserver.onNext(reply);
 				
 				
 				try {
 					//wait for a second
-					Thread.sleep(250);
+					Thread.sleep(150);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

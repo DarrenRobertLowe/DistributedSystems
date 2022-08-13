@@ -35,8 +35,8 @@ public class PollutionClient {
 	public static void main(String[] args) throws InterruptedException {
 		
 		// jmdns resoultion
-		String radiation_service_type = "_pollutionservice_http._tcp.local.";
-		discoverPollutionService(radiation_service_type);
+		String pollution_service_type = "_pollutionservice_http._tcp.local.";
+		discoverPollutionService(pollution_service_type);
 				
 				
 		// Build a channel (JmDNS) - a channel connect the client to the server
@@ -88,7 +88,7 @@ public class PollutionClient {
 				
 				@Override
 				public void serviceResolved(ServiceEvent event) {
-					System.out.println("Radiation Service resolved: " + event.getInfo());
+					System.out.println("Pollution Service resolved: " + event.getInfo());
 
 					pollutionServiceInfo = event.getInfo();
 
@@ -173,7 +173,7 @@ public class PollutionClient {
 			String deviceID = "dev02";
 			System.out.println("");
 			System.out.println("");
-			System.out.println("Sending radiation measurement data to server...");
+			System.out.println("Sending pollution measurement data to server...");
 			System.out.println("================================================");
 			
 			requestObserver.onNext(airPollution.newBuilder().setCarbon(25).setId(deviceID).build());
@@ -230,7 +230,7 @@ public class PollutionClient {
 		
 	
 		deviceStatusRequest request = deviceStatusRequest.newBuilder().setStatusRequestedID(device).build();
-		deviceStatusResponse response = blockingStub.withDeadlineAfter(4,TimeUnit.SECONDS).getDeviceStatus(request);	// deadline of 4 seconds
+		deviceStatusResponse response = blockingStub.withDeadlineAfter(10,TimeUnit.SECONDS).getDeviceStatus(request);	// deadline of 10 seconds
 		System.out.println(response.getStatus()); // e.g.: "Health for device dev04: 77.14953"
 	}
 	

@@ -167,7 +167,7 @@ public class RadiationGUI {
 		
 		
 		
-		// CAR CALCULATION
+		// RADIATION WARNINGS
 		JPanel panel_service_1 = new JPanel();
 		frame.getContentPane().add(panel_service_1);
 		panel_service_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -231,7 +231,7 @@ public class RadiationGUI {
 		});
 		panel_service_1.add(btnCalculate);
 		
-		textResponse = new JTextArea(8, 30);
+		textResponse = new JTextArea(16, 30);
 		textResponse.selectAll();
 		textResponse.setWrapStyleWord(true);
 		

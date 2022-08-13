@@ -44,7 +44,6 @@ public class CarbonGUI {
 	private JFrame frame;
 	private JTextField textNumber1;
 	private JTextField textNumber2;
-	private JTextField textNumber3;
 	private JTextArea textResponse ;
 	
 	
@@ -218,12 +217,12 @@ public class CarbonGUI {
 				
 				carbonDriveRequest request = carbonDriveRequest.newBuilder().setMilesInput(miles).setMpgInput(mpg).setFuelType(fuelType).build();
 				responseString response = blockingStub.calculateCarbonDrive(request);
-				textResponse.append("reply:"+ response.getMessage() + "\n");
+				textResponse.append(response.getMessage() + "\n");
 			}
 		});
 		panel_service_1.add(btnCalculate);
 		
-		textResponse = new JTextArea(3, 20);
+		textResponse = new JTextArea(12, 30);
 		textResponse .setLineWrap(true);
 		textResponse.setWrapStyleWord(true);
 		
