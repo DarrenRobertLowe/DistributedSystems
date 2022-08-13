@@ -68,8 +68,8 @@ public class CarbonClientGui {
 	public static void main(String[] args) throws InterruptedException {
 		
 		// jmdns resoultion
-		String radiation_service_type = "_carbonservice_http._tcp.local.";
-		discoverCarbonService(radiation_service_type);
+		String carbon_service_type = "_carbonservice_http._tcp.local.";
+		discoverCarbonService(carbon_service_type);
 		
 		// Build a channel (JmDNS) - a channel connect the client to the server
 		int port 	= carbonServiceInfo.getPort();					// e.g. 50051;

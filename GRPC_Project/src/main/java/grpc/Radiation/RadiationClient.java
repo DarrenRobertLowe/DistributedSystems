@@ -53,7 +53,7 @@ public class RadiationClient {
 		
 		getRadiationLevels();
 		
-		int threshold = 2;
+		int threshold = 5;
 		getRadiationWarnings(threshold);
 		
 		
@@ -102,7 +102,7 @@ public class RadiationClient {
 				}
 			});
 			
-			// Wait a bit
+			// Wait for 2 seconds
 			Thread.sleep(2000);
 			
 			jmdns.close();
@@ -252,8 +252,6 @@ public class RadiationClient {
 		requestRadiationAlerts request = requestRadiationAlerts
 				.newBuilder()
 				.setThreshold(threshold)
-				//.setVariable(0)
-				//.setVariable(0)
 				.build();
 		
 		
