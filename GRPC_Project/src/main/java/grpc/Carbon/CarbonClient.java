@@ -15,6 +15,7 @@ import grpc.Carbon.carbonServiceGrpc.carbonServiceBlockingStub;
 import grpc.Carbon.carbonServiceGrpc.carbonServiceStub;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.StatusRuntimeException;
 
 
 
@@ -48,7 +49,7 @@ public class CarbonClient {
 		
 		// call the rpc methods
 		calculateCarbonFlight(5);					// parameter is the number of hours
-		calculateCarbonDrive(100, 40, "diesel"); 	// 100 miles at 40mpg
+		calculateCarbonDrive(10, 40, "diesel"); 	// 100 miles at 40mpg
 		
 		
 		// terminate the channel so we don't get errors
@@ -130,11 +131,16 @@ public class CarbonClient {
 		carbonFlightRequest request = carbonFlightRequest.newBuilder().setHoursInput(hours).build();
 		System.out.println("Requesting calculation for " + hours + " hour flight");	
 		
-		// request a response using our carbonFlightRequest 'request'
-		responseString response = blockingStub.withDeadlineAfter(2,TimeUnit.SECONDS).calculateCarbonFlight(request);	// note the deadline of 2 seconds
 		
-		//printout the response
-		System.out.println(response.getMessage());
+		// request a response using our carbonFlightRequest 'request'
+		try {
+			responseString response = blockingStub.withDeadlineAfter(2,TimeUnit.SECONDS).calculateCarbonFlight(request);	// note the deadline of 2 seconds
+			System.out.println(response.getMessage());	//printout the response
+		} catch (StatusRuntimeException e) {
+			System.out.println("Server request timed out.");
+		}
+		
+		
 	}
 	
 	
@@ -155,10 +161,13 @@ public class CarbonClient {
 		
 		
 		// request a response using our carbonFlightRequest 'request'
-		responseString response = blockingStub.withDeadlineAfter(2,TimeUnit.SECONDS).calculateCarbonDrive(request);	// note the deadline of 2 seconds
+		try {
+			responseString response = blockingStub.withDeadlineAfter(2,TimeUnit.SECONDS).calculateCarbonDrive(request);	// note the deadline of 2 seconds
+			System.out.println(response.getMessage());	//printout the response
+		} catch (StatusRuntimeException e) {
+			System.out.println("Server request timed out.");
+		}
 		
 		
-		//printout the response
-		System.out.println(response.getMessage());
 	}
 }

@@ -130,13 +130,13 @@ public class PollutionService{
             // Create a JmDNS instance
             JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
             
-            String service_type = prop.getProperty("service_type") ;//"_http._tcp.local.";
-            String service_name = prop.getProperty("service_name")  ;// "example";
+            String service_type = prop.getProperty("service_type");						//"_http._tcp.local.";
+            String service_name = prop.getProperty("service_name");
             // int service_port = 1234;
-            int service_port = Integer.valueOf( prop.getProperty("service_port") );// #.50051;
+            int service_port = Integer.valueOf( prop.getProperty("service_port") );		// e.g. 50051;
             
             
-            String service_description_properties = prop.getProperty("service_description")  ;//"path=index.html";
+            String service_description_properties = prop.getProperty("service_description");
             
             // Register a service
             ServiceInfo serviceInfo = ServiceInfo.create(service_type, service_name, service_port, service_description_properties);
@@ -300,7 +300,7 @@ public class PollutionService{
 			String statusRequestedID = request.getStatusRequestedID();
 			System.out.println("client is requesting health status for IoT device : " + statusRequestedID);
 			
-			
+			// VALIDATION
 			// if it doesn't exist the result will be a message to that effect since we're using a string
 			String result = "Device id not recognised.";
 			

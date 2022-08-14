@@ -82,13 +82,13 @@ public class CarbonService {
 			// Create a JmDNS instance
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 			
-			String service_type = prop.getProperty("service_type");	//"_http._tcp.local.";
-			String service_name = prop.getProperty("service_name");	// "example";
+			String service_type = prop.getProperty("service_type");					// "_http._tcp.local.";
+			String service_name = prop.getProperty("service_name");
 			
-			int service_port = Integer.valueOf( prop.getProperty("service_port") );// #.50051;
+			int service_port = Integer.valueOf( prop.getProperty("service_port") );	// e.g. 50051;
 			
 			
-			String service_description_properties = prop.getProperty("service_description")  ;//"path=index.html";
+			String service_description_properties = prop.getProperty("service_description");
 			
 			// Register a service
 			ServiceInfo serviceInfo = ServiceInfo.create(service_type, service_name, service_port, service_description_properties);
@@ -161,15 +161,21 @@ public class CarbonService {
 			
 			
 			//Find out what was sent by the client
-			int distance = request.getMilesInput(); 	// we should probably change this to kilometers
+			int distance = request.getMilesInput(); 				// we should probably change this to kilometers
 			int mpg = request.getMpgInput();
-			String fuelType = request.getFuelType().toLowerCase();
+			String fuelType = request.getFuelType().toLowerCase();	// ignore case
 			
 			System.out.println("distance is: " + distance);
 			System.out.println("mpg is: " + mpg);
 			
 			String invalidFuelTypeMessage = "Carbon emissions could not be determined. Fuel type Must be either petrol or diesel.";
 			
+			
+			// create the builder that will be used for returning the result
+			responseString.Builder responseBuilder = responseString.newBuilder();	//create a builder
+			double result = 0.0;
+			
+			// check the fuel type
 			int emissions = 0;
 			switch (fuelType) {
 				case "petrol":
@@ -189,25 +195,32 @@ public class CarbonService {
 			}
 			
 			
-			
-			/* CALCULATION
-			 * According to eta.co.uk, we can get the grams per km by dividing
-			 * 6760 for petrol (or 7440 for diesel) by the mpg of the car.
-			 * So if we do that, we can then multiply it by the journey length.
-			 */
-			double kmRatio = 1.609; // we asked for miles so we'll need to convert things
-			double result = (((emissions / mpg) * (distance * kmRatio))/1000); // we divide by 1000 to get kgs
-			
-			
-			//now build our response
-			responseString.Builder responseBuilder = responseString.newBuilder();	//create a builder
-			System.out.println("Returning value of : " + result + " kg.");
-			
+			// VALIDATION
 			if (emissions == 0) {
 				responseBuilder.setMessage(invalidFuelTypeMessage);
 			} else {
 				responseBuilder.setMessage("The amount of carbon emmited for this drive is about " + result + " kg");
 			}
+			
+			
+			
+			// VALIDATION
+			if ((distance > 0) && (mpg > 0)) {
+				/* CALCULATION
+				 * According to eta.co.uk, we can get the grams per km by dividing
+				 * 6760 for petrol (or 7440 for diesel) by the mpg of the car.
+				 * So if we do that, we can then multiply it by the journey length.
+				 */
+				double kmRatio = 1.609; // we asked for miles so we'll need to convert things
+				result = (((emissions / mpg) * (distance * kmRatio))/1000); // we divide by 1000 to get kgs
+				
+				
+				System.out.println("Returning value of : " + result + " kg.");
+			} else {
+				responseBuilder.setMessage("Error: Distance and Mpg must bother be more than 0!");
+			}
+			
+			
 			
 			responseObserver.onNext(responseBuilder.build());
 			responseObserver.onCompleted();

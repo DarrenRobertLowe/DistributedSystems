@@ -230,8 +230,14 @@ public class PollutionClient {
 		
 	
 		deviceStatusRequest request = deviceStatusRequest.newBuilder().setStatusRequestedID(device).build();
-		deviceStatusResponse response = blockingStub.withDeadlineAfter(10,TimeUnit.SECONDS).getDeviceStatus(request);	// deadline of 10 seconds
-		System.out.println(response.getStatus()); // e.g.: "Health for device dev04: 77.14953"
+		try {
+			deviceStatusResponse response = blockingStub.withDeadlineAfter(10,TimeUnit.SECONDS).getDeviceStatus(request);	// deadline of 10 seconds
+			System.out.println(response.getStatus()); // e.g.: "Health for device dev04: 77.14953"
+		} catch (StatusRuntimeException e) {
+			System.out.println("Server request timed out.");
+		}
+		
+		
 	}
 	
 	
@@ -337,9 +343,8 @@ public class PollutionClient {
 			}
 			
 			System.out.println("Finished.");
-
 		} catch (StatusRuntimeException e) {
-			e.printStackTrace();
+			System.out.println("Server request timed out.");
 		}
 	}
 }

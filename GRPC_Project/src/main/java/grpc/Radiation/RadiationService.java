@@ -124,13 +124,13 @@ public class RadiationService {
             // Create a JmDNS instance
             JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
             
-            String service_type = prop.getProperty("service_type") ;//"_http._tcp.local.";
-            String service_name = prop.getProperty("service_name")  ;// "example";
+            String service_type = prop.getProperty("service_type");					//"_http._tcp.local.";
+            String service_name = prop.getProperty("service_name");
             // int service_port = 1234;
-            int service_port = Integer.valueOf( prop.getProperty("service_port") );// #.50051;
+            int service_port = Integer.valueOf( prop.getProperty("service_port") );	// #.50051;
             
             
-            String service_description_properties = prop.getProperty("service_description")  ;//"path=index.html";
+            String service_description_properties = prop.getProperty("service_description");
             
             // Register a service
             ServiceInfo serviceInfo = ServiceInfo.create(service_type, service_name, service_port, service_description_properties);
@@ -176,7 +176,6 @@ public class RadiationService {
 				int total = 0;	// used to get an average value
 				
 				
-				
 				@Override
 				public void onNext(radiationMeasurements request) {
 					String clientID =  request.getClientID();
@@ -186,16 +185,21 @@ public class RadiationService {
 					// have: 15 picocuries of alpha particles per liter of water (pCi/L) or less.
 					System.out.println("ClientID '" + clientID + "' : " +request.getPicocuries());
 					
-					radiationString += request.getPicocuries() +" ";
-					total += request.getPicocuries();	// add to the total
-					count++;							// add to the count
+					
+					// VALIDATION
+					// only accept radiation values >= 0, as anything else means there's a problem
+					if (request.getPicocuries() >= 0) {
+						radiationString += request.getPicocuries() +" ";
+						total += request.getPicocuries();	// add to the total
+						count++;							// add to the count
+					} else {
+						System.out.println("Received an invalid value from '"+ clientID +"'!");
+					}
 				}
-				
 				
 				@Override
 				public void onError(Throwable t) {
 					// TODO Auto-generated method stub
-					
 				}
 				
 				
@@ -205,7 +209,12 @@ public class RadiationService {
 					//Step one create a builder
 					measurementsResponse.Builder responseBuilder = measurementsResponse.newBuilder();
 					
-					String message = ("Server: confirmation receipt of receiving radiation numbers: " + radiationString + "   Average: " + (total/count) +" picocuries");
+					// VALIDATION
+					String message = "Nothing received from client!";
+					if (count > 0) {
+						message = ("Server: confirmation receipt of receiving radiation numbers: " + radiationString + "   Average: " + (total/count) +" picocuries");
+					} 
+					
 					measurementsResponse reply = measurementsResponse.newBuilder().setMessage(message).build();
 					
 					responseObserver.onNext(reply);
@@ -294,12 +303,11 @@ public class RadiationService {
 					radiationAlert reply = radiationAlert.newBuilder().setRadiationAlerts(replyString).build();
 					responseObserver.onNext(reply);
 					
+					
 					// delay each message
 					try {
-						//wait for a second
 						Thread.sleep(250);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 				}

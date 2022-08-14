@@ -161,16 +161,16 @@ public class RadiationClient {
 			// send the measurement data
 			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(20).build());
 			Thread.sleep(500);
-
+			
 			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(12).build());
 			Thread.sleep(500);
 
-			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(4).build());
+			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(-4).build()); // for demonstration
 			Thread.sleep(500);
 			
 			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(11).build());
 			Thread.sleep(500);
-
+			
 			requestObserver.onNext(radiationMeasurements.newBuilder().setClientID(name).setPicocuries(8).build());
 			Thread.sleep(500);
 
@@ -230,6 +230,7 @@ public class RadiationClient {
 			}
 		};
 		
+		
 		asyncStub.withDeadlineAfter(20,TimeUnit.SECONDS).getRadiationLevels(request, responseObserver); // deadline of 20 seconds
 		
 		try {
@@ -281,7 +282,7 @@ public class RadiationClient {
 			}
 		};
 		
-		asyncStub.getRadiationWarnings(request, responseObserver);
+		asyncStub.withDeadlineAfter(20,TimeUnit.SECONDS).getRadiationWarnings(request, responseObserver);
 		
 		
 		try {

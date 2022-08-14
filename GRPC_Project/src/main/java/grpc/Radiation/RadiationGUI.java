@@ -30,6 +30,8 @@ import grpc.Radiation.radiationServiceGrpc.radiationServiceBlockingStub;
 import grpc.Radiation.radiationServiceGrpc.radiationServiceStub;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -51,6 +53,7 @@ public class RadiationGUI {
 	private JTextField textNumber2;
 	private JTextArea textResponse ;
 	
+	static ManagedChannel channel;
 	
 	/**
 	 * Launch the application.
@@ -74,14 +77,14 @@ public class RadiationGUI {
 	 */
 	public RadiationGUI() {
 		
-		// jmdns resoultion
+		// jmdns resolution
 		String service_type = "radiationservice_http._tcp.local.";
 		discoverService(service_type);
 		
 		String host = "localhost";//radiationServiceInfo.getHostAddresses()[0];
 		int port = 50052;//radiationServiceInfo.getPort();
 		
-		ManagedChannel channel = ManagedChannelBuilder
+		channel = ManagedChannelBuilder
 				.forAddress(host, port)
 				.usePlaintext()
 				.build();
@@ -92,7 +95,7 @@ public class RadiationGUI {
 		asyncStub = radiationServiceGrpc.newStub(channel);
 
 		
-		initialize();
+		initialize(channel);
 	}
 	
 	
@@ -150,10 +153,13 @@ public class RadiationGUI {
 	
 	
 	
+	
+	
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(ManagedChannel channel) {
 		frame = new JFrame();
 		frame.setTitle("Client - Service Controller");
 		frame.setBounds(100, 100, 500, 300);
@@ -184,6 +190,17 @@ public class RadiationGUI {
 		textNumber1 = new JTextField();
 		panel_service_1.add(textNumber1);
 		textNumber1.setColumns(10);
+		
+		
+		
+		/// Gracefully handle the window closing event
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.out.println("Window closed by user.");
+				channel.shutdown(); 	// this avoids errors in the console
+			}
+		});
+		
 		
 		
 		// calculate button
