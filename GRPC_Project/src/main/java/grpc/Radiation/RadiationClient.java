@@ -18,6 +18,20 @@ import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceInfo;
 import javax.jmdns.ServiceListener;
 
+/**
+ * 
+ * @author Darren Robert Lowe
+ * 
+ * This is the client for the Radiation Service
+ * 
+ * The Radiation Service deals with radiation in the water supply. IoT 
+ * devices (hypothetically) collect data and forward it to a server, where 
+ * it can be arranged by danger level and relayed to any interested clients.
+ * The service also provides a system where a client can input a threshold
+ * for radiation and receive a list of all regions that exceed that match
+ * or exceed that threshold, or in another service they can simply receive
+ * a list of all entries arranged by severity.
+ */
 
 public class RadiationClient {
 

@@ -39,10 +39,29 @@ import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 
-
+/**
+ * 
+ * @author Darren Robert Lowe
+ * 
+ * This is the GUI client for the Radiation Service
+ * 
+ * The Radiation Service deals with radiation in the water supply. IoT 
+ * devices (hypothetically) collect data and forward it to a server, where 
+ * it can be arranged by danger level and relayed to any interested clients.
+ * The service also provides a system where a client can input a threshold
+ * for radiation and receive a list of all regions that exceed that match
+ * or exceed that threshold, or in another service they can simply receive
+ * a list of all entries arranged by severity.
+ * 
+ * This class is to demonstrate using a GUI to interact with a grpc service and
+ * allows the user to get a list of counties that have radiation levels above
+ * a given threshold.
+ */
 
 public class RadiationGUI {
 
+	static int threshold = -1;	// because otherwise the try-catch for validation causes errors
+	
 	private static ServiceInfo radiationServiceInfo; // jmdns
 	
 	private static radiationServiceBlockingStub blockingStub;
@@ -159,7 +178,8 @@ public class RadiationGUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(ManagedChannel channel) {
+	private void initialize(ManagedChannel channel) { // passed channel here so we can close the window without causing an error
+		
 		frame = new JFrame();
 		frame.setTitle("Client - Service Controller");
 		frame.setBounds(100, 100, 500, 300);
@@ -208,9 +228,14 @@ public class RadiationGUI {
 		btnCalculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-
-				int threshold = Integer.parseInt(textNumber1.getText());
 				
+				
+				try {
+					threshold = Integer.parseInt(textNumber1.getText());
+				} catch (NumberFormatException e1) {
+					System.out.println("Invalid threshold entered.");
+					threshold = -1;
+				}
 				
 				System.out.println("Requesting Radiation Warnings of threshold " + threshold);
 				System.out.println("===========================================");

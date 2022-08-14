@@ -27,6 +27,19 @@ import grpc.pollution.objects.IoTDevice;
 import algorithms.*;
 
 
+/**
+ * 
+ * @author Darren Robert Lowe
+ * 
+ * This service deals with air pollution. This is broken into four rpcs,
+ * StreamPollution, GetLocalAirPollution, GetDeviceStatus and GetAllDeviceStatus.
+ * StreamPollution is for IoT devices to stream their carbon dioxide numbers to
+ * the server. GetLocalAirPollution is a bi-directional stream where a user sends
+ * GPS data to the server and the server in turn responds with the air pollution
+ * in the area (in ppm). GetDeviceStatus returns the health status of a given IoT
+ * device and lastly GetAllDeviceStatus returns the average health over all the
+ * IoT devices.
+ */
 
 public class PollutionService{
 	static Random rand = new Random(); // used for delaying the stream messages
@@ -70,7 +83,10 @@ public class PollutionService{
 	
 	
 	
-	
+	/*
+	 * Registers the service with JmDNS and starts the listening
+	 * for client request.
+	 */
 	private void start(PollutionService ourServer) throws IOException, InterruptedException {
 		System.out.println("Starting grpc server for air pollution services");
 		
@@ -94,7 +110,9 @@ public class PollutionService{
 	
 	
 	
-	
+	/*
+	 * Load the properties from the properties file.
+	 */
 	private Properties getProperties() {
 		Properties prop = null;
 		
@@ -122,6 +140,9 @@ public class PollutionService{
 	
 	
 	/// JMDNS
+	/* 
+	 * Register this service with JmDNS
+	 */
 	private  void registerService(Properties prop) {
 		
 		 try {
@@ -160,7 +181,9 @@ public class PollutionService{
 	
 	
 	
-	
+	/*
+	 * RPC METHODS
+	 */
 	//Extend abstract base class for our own implementation
 	static class PollutionServiceImpl extends pollutionServiceImplBase {
 		/* streamPollution													// client to server streaming

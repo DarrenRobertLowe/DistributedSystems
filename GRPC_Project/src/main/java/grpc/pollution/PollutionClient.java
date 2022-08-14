@@ -22,6 +22,21 @@ import javax.jmdns.ServiceEvent;
 import javax.jmdns.ServiceInfo;
 import javax.jmdns.ServiceListener;
 
+/**
+ * 
+ * @author Darren Robert Lowe
+ *
+ * This is the client for the Pollution Service.
+ * 
+ * The Pollution Service deals with air pollution. This is broken into four rpcs,
+ * StreamPollution, GetLocalAirPollution, GetDeviceStatus and GetAllDeviceStatus.
+ * StreamPollution is for IoT devices to stream their carbon dioxide numbers to
+ * the server. GetLocalAirPollution is a bi-directional stream where a user sends
+ * GPS data to the server and the server in turn responds with the air pollution
+ * in the area (in ppm). GetDeviceStatus returns the health status of a given IoT
+ * device and lastly GetAllDeviceStatus returns the average health over all the
+ * IoT devices.
+ */
 
 public class PollutionClient {
 	

@@ -27,13 +27,32 @@ import grpc.pollution.pollutionServiceGrpc.pollutionServiceBlockingStub;
 import grpc.pollution.pollutionServiceGrpc.pollutionServiceStub;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.concurrent.TimeUnit;
 import java.awt.event.ActionEvent;
 
-
+/**
+ * 
+ * @author Darren Robert Lowe
+ *
+ * This is the GUI client for the Pollution Service.
+ * 
+ * The Pollution Service deals with air pollution. This is broken into four rpcs,
+ * StreamPollution, GetLocalAirPollution, GetDeviceStatus and GetAllDeviceStatus.
+ * StreamPollution is for IoT devices to stream their carbon dioxide numbers to
+ * the server. GetLocalAirPollution is a bi-directional stream where a user sends
+ * GPS data to the server and the server in turn responds with the air pollution
+ * in the area (in ppm). GetDeviceStatus returns the health status of a given IoT
+ * device and lastly GetAllDeviceStatus returns the average health over all the
+ * IoT devices.
+ * 
+ * This class is to demonstrate using a GUI to interact with a grpc service and
+ * allows the user to get the health status of a single (hypothetical) IoT Device.
+ */
 
 public class PollutionGUI {
 
@@ -89,7 +108,7 @@ public class PollutionGUI {
 		asyncStub = pollutionServiceGrpc.newStub(channel);
 
 		
-		initialize();
+		initialize(channel);
 	}
 	
 	
@@ -150,7 +169,7 @@ public class PollutionGUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(ManagedChannel channel) { // passed channel here so we can close the window without causing an error
 		frame = new JFrame();
 		frame.setTitle("Client - Service Controller");
 		frame.setBounds(100, 100, 500, 300);
@@ -162,6 +181,15 @@ public class PollutionGUI {
 		
 		
 		
+		/// Gracefully handle the window closing event
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.out.println("Window closed by user.");
+				channel.shutdown(); 	// this avoids errors in the console
+			}
+		});
+				
+				
 		
 		// CAR CALCULATION
 		JPanel panel_service_1 = new JPanel();

@@ -13,16 +13,25 @@ service carbonService {
 
 
 
-
+/* CalculateCarbonFlight
+ * Calculates the amount of carbon that would typically be
+ * emitted for a given flight length.
+ */
 message carbonFlightRequest {
 	int32 hoursInput = 1; 		// 1 is just a tag/identifier, its not the contents of the variable
 }
 
+
+/* CalculateCarbonDrive
+ * Calculates the amount of carbon that would typically be
+ * emitted for a given car journey.
+ */
 message carbonDriveRequest {
    int32 milesInput = 1;		// the number of miles
    int32 mpgInput 	= 2;		// the miles per gallon
    string fuelType  = 3;		// petrol or diesel
 }
+
 
 message responseString {
 	string message = 1;

@@ -18,6 +18,19 @@ import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 
 
+/**
+ * 
+ * @author Darren Robert Lowe
+ *
+ * This is the client for the Carbon Service.
+ * The Carbon Service is an environmental footprint calculator wherein a user can
+ * calculate an estimated amount of air pollution (C02) a given journey would create.
+ * For example a ten hours flight in a Boeing 737-400 airplane, or 30 mile drive in
+ * an average petrol or diesel car. The user provides the system with the required
+ * information and the service responds accordingly. In the case of a flight the
+ * number of hours of the flight is the input, whereas with the vehicle journey the
+ * miles per gallon, drive distance and fuel type (petrol or diesel) are required.
+ */
 
 public class CarbonClient {
 	

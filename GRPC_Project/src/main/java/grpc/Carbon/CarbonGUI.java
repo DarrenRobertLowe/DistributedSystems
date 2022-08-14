@@ -27,13 +27,31 @@ import grpc.Carbon.carbonServiceGrpc.carbonServiceBlockingStub;
 import grpc.Carbon.carbonServiceGrpc.carbonServiceStub;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.awt.event.ActionEvent;
 
 
-
+/**
+ * 
+ * @author Darren Robert Lowe
+ *
+ * This is the GUI client for the Carbon Service.
+ * 
+ * The Carbon Service is an environmental footprint calculator wherein a user can
+ * calculate an estimated amount of air pollution (C02) a given journey would create.
+ * For example a ten hours flight in a Boeing 737-400 airplane, or 30 mile drive in
+ * an average petrol or diesel car. The user provides the system with the required
+ * information and the service responds accordingly. In the case of a flight the
+ * number of hours of the flight is the input, whereas with the vehicle journey the
+ * miles per gallon, drive distance and fuel type (petrol or diesel) are required.
+ * 
+ * This class is to demonstrate using a GUI to interact with a grpc service and
+ * allows the user to calculate the total carbon emissions for a car journey.
+ */
 public class CarbonGUI {
 
 	private static ServiceInfo carbonServiceInfo; // jmdns
@@ -83,11 +101,8 @@ public class CarbonGUI {
 
 		//stubs -- generate from proto
 		blockingStub = carbonServiceGrpc.newBlockingStub(channel);
-
 		asyncStub = carbonServiceGrpc.newStub(channel);
-
-		
-		initialize();
+		initialize(channel);
 	}
 	
 	
@@ -148,7 +163,7 @@ public class CarbonGUI {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() {
+	private void initialize(ManagedChannel channel) { // passed channel here so we can close the window without causing an error
 		frame = new JFrame();
 		frame.setTitle("Client - Service Controller");
 		frame.setBounds(100, 100, 500, 300);
@@ -159,6 +174,14 @@ public class CarbonGUI {
 		frame.getContentPane().setLayout(bl);
 		
 		
+
+		/// Gracefully handle the window closing event
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.out.println("Window closed by user.");
+				channel.shutdown(); 	// this avoids errors in the console
+			}
+		});
 		
 		
 		// CAR CALCULATION
@@ -202,8 +225,23 @@ public class CarbonGUI {
 		btnCalculate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				int miles = Integer.parseInt(textNumber1.getText());
-				int mpg = Integer.parseInt(textNumber2.getText());
+				int miles = 0;
+				int mpg = 0;
+				
+				try {
+					miles = Integer.parseInt(textNumber1.getText());
+				} catch (NumberFormatException e1) {
+					System.out.println("Invalid number input for miles.");
+					miles = 0;
+				}
+				
+				try {
+					mpg = Integer.parseInt(textNumber2.getText());
+				} catch (NumberFormatException e2) {
+					System.out.println("Invalid number input for mpg.");
+					mpg = 0;
+				}
+				
 				
 				int index = comboOperation.getSelectedIndex();
 				

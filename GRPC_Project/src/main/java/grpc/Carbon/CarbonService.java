@@ -18,6 +18,18 @@ import io.grpc.stub.StreamObserver;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
+/**
+ * 
+ * @author Darren Robert Lowe
+ *
+ * This service is an environmental footprint calculator wherein a user can
+ * calculate an estimated amount of air pollution (C02) a given journey would create.
+ * For example a ten hours flight in a Boeing 737-400 airplane, or 30 mile drive in
+ * an average petrol or diesel car. The user provides the system with the required
+ * information and the service responds accordingly. In the case of a flight the
+ * number of hours of the flight is the input, whereas with the vehicle journey the
+ * miles per gallon, drive distance and fuel type (petrol or diesel) are required.
+ */
 
 public class CarbonService {
 
@@ -28,7 +40,10 @@ public class CarbonService {
 	}
 	
 	
-	
+	/*
+	 * Registers the service with JmDNS and starts the listening
+	 * for client request.
+	 */
 	private void start(CarbonService ourServer) throws IOException, InterruptedException {
 		System.out.println("Starting grpc server for carbon footprint services");
 		
@@ -47,7 +62,9 @@ public class CarbonService {
 	}
 	
 	
-	
+	/*
+	 * Load the properties from the properties file.
+	 */
 	private Properties getProperties() {
 		Properties prop = null;
 		
@@ -76,6 +93,9 @@ public class CarbonService {
 	
 	
 	/// JMDNS
+	/* 
+	 * Register this service with JmDNS
+	 */
 	private  void registerService(Properties prop) {
 		 try {
 			System.out.println("Please wait while jmDNS registers this service...");
@@ -112,7 +132,9 @@ public class CarbonService {
 	
 	
 	
-	
+	/*
+	 * RPC METHODS
+	 */
 	//Extend abstract base class for our own implementation
 	static class CarbonServiceImpl extends carbonServiceImplBase {
 		
@@ -174,6 +196,7 @@ public class CarbonService {
 			// create the builder that will be used for returning the result
 			responseString.Builder responseBuilder = responseString.newBuilder();	//create a builder
 			double result = 0.0;
+			boolean fuelTypeOk = false;
 			
 			// check the fuel type
 			int emissions = 0;
@@ -181,11 +204,13 @@ public class CarbonService {
 				case "petrol":
 					System.out.println("FuelType is petrol.");
 					emissions = 6760;
+					fuelTypeOk = true;
 					break;
 				
 				case "diesel":
 					System.out.println("FuelType is diesel.");
 					emissions = 7440;
+					fuelTypeOk = true;
 					break;
 					
 				default:
@@ -196,29 +221,29 @@ public class CarbonService {
 			
 			
 			// VALIDATION
-			if (emissions == 0) {
+			if (fuelTypeOk == false) {
 				responseBuilder.setMessage(invalidFuelTypeMessage);
 			} else {
-				responseBuilder.setMessage("The amount of carbon emmited for this drive is about " + result + " kg");
+				// VALIDATION
+				if ((distance > 0) && (mpg > 0)) {
+					/* CALCULATION
+					 * According to eta.co.uk, we can get the grams per km by dividing
+					 * 6760 for petrol (or 7440 for diesel) by the mpg of the car.
+					 * So if we do that, we can then multiply it by the journey length.
+					 */
+					double kmRatio = 1.609; // we asked for miles so we'll need to convert things
+					result = (((emissions / mpg) * (distance * kmRatio))/1000); // we divide by 1000 to get kgs
+					
+					System.out.println("Returning value of : " + result + " kg.");
+					responseBuilder.setMessage("The amount of carbon emmited for this drive is about " + result + " kg");
+				} else {
+					responseBuilder.setMessage("Error: Distance and Mpg must be more than 0!");
+				}
 			}
 			
 			
 			
-			// VALIDATION
-			if ((distance > 0) && (mpg > 0)) {
-				/* CALCULATION
-				 * According to eta.co.uk, we can get the grams per km by dividing
-				 * 6760 for petrol (or 7440 for diesel) by the mpg of the car.
-				 * So if we do that, we can then multiply it by the journey length.
-				 */
-				double kmRatio = 1.609; // we asked for miles so we'll need to convert things
-				result = (((emissions / mpg) * (distance * kmRatio))/1000); // we divide by 1000 to get kgs
-				
-				
-				System.out.println("Returning value of : " + result + " kg.");
-			} else {
-				responseBuilder.setMessage("Error: Distance and Mpg must bother be more than 0!");
-			}
+			
 			
 			
 			

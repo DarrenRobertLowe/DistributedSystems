@@ -24,6 +24,18 @@ import grpc.Radiation.objects.County;
 
 import algorithms.MergeSort;
 
+/**
+ * 
+ * @author Darren Robert Lowe
+ *
+ * This service deals with radiation in the water supply. IoT devices
+ * (hypothetically) collect data and forward it to a server, where it
+ * can be arranged by danger level and relayed to any interested clients.
+ * The service also provides a system where a client can input a threshold
+ * for radiation and receive a list of all regions that exceed that match
+ * or exceed that threshold, or in another service they can simply receive
+ * a list of all entries arranged by severity.
+ */
 
 public class RadiationService {
 	static Random rand = new Random();
@@ -65,7 +77,10 @@ public class RadiationService {
 	}
 	
 	
-	
+	/*
+	 * Registers the service with JmDNS and starts the listening
+	 * for client request.
+	 */
 	private void start(RadiationService ourServer) throws IOException, InterruptedException {
 		System.out.println("Starting grpc server for radiation services");
 		
@@ -88,7 +103,9 @@ public class RadiationService {
 	
 	
 	
-	
+	/*
+	 * Load the properties from the properties file.
+	 */
 	private Properties getProperties() {
 		Properties prop = null;
 		
@@ -116,6 +133,9 @@ public class RadiationService {
 	
 	
 	/// JMDNS
+	/* 
+	 * Register this service with JmDNS
+	 */
 	private  void registerService(Properties prop) {
 		
 		 try {
@@ -153,7 +173,9 @@ public class RadiationService {
 	}
 	
 	
-	
+	/*
+	 * RPC METHODS
+	 */
 	//Extend abstract base class for our own implementation
 	static class RadiationServiceImpl extends radiationServiceImplBase {
 		
@@ -286,6 +308,10 @@ public class RadiationService {
 			int threshold = request.getThreshold(); // get the picocuries per litre threshold from the client
 			System.out.println("Threshold: " + threshold);
 			
+			if (threshold < 0) {
+				radiationAlert reply = radiationAlert.newBuilder().setRadiationAlerts("Invalid input receieved! Defaulting to 0.").build();
+				responseObserver.onNext(reply);
+			}
 			
 			String replyString = "";
 			County[] list = listOfCounties;
